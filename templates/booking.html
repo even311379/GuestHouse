@@ -1,0 +1,74 @@
+<!-- index.html -->
+{% extends "base.html" %}
+{% block content %}
+
+<!--   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script> -->
+
+ <form name='booking form' action='booking' method='POST'>
+ 	{% csrf_token %}
+  入住日期: <input type="date" name='room_start_date' value='{{ str_inday }}'><br/>
+  退房日期: <input type="date" name='room_end_date' value='{{ str_outday }}'><br/>
+  <!-- I should use ajax skill to automatively update 退房日期 later -->
+  <input type='submit' value='查詢空房'><br/>
+</form>
+
+
+{% if sd %}
+您選擇入住{{ sd }}到{{ ed }}，共{{ n_night }}個晚上，目前的空房有：
+{% endif %}
+
+{% if empty_rooms %}
+
+<form name='rooms select' action='booking_check' method='POST'>
+	{% csrf_token %}
+	<div class="invisible">
+	<input type="text" name='room_start_date' value='{{ sd }}'>
+	<input type="text" name='room_end_date' value='{{ ed }}'>
+	</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">房型</th>
+      <th scope="col">價格(假日)</th>
+      <th scope="col">剩餘房數</th>
+      <th scope="col">訂房數量</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for room, N_room_left, N_room_range in empty_room_info %}
+    <tr>
+      <th>{{ room.room_name }}</th>
+      <td>{{ room.room_price }}( {{ room.holiday_price }} )</td>
+      <td>{{ N_room_left }}</td>
+      <td>
+		<select class="custom-select custom-select-sm" name = 'N_{{ room.name }}' >
+			<option selected>0</option>
+			{% for n in N_room_range %}
+				<option value="{{ n }}">{{ n }}</option>
+			{% endfor %}
+
+		</select>
+	</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<input type='submit' value='訂房'><br/>
+</form>
+
+{% else %}
+	{% if sd %}
+	<h1>很抱歉完全沒房間了！</h1>
+	{% endif %}
+{% endif %}
+
+{% endblock %}
