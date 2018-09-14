@@ -16,6 +16,8 @@ class room_types(models.Model):
 
 class price_multifier(models.Model):
     multifier = models.DecimalField(max_digits = 3, decimal_places = 2, verbose_name = '折扣')
+    sday = models.DateField(auto_now = False, verbose_name = '折扣開始日期')
+    eday = models.DateField(auto_now = False, verbose_name = '折扣結束日期')
 
 class holidays(models.Model):
     holiday_name = models.CharField(max_length = 10,verbose_name = '假日名稱', default='某國定假日')
@@ -24,18 +26,12 @@ class holidays(models.Model):
     # def __str__(self):
     #     return self.holiday_date
 
+class FileUpload(models.Model):
+    file = models.FileField(blank = True, verbose_name = '輔助檔案名稱')
+
+
+
 class room_use_condition(models.Model):
-    '''
-    Fail to create dynamical choice based on room type...
-    '''
-    # rt = rt_model.room_type.objects.all()
-
-    # room_type_choice = []
-    # for r in rt:
-    #     for i in range(r.N_room):
-    #         room_type_choice.append(r.name+str(i))
-
-    # room_type_choice = tuple(room_type_choice)
 
     room_type_choice = (
     ('M1', 'Medium1'),
@@ -60,5 +56,15 @@ class room_use_condition(models.Model):
     room_end_use_date = models.DateField(auto_now = False, verbose_name = '結束使用日期')
     confirmed = models.BooleanField(default = False, verbose_name = '已確認？')
 
+    booker_name = models.CharField(max_length = 25, verbose_name = '訂房人姓名')
+    booking_time = models.DateTimeField(auto_now = False, verbose_name = '訂房時間')
+    booker_phone = models.CharField(max_length = 20, verbose_name = '訂房人電話號碼')
+    booker_email = models.EmailField(max_length = 30, verbose_name = '訂房人電子信箱')
+    confirmed_time = models.DateTimeField(auto_now = False, verbose_name = '確認時間')
+
+    '''
+    Severe issue found!!
+    blank = True seems will cause severe problem when I want create one date through code...
+    '''
 
 

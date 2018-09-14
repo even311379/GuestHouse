@@ -4,7 +4,112 @@
 <div class='container' align=center>
 	<h1>訂房確認</h1>
 
+	您的住宿期間包含{{ n_workday }}日正常日及{{ n_holiday }}日假日：
+	<table class="table">
+  	<thead>
+    <tr>
+		<th scope="col">房型</th>
+		<th scope="col">間數</th>
+		<th scope="col">合計(NTD)</th>
+    </tr>
+  	</thead>
+  	<tbody>
+  	{% for room_name, n_room, sum_money in order_info %}
+    <tr>
+		<th>{{ room_name }}</th>
+		<td>{{ n_room }}</td>
+		<td>{{ sum_money }}</td>
+    </tr>
+    {% endfor %}
+  	</tbody>
+	</table>
+<h3>全部總計{{ total_sum }} (NTD)</h3>
 
-	<a class="btn btn-primary" href="book_confirm" role="button">確認</a>
+<h3>請輸入訂房資料:</h3>
+<p>請勿必填寫正確的聯絡資訊，以避免訂房失敗
+
+<form class="form-inline" onsubmit="openModal()" id="myForm">
+	<label for="BookerNameInput">姓名</label>
+	<input type = 'text' id="BookerNameInput" placeholder="曾英俊" required>
+	<label for="BookerEmailInput">Email address</label>
+	<input type = 'email' id="BookerEmailInput" placeholder="example@example.com" required>
+	<label for="BookerPhoneInput">電話號碼</label>
+	<input type = 'text' id="BookerPhoneInput" placeholder="0912345678" required>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!-- Modal -->
+<!-- Button trigger modal -->
+<div class="modal fade" tabindex="1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">訂房確認</h4>
+      </div>
+      <div class="modal-body">
+        <form action="add_booking_data" method="POST">{% csrf_token %}
+      <div class="invisible">
+        <input type="text" id="BookerNameInput_post" name="BookerName">
+      </div>
+      	<h3>感謝您的訂房，成功時email通知您！</h3>
+        <p>3如果在天內沒收到確認信件即代表訂房失敗，請直接來電....</p>
+	    <div class="invisible">
+	    	<input type="email" id="BookerEmailInput_post" name="BookerEmail">
+	    	<input type="text" id="BookerPhoneInput_post" name="BookerPhone">
+	    </div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消訂房</button>
+        <input type='submit' class="btn btn-primary" value='確定訂房'>
+        </form>
+
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+</div> <!-- end of container -->
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+<!-- JS code -->
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+</script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+</script> -->
+<!--JS below-->
+<!--modal-->
+<script>
+$('#myForm').on('submit', function(e){
+  $('#myModal').modal('show');
+  e.preventDefault();
+});
+
+$(document).ready(function() { 
+    $('#BookerNameInput').change(function() {
+      $('#BookerNameInput_post').val($('#BookerNameInput').val());
+    });
+});
+
+$(document).ready(function() { 
+    $('#BookerEmailInput').change(function() {
+      $('#BookerEmailInput_post').val($('#BookerEmailInput').val());
+    });
+});
+
+$(document).ready(function() { 
+    $('#BookerPhoneInput').change(function() {
+      $('#BookerPhoneInput_post').val($('#BookerPhoneInput').val());
+    });
+});
+
+</script>
 {% endblock %}

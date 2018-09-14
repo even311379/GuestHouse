@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from mysite import views
 
 app_name = 'mysite'
@@ -28,5 +30,11 @@ urlpatterns = [
     path('booking', views.booking, name='booking'),
     path('traffic', views.traffic, name='traffic_info'),
     path('nearby', views.nearby, name='nearby'),
-    path('booking_check', views.booking_check, name='booking_check')
+    path('booking_check', views.booking_check, name='booking_check'),
+    path('add_booking_data', views.add_booking_data, name='add_booking_data'),
+    path('booking_data_confirm/',views.booking_data_confirm,name='booking_data_confirm'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

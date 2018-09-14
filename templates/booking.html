@@ -12,11 +12,12 @@
   } );
   </script> -->
 
- <form name='booking form' action='booking' method='POST'>
- 	{% csrf_token %}
+
+<form name='booking form' action='booking' method='GET'>
   入住日期: <input type="date" name='room_start_date' value='{{ str_inday }}'><br/>
   退房日期: <input type="date" name='room_end_date' value='{{ str_outday }}'><br/>
   <!-- I should use ajax skill to automatively update 退房日期 later -->
+  <div class="invisible"><input type="text" name='Form id' value='0'></div>
   <input type='submit' value='查詢空房'><br/>
 </form>
 
@@ -27,11 +28,13 @@
 
 {% if empty_rooms %}
 
-<form name='rooms select' action='booking_check' method='POST'>
+<form name='rooms select' action='booking' method='POST'>
 	{% csrf_token %}
 	<div class="invisible">
-	<input type="text" name='room_start_date' value='{{ sd }}'>
-	<input type="text" name='room_end_date' value='{{ ed }}'>
+	<input type="integer" name='room_start_date' value='{{ sd }}'>
+	<input type="text" name='room_end_date' value='{{ eud }}'>
+	<input type="text" name='Form id' value='1'>
+	<input type="text" name='empty_rooms' value='{{ ems }}'>
 	</div>
 <table class="table">
   <thead>
@@ -70,5 +73,10 @@
 	<h1>很抱歉完全沒房間了！</h1>
 	{% endif %}
 {% endif %}
+
+<!-- Add some warning messages here: -->
+{% for message in messages %}
+	<div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+{% endfor %}
 
 {% endblock %}
