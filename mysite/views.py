@@ -9,6 +9,7 @@ from django.template.loader import get_template
 # from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.models import User
 import datetime
+import calendar
 from django.utils import timezone
 from mysite.utils import check_free_rooms
 # Create your views here.
@@ -267,6 +268,41 @@ def nearby(request):
 	return HttpResponse(render(request, '../templates/nearby.html', locals()))
 
 
-'''
-Add a calendar view for logined user??
-'''
+def calendar_widget(request):
+	if request.method == 'POST':
+		Y = int(request.POST.get('Year'))
+		M = int(request.POST.get('Month'))
+	else:
+		Y = datetime.date.today().year
+		M = datetime.date.today().month
+
+	N_days = calendar.monthrange(Y,M)[1]
+	first_date = datetime.date(Y,M,1)
+	dates = []
+	weekdays = []
+	for i in range(N_days):
+		dates.append(first_date+datetime.timedelta(days=i))
+		weekdays.append((first_date+datetime.timedelta(days=i)).weekday())
+
+	
+	head_append = list(range(first_date.weekday()+1))
+	tail_append = list(range(5 - dates[-1].weekday()))
+	all_booking_data = models.room_use_condition.objects.all()
+	booking_data_this_month = []
+	for data in all_booking_data:
+		if data.room_start_use_date.month == M or data.room_end_use_date.month == M:
+			booking_data_this_month.append(data)
+
+	booking_this_month = []
+	for date in dates:
+		booking_this_day = []
+		for booking_data in booking_data_this_month:
+			if booking_data.room_start_use_date <= date <= booking_data.room_end_use_date:
+				booking_this_day.append(booking_data.room_type)
+		booking_this_month.append(','.join(booking_this_day))
+
+
+	dateinfo = zip(dates,weekdays,booking_this_month)
+	return HttpResponse(render(request, '../templates/calendar_widget.html', locals()))
+
+

@@ -1,0 +1,105 @@
+<!-- calendar_widget.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class='container' align=center>
+
+<div class="container">
+<h1 align=center>Booking Records in Calendar View</h1>
+<form name='Year_Month_selector' action='calendar' method='POST'>
+	{% csrf_token %}
+	
+	<div class="form-row">
+	<div class="form-group col-md-2">
+	<label>年份:</label>
+	<select  name = 'Year' >
+			<option selected>2018</option>
+			<option value="2019">2019</option>
+			<option value="2020">2020</option>
+			<option value="2021">2021</option>
+			<option value="2022">2022</option>
+		</select>
+	</div>
+	<div class="form-group col-md-2">
+	<label>月份:</label>
+	<select name = 'Month' >
+			<option selected>1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+		</select>
+	</div>
+	<div class="form-group col-md-2">
+		<label>  </label>
+		<input type='submit' class="btn btn-primary" value='確定'>
+	</div>
+	</div>
+</form>
+
+
+<h2> {{ Y }}年 {{ M }}月的資料如下： </h2>
+<section>
+	<table class="table table-bordered table-dark">
+  <thead>
+    <tr align=center>
+      <th scope="col">Sunday</th>
+      <th scope="col">Monday</th>
+      <th scope="col">Tuesday</th>
+      <th scope="col">Wednesday</th>
+      <th scope="col">Thursday</th>
+      <th scope="col">Friday</th>
+      <th scope="col">Saturday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    	{% for nhs in head_append %}
+    <td class="table-light">
+		<h5> </h5>
+		<p> </p>
+  	</td>
+  		{% endfor %}
+  		{%for date, weekday, booking_data in dateinfo %}
+  		{% if weekday == 6%}
+  	</tr>
+  	<tr>
+  	<td class="table-dark">
+		<h5>{{ date.day }}</h5>
+		{% if booking_data %}
+		<p><font size="2"> {{ booking_data }}</font> </p>
+		{% else %}
+		<p> </p>
+		{% endif %}
+  	</td>
+  		{% else %}
+  	<td class="table-dark">
+		<h5>{{ date.day }}</h5>
+		{% if booking_data %}
+		<p><font size="2"> {{ booking_data }}</font> </p>
+		{% else %}
+		<p> </p>
+		{% endif %}
+  	</td>
+  		{% endif %}
+  		{% endfor %}
+  		{% for nts in tail_append %}
+  	<td class="table-light">
+		<h5> </h5>
+		<p> </p>
+  	</td>
+  		{% endfor %}
+    </tr>
+  </tbody>
+</table>
+
+</section>
+
+</div> <!-- end of container!
+{% endblock %}
