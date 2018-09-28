@@ -33,7 +33,9 @@ urlpatterns = [
     path('booking_check', views.booking_check, name='booking_check'),
     path('add_booking_data', views.add_booking_data, name='add_booking_data'),
     path('booking_data_confirm/',views.booking_data_confirm,name='booking_data_confirm'),
-    path('calendar',views.calendar_widget, name='calendar_widget')
+    path('calendar',views.calendar_widget, name='calendar_widget'),
+    path('message_area',views.message_area, name='message_area'),
+    path('add_message', views.add_message, name='add_message')
 ]
 
 if settings.DEBUG:

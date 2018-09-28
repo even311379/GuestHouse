@@ -5,9 +5,7 @@ from django.contrib import messages, auth
 from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import get_template
-
-# from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.models import User
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 import datetime
 import calendar
 from django.utils import timezone
@@ -276,6 +274,7 @@ def calendar_widget(request):
 		Y = datetime.date.today().year
 		M = datetime.date.today().month
 
+
 	N_days = calendar.monthrange(Y,M)[1]
 	first_date = datetime.date(Y,M,1)
 	dates = []
@@ -299,10 +298,44 @@ def calendar_widget(request):
 		for booking_data in booking_data_this_month:
 			if booking_data.room_start_use_date <= date <= booking_data.room_end_use_date:
 				booking_this_day.append(booking_data.room_type)
-		booking_this_month.append(','.join(booking_this_day))
+		nL, nM, nG = [len([i for i in booking_this_day if i.startswith(T)]) for T in 'LMG']
+		booking_this_month.append("四人大套房: {0}<br>三人套房: {1}<br>和式團體房: {2}".format(6-nL,4-nM,3-nG))
 
-
+	
 	dateinfo = zip(dates,weekdays,booking_this_month)
 	return HttpResponse(render(request, '../templates/calendar_widget.html', locals()))
 
 
+def message_area(request):
+	all_guest_messages = models.guest_message.objects.all().order_by('-ask_time')
+	paginator = Paginator(all_guest_messages,10)
+	p = request.GET.get('p')
+	if not p:
+		p = 1
+	try:
+		guest_messages = paginator.page(p)
+		print(guest_messages[0].message)
+	except PageNotAnInteger:
+		guest_messages = paginator.page(1)
+	except EmptyPage:
+		guest_messages = paginator.page(paginator.num_pages())
+
+	return HttpResponse(render(request, '../templates/message_area.html', locals()))
+
+def add_message(request):
+	if request.method == 'POST':
+		who = request.POST.get('who')
+		what = request.POST.get('what').replace('\n','<br>')
+		secret = request.POST.get('SecretCheck1')
+		
+		if secret:
+			print('Add send Email logic later')
+		else:
+			new_message = models.guest_message.objects.create(guest_name=who,message=what,ask_time=datetime.datetime.now())
+			new_message.save()
+
+	else:
+		pass
+		
+
+	return HttpResponseRedirect('message_area')

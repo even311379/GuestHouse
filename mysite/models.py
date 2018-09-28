@@ -68,3 +68,11 @@ class room_use_condition(models.Model):
     '''
 
 
+class guest_message(models.Model):
+    
+    guest_name = models.CharField(max_length = 15, verbose_name = '誰')
+    message = models.TextField(verbose_name = '說啥')
+    ask_time = models.DateTimeField(auto_now = False, verbose_name = '詢問時間')
+    has_replied = models.BooleanField(default = False, verbose_name = '已回覆？')
+    replied_message = models.TextField(default = '感謝您！', verbose_name = '回覆啥')
+    replied_time = models.DateTimeField(auto_now = True, verbose_name = '回覆時間')

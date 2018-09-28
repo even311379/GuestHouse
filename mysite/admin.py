@@ -15,8 +15,13 @@ class HolidayAdmin(admin.ModelAdmin):
 class FileUploadAdmin(admin.ModelAdmin):
     list_display = ('file',)
 
+class GuestMessageAdmin(admin.ModelAdmin):
+    list_display = ('guest_name','ask_time','has_replied')
+    ordering = ('-ask_time',)
+
 admin.site.register(models.price_multifier)
 admin.site.register(models.room_use_condition, RoomUseConditionAdmin)
 admin.site.register(models.room_types)
 admin.site.register(models.holidays, HolidayAdmin)
 admin.site.register(models.FileUpload, FileUploadAdmin)
+admin.site.register(models.guest_message, GuestMessageAdmin)

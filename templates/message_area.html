@@ -1,0 +1,89 @@
+<!-- index.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class='container' align=center>
+	<h1>留言區</h1>
+	{% if guest_messages %}
+		<nav aria-label="...">
+		  <ul class="pagination">
+		    <li class="page-item">
+		      <a class="page-link" {% if guest_messages.has_previous %} href="message_area?p={{ guest_messages.previous_page_number }}" {% endif %}>上一頁</a>
+		    </li>
+		    <li class="page-item">
+		      <a class="page-link" {% if guest_messages.has_next %} href="message_area?p={{ guest_messages.next_page_number }}" {% endif %}>下一頁</a>
+		    </li>
+		  </ul>
+		</nav>
+		{% for message in guest_messages %}
+		<hr>
+			<div align='left'>
+			<strong>{{ message.guest_name }}&emsp;</strong><small class="text-muted">({{ message.ask_time }})</small><br>
+			<br>{{ message.message | safe }}
+			</div>
+			<div class="col-8 alert alert-dark" align="left">
+			{% if message.has_replied %}
+			<h6>回覆：</h6><br>
+			{{ message.replied_message}}
+			<div align="right"><small class="text-muted"> ({{ message.replied_time }})</small></div>
+			{% else %}
+				尚未回覆
+			{% endif %}
+			</div>
+		{% endfor %}
+	{% else %}
+		<h3>目前沒有任何留言</h3>
+	{% endif %}
+	<hr>
+	<form action='add_message' method="POST">{% csrf_token %}
+		<div class="card">
+		<div class="card-header" align="left">
+			<h4>留言</h4>
+			<p>歡迎提出任何問題，我們將儘快回覆！</p>
+		</div>
+		<div class="card-body">
+			<div class="row justify-content-start">
+			<div class="col-3" align='left'>
+			 <label>名字</label>
+      		<input type="text" class="form-control" placeholder="王小明" name='who' required><br>
+			</div></div>
+    		<textarea class="form-control" name="what" rows="6" placeholder="請留下您的寶貴意見" required></textarea>
+    		<!-- <div align='right'><small class="form-text text-muted">(300個中文字以內)</small></div> -->
+    		<br>
+    		<div class="row align-items-center">
+    		<div class="col-4">
+			<input type="checkbox" class="form-check-input" name="SecretCheck1" onclick="ToggleEmailInput()">
+    		<label class="form-check-label" >悄悄話？</label>
+    		<small class="form-text text-muted">我們會以Email回覆</small>
+    		</div>
+    		<div class="col-8" id="SecretEmail" style="display: none;">
+    		<label for="exampleInputEmail1">電子信箱</label>
+    		<input type="email" class="form-control" placeholder="Enter email" name='Email'>
+    		<small class="form-text text-muted">請填寫正確的電子信箱，我們絕不會洩漏您的資訊</small>
+    		</div>
+    		</div>
+		</div>
+		<div class="card-footer">
+			<button type="submit" class="btn btn-danger">提交留言</button>
+			<button type="reset" class="btn btn-dark" onclick="HideEmailInput()">重新填寫</button>
+		</div>
+	</form>
+
+
+<script>
+function ToggleEmailInput() {
+    var x = document.getElementById("SecretEmail");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function HideEmailInput() {
+    var x = document.getElementById("SecretEmail");
+        x.style.display = "none";
+} 
+</script>
+
+</div>
+{% endblock %}
