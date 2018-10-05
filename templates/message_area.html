@@ -57,7 +57,7 @@
     		</div>
     		<div class="col-8" id="SecretEmail" style="display: none;">
     		<label for="exampleInputEmail1">電子信箱</label>
-    		<input type="email" class="form-control" placeholder="Enter email" name='Email'>
+    		<input type="email" class="form-control" placeholder="Enter email" name='Email' id='SecretEmailInput'>
     		<small class="form-text text-muted">請填寫正確的電子信箱，我們絕不會洩漏您的資訊</small>
     		</div>
     		</div>
@@ -74,14 +74,17 @@ function ToggleEmailInput() {
     var x = document.getElementById("SecretEmail");
     if (x.style.display === "none") {
         x.style.display = "block";
+        document.getElementById("SecretEmailInput").setAttribute("required", "");
     } else {
         x.style.display = "none";
+        document.getElementById("SecretEmailInput").removeAttribute("required", "");
     }
 }
 
 function HideEmailInput() {
     var x = document.getElementById("SecretEmail");
         x.style.display = "none";
+        document.getElementById("SecretEmailInput").removeAttribute("required", "");
 } 
 </script>
 

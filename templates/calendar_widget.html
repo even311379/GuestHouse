@@ -49,13 +49,13 @@
 	<table class="table table-bordered table-dark">
   <thead>
     <tr align=center>
-      <th scope="col" bgcolor="be3737">Sunday</th>
+      <th scope="col">Sunday</th>
       <th scope="col">Monday</th>
       <th scope="col">Tuesday</th>
       <th scope="col">Wednesday</th>
       <th scope="col">Thursday</th>
-      <th scope="col" bgcolor="be3737">Friday</th>
-      <th scope="col" bgcolor="be3737">Saturday</th>
+      <th scope="col">Friday</th>
+      <th scope="col">Saturday</th>
     </tr>
   </thead>
   <tbody>
@@ -67,28 +67,26 @@
   	</td>
   		{% endfor %}
   		
-{% for date, weekday, booking_data in dateinfo %}
+{% for date, weekday, booking_data, holiday, holiday_comment in dateinfo %}
 	{% if weekday == 6%}
   	</tr>
   	<tr>
-  	<td scope="col" bgcolor="be3737">
-	{% elif weekday == 4 %}
-  	<td scope="col" bgcolor="be3737">
-	{% elif weekday == 5 %}
+  	{% endif %}
+  	{% if holiday %}
   	<td scope="col" bgcolor="be3737">
 	{% else %}
   	<td class="table-dark">
 	{% endif %}
-		<h5>{{ date.day }}</h5>
-		{% if booking_data %}
-		<font size="2"> <p>{{ booking_data |safe }} </p> </font>
-		{% else %}
-		<p> </p>
-		{% endif %}
+	<h5>{{ date.day }} {% if holiday_comment %}({{ holiday_comment }}){% endif %}</h5>
+	{% if booking_data %}
+	<font size="2"> <p>{{ booking_data |safe }} </p> </font>
+	{% else %}
+	<p> </p>
+	{% endif %}
   	</td>
 {% endfor %}
   		{% for nts in tail_append %}
-  	<td class="table-light">
+  	<td class="table-dark">
 		<h5> </h5>
 		<p> </p>
   	</td>

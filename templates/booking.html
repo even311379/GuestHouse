@@ -2,17 +2,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!--   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script> -->
-
-
 <form name='booking form' action='booking' method='GET'>
   入住日期: <input type="date" name='room_start_date' value='{{ str_inday }}'><br/>
   退房日期: <input type="date" name='room_end_date' value='{{ str_outday }}'><br/>
@@ -23,7 +12,7 @@
 
 
 {% if sd %}
-您選擇入住{{ sd }}到{{ ed }}，共{{ n_night }}個晚上，目前的空房有：
+您選擇入住{{ sd }}到{{ ed }}，共{{ n_night }}個晚上(含{{ n_holiday }}個假日)，目前的空房有：
 {% endif %}
 
 {% if empty_rooms %}

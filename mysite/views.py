@@ -6,13 +6,14 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import get_template
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.utils import timezone
+
+from mysite.utils import check_free_rooms, read_holiday_csv
+
 import datetime
 import calendar
-from django.utils import timezone
-from mysite.utils import check_free_rooms
+
 # Create your views here.
-
-
 
 EMAIL_SERVER = 'even311379@gmail.com'
 HOST_USER_EMAILS = ['even311379@hotmail.com',]
@@ -35,6 +36,15 @@ def about(request):
 def roomtype(request):
 	return HttpResponse(render(request, '../templates/roomtype.html', locals()))
 
+
+'''
+假日計算方式要修改
+
+隔天放假，今晚晚上的收費就以假日計算，假日以
+中華民國政府行政機關辦公日曆表為基準！
+https://data.gov.tw/dataset/14718
+'''
+
 def booking(request):
 
 	# default inday and outday are today and tomorrow
@@ -46,6 +56,7 @@ def booking(request):
 	except:
 		pass
 
+	# 處理第一個表單的變數
 	if request.method=='GET' and form_id == '0':
 
 		sd = request.GET.get('room_start_date')
@@ -56,6 +67,19 @@ def booking(request):
 		str_outday = ed.strftime("%Y-%m-%d")
 		eud = ed - datetime.timedelta(days = 1) # end use date
 		n_night = (ed-sd).days
+
+		daylist = []
+		d = sd
+		while d < ed:
+				daylist.append(d)
+				d += datetime.timedelta(days=1)
+
+		n_holiday = 0
+		_, all_holidays = read_holiday_csv()
+		all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays] #隔天假日，前一晚就以假日計費
+		for date in daylist:
+			if date in all_holidays:
+				n_holiday += 1
 
 		if n_night <= 0:
 			messages.add_message(request, messages.WARNING, "退房日期輸入錯誤")
@@ -79,13 +103,10 @@ def booking(request):
 				N_room_left.append(ED[k])
 
 		empty_room_types = [models.room_types.objects.filter(name = t)[0] for t in RT]
-
-		# N_room_left = [sum([i[0]==L for i in empty_rooms]) for L in types]
 		N_room_range = [list(range(1,n+1)) for n in N_room_left]
 		empty_room_info = zip(empty_room_types, N_room_left, N_room_range)
-		# ems = ','.join(empty_rooms)
 
-
+	# 處理第二個表單的變數
 	if request.method=='POST' and request.POST.get('Form id') == '1':
 		types = []
 		N_booking = []
@@ -121,12 +142,6 @@ def booking(request):
 
 			return HttpResponseRedirect('booking_check')
 
-		
-		# rooms = [r for r in all_rooms if r not in [r.room_type for r in  used_rooms]]
-		# rooms = [r.room_type for r in  used_rooms]
-
-		# 新增房間使用狀況時, room_end_use_date = 退房日期 - timedelta(days=1)
-
 	return HttpResponse(render(request, '../templates/booking.html', locals()))
 
 def booking_check(request):
@@ -136,12 +151,12 @@ def booking_check(request):
 		# if no session data, redirect back to booking
 		return HttpResponseRedirect('booking')
 
+
 	n_holiday = 0
-	# check holiday logic
-	all_holidays = models.holidays.objects.filter(holiday_date__gte = datetime.date.today())
-	all_holidays = [h.holiday_date for h in all_holidays]
+	_, all_holidays = read_holiday_csv()
+	all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays] #隔天假日，前一晚就以假日計費
 	for date in book_order_info['DL']:
-		if date.weekday() >= 4 or date in all_holidays: # Firday, Saturday, or Sunday
+		if date in all_holidays: 
 			n_holiday += 1
 
 	n_workday = len(book_order_info['DL']) - n_holiday
@@ -168,8 +183,6 @@ def booking_check(request):
 	request.session.pop('booking_order_info')
 	return HttpResponse(render(request, '../templates/booking_check.html', locals()))
 
-	# else:
-	# 	return redirect('home')
 
 def add_booking_data(request):
 	if request.method == 'POST':
@@ -219,8 +232,6 @@ def add_booking_data(request):
 			except Exception as e:
 				print('Send mail fail!')
 				print(e)
-
-
 
 		except Exception as e:
 			print('Unexpected Errows!!')
@@ -279,12 +290,15 @@ def calendar_widget(request):
 	first_date = datetime.date(Y,M,1)
 	dates = []
 	weekdays = []
+
 	for i in range(N_days):
 		dates.append(first_date+datetime.timedelta(days=i))
 		weekdays.append((first_date+datetime.timedelta(days=i)).weekday())
 
-	
-	head_append = list(range(first_date.weekday()+1))
+	if first_date.weekday() != 6:
+		head_append = list(range(first_date.weekday()+1))
+	else:
+		head_append = []
 	tail_append = list(range(5 - dates[-1].weekday()))
 	all_booking_data = models.room_use_condition.objects.all()
 	booking_data_this_month = []
@@ -292,7 +306,12 @@ def calendar_widget(request):
 		if data.room_start_use_date.month == M or data.room_end_use_date.month == M:
 			booking_data_this_month.append(data)
 
+	# loop every date in this month to pack special date and booking date for template to render
 	booking_this_month = []
+	all_holidays_comment, all_holidays = read_holiday_csv()
+	# all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays]
+	holiday_bool = []
+	holiday_comment = []
 	for date in dates:
 		booking_this_day = []
 		for booking_data in booking_data_this_month:
@@ -301,8 +320,15 @@ def calendar_widget(request):
 		nL, nM, nG = [len([i for i in booking_this_day if i.startswith(T)]) for T in 'LMG']
 		booking_this_month.append("四人大套房: {0}<br>三人套房: {1}<br>和式團體房: {2}".format(6-nL,4-nM,3-nG))
 
+		if date in all_holidays:
+			holiday_bool.append(True)
+			holiday_comment.append(all_holidays_comment[all_holidays.index(date)])
+		else:
+			holiday_bool.append(False)
+			holiday_comment.append('')
+
 	
-	dateinfo = zip(dates,weekdays,booking_this_month)
+	dateinfo = zip(dates,weekdays,booking_this_month,holiday_bool,holiday_comment)
 	return HttpResponse(render(request, '../templates/calendar_widget.html', locals()))
 
 
@@ -329,7 +355,19 @@ def add_message(request):
 		secret = request.POST.get('SecretCheck1')
 		
 		if secret:
-			print('Add send Email logic later')
+			# print('Add send Email logic later')
+			email = request.POST.get('Email')
+			mail_template = get_template('secret_message_email.html')
+			content = mail_template.render(locals())
+			subject = '民宿網站悄悄話'
+			msg = EmailMessage(subject, content, EMAIL_SERVER, HOST_USER_EMAILS)
+			msg.content_subtype = 'html'
+			try:
+				msg.send()
+			except Exception as e:
+				print(e)
+
+
 		else:
 			new_message = models.guest_message.objects.create(guest_name=who,message=what,ask_time=datetime.datetime.now())
 			new_message.save()
