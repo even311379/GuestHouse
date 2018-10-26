@@ -28,6 +28,7 @@ urlpatterns = [
     path('about', views.about, name='about'),
     path('roomtype', views.roomtype, name='roomtype'),
     path('booking', views.booking, name='booking'),
+    path('ajax/booking_validate_date/', views.booking_validate_date, name='booking_validate_date'),
     path('traffic', views.traffic, name='traffic_info'),
     path('nearby', views.nearby, name='nearby'),
     path('booking_check', views.booking_check, name='booking_check'),

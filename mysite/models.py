@@ -84,7 +84,9 @@ class guest_message(models.Model):
     replied_time = models.DateTimeField(auto_now=True, verbose_name='回覆時間')
 
 
-# class home_image_slides(models.Model):
-#
-#     image = models.FileField(verbose_name='首頁主照片')
-#     image_caption = models.TextField(verbose_name='照片圖說')
+class news_dashboard(models.Model):
+
+    news_title = models.CharField(max_length=30, verbose_name='標題')
+    news_content = models.TextField(verbose_name='內容')
+    news_thumbnail = models.FileField(verbose_name='縮圖')
+    news_upload_time = models.DateTimeField(auto_now=True, verbose_name='發布時間')

@@ -2,6 +2,7 @@
 from mysite import models
 import datetime
 from collections import namedtuple
+from slackclient import SlackClient
 import os
 
 
@@ -18,7 +19,7 @@ def check_free_rooms(sd, eud):
         candidate_rooms = rooms_data.filter(room_type=rt)
         for r in candidate_rooms:
             r2 = Range(start=r.room_start_use_date, end=r.room_end_use_date)
-            latest_start = max(r1.start, r2.sread_holiday_csvtart)
+            latest_start = max(r1.start, r2.start)
             earliest_end = min(r1.end, r2.end)
             if (earliest_end - latest_start).days >= 0:
                 break
@@ -62,8 +63,18 @@ def read_holiday_csv():
     return holiday_comment, holiday_date
 
 
-def load_logos():
-    pass
+'''
+SmartPhone notification through slack
+'''
+
+
+def slack_message(message, channel='訂房通知'):
+    token = 'xoxp-462232931415-461179509506-460468631856-363e1462bb94a934f8405307546c0f48'
+    sc = SlackClient(token)
+
+    sc.api_call('chat.postMessage', channel=channel,
+                text=message, username='機器人',
+                icon_emoji=':robot_face:')
 
 
 if __name__ == '__main__':

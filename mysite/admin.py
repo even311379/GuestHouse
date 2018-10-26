@@ -25,8 +25,9 @@ class GuestMessageAdmin(admin.ModelAdmin):
     ordering = ('-ask_time',)
 
 
-# class HomeImageAdmin(admin.ModelAdmin):
-#     list_display = ('image', 'image_caption',)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('news_title', 'news_upload_time', )
+    ordering = ('-news_upload_time',)
 
 
 admin.site.register(models.price_multifier)
@@ -35,4 +36,4 @@ admin.site.register(models.room_types)
 admin.site.register(models.holidays, HolidayAdmin)
 admin.site.register(models.FileUpload, FileUploadAdmin)
 admin.site.register(models.guest_message, GuestMessageAdmin)
-# admin.site.register(models.home_image_slides, HomeImageAdmin)
+admin.site.register(models.news_dashboard, NewsAdmin)

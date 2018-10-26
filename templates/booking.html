@@ -2,14 +2,18 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class='container'>
 <form name='booking form' action='booking' method='GET'>
-  入住日期: <input type="date" name='room_start_date' value='{{ str_inday }}'><br/>
-  退房日期: <input type="date" name='room_end_date' value='{{ str_outday }}'><br/>
+  入住日期: <input type="date" class="form-control-lg" name='room_start_date' value='{{ str_inday }}' id='start_date'><br/>
+  退房日期: <input type="date" name='room_end_date' value='{{ str_outday }}' id='end_date'><br/>
   <!-- I should use ajax skill to automatively update 退房日期 later -->
   <div class="invisible"><input type="text" name='Form id' value='0'></div>
   <input type='submit' value='查詢空房'><br/>
 </form>
 
+<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
+<input class="form-control" type="text" placeholder="Default input">
+<input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
 
 {% if sd %}
 您選擇入住{{ sd }}到{{ ed }}，共{{ n_night }}個晚上(含{{ n_holiday }}個假日)，目前的空房有：
@@ -24,24 +28,25 @@
 	<input type="text" name='room_end_date' value='{{ eud }}'>
 	<input type="text" name='Form id' value='1'>
 	<input type="text" name='empty_rooms' value='{{ ems }}'>
-	</div>
-<table class="table">
+  </div>
+
+<table class="table" style='width: 80%'>
   <thead>
     <tr>
-      <th scope="col">房型</th>
-      <th scope="col">價格(假日)</th>
-      <th scope="col">剩餘房數</th>
-      <th scope="col">訂房數量</th>
+      <th scope="col" style="text-align: left">房型</th>
+      <th scope="col" style="text-align: right">價格(假日)</th>
+      <th scope="col" style="text-align: right">剩餘房數</th>
+      <th scope="col" style="text-align: right">訂房數量</th>
     </tr>
   </thead>
   <tbody>
   	{% for room, N_room_left, N_room_range in empty_room_info %}
     <tr>
-      <th>{{ room.room_name }}</th>
-      <td>{{ room.room_price }}( {{ room.holiday_price }} )</td>
-      <td>{{ N_room_left }}</td>
-      <td>
-		<select class="custom-select custom-select-sm" name = 'N_{{ room.name }}' >
+      <th style="text-align: left">{{ room.room_name }}</th>
+      <td style="text-align: right">{{ room.room_price }}( {{ room.holiday_price }} )</td>
+      <td style="text-align: right">{{ N_room_left }}</td>
+      <td style="text-align: right">
+		<select class="custom-select custom-select-sm" name = 'N_{{ room.name }}' style='width: 30%'>
 			<option selected>0</option>
 			{% for n in N_room_range %}
 				<option value="{{ n }}">{{ n }}</option>
@@ -56,7 +61,6 @@
 </table>
 <input type='submit' value='訂房'><br/>
 </form>
-
 {% else %}
 	{% if sd %}
 	<h1>很抱歉完全沒房間了！</h1>
@@ -65,7 +69,57 @@
 
 <!-- Add some warning messages here: -->
 {% for message in messages %}
-	<div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+
+	<div class="alert alert-{{ message.tags }} text-center" role="alert" >{{ message }}</div>
 {% endfor %}
+
+
+</div> <!--  end of container -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+  function ajax_date_check(){
+    var start_date = document.getElementById("start_date").value
+    var end_date = document.getElementById("end_date").value
+      $.ajax({
+        url: '/ajax/booking_validate_date/',
+        data: {
+          'start_date': start_date,
+          'end_date': end_date
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.problematic){
+            alert("退房日期必須大於入住日期，請重新輸入！");
+          }
+        }
+    })
+  }
+
+  $("#end_date").change(function () {
+    ajax_date_check();
+     });
+  
+  $("#start_date").change(function () {
+    ajax_date_check();
+     });
+  
+</script>
+
+<!-- fancy alert 
+http://jsgears.com/viewthread.php?tid=2309
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css" rel="stylesheet">  
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css" rel="stylesheet">  
+<script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script>
+alertify.error('退房日期必須大於入住日期，請重新輸入！');   
+
+alertify.alert('退房日期必須大於入住日期，請重新輸入！'); -->
 
 {% endblock %}

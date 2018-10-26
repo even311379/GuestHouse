@@ -4,7 +4,7 @@
 <head>
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
-	<title> 幫德鴻做的民宿網站 </title>
+	<title> 麒麟潭湖頂農場民宿 </title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -12,19 +12,21 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
-
 <style>
 h1, h2, h3, h4, h5, p, div{
 	font-familty: 微軟正黑體;
 }
+
+h4 {
+	color: #881c59;
+}
 </style>
 </head>
-<body>
+<body style="background-color: #f2f2f2">
 	{% include "header.html" %}
 	{% block content %} {% endblock %}
 	{% include "footer.html" %}
-</body>
-
 	{% block scripts %}
 	{% endblock %}
+</body>
 </html>

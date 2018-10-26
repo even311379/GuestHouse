@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from mysite import models
 from django.core.mail import EmailMessage
 from django.template.loader import get_template
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import timezone
-
-from mysite.utils import check_free_rooms, read_holiday_csv
+from django.contrib import messages
+from mysite.utils import check_free_rooms, read_holiday_csv, slack_message
 
 import datetime
 import calendar
@@ -14,7 +14,7 @@ import calendar
 # Create your views here.
 
 EMAIL_SERVER = 'even311379@gmail.com'
-HOST_USER_EMAILS = ['even311379@hotmail.com', ]
+HOST_USER_EMAILS = ['even311379@hotmail.com', 'cth30@outlook.com']
 
 
 def home(request):
@@ -22,36 +22,35 @@ def home(request):
 
 
 def news(request):
+    news = True
     if request.method == 'POST':
         try:
             print(request.POST.get('getname'))
         except:
             print('fail')
+    all_news = models.news_dashboard.objects.all()
+    # print(request.user_agent.is_mobile)
+    # print(request.user_agent.browser)
     return HttpResponse(render(request, '../templates/news.html', locals()))
 
 
 def about(request):
+    about = True
     return HttpResponse(render(request, '../templates/about.html', locals()))
 
 
 def roomtype(request):
+    roomtype = True
     return HttpResponse(render(request, '../templates/roomtype.html', locals()))
 
 
-'''
-假日計算方式要修改
-
-隔天放假，今晚晚上的收費就以假日計算，假日以
-中華民國政府行政機關辦公日曆表為基準！
-https://data.gov.tw/dataset/14718
-'''
-
-
 def booking(request):
+    booking = True
 
     # default inday and outday are today and tomorrow
     str_inday = datetime.date.today().strftime("%Y-%m-%d")
-    str_outday = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    str_outday = (datetime.date.today() +
+                  datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 
     try:
         form_id = request.GET.get('Form id')
@@ -78,7 +77,8 @@ def booking(request):
 
         n_holiday = 0
         _, all_holidays = read_holiday_csv()
-        all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays]  # 隔天假日，前一晚就以假日計費
+        # 隔天假日，前一晚就以假日計費
+        all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays]
         for date in daylist:
             if date in all_holidays:
                 n_holiday += 1
@@ -104,7 +104,8 @@ def booking(request):
                 RT.append(k)
                 N_room_left.append(ED[k])
 
-        empty_room_types = [models.room_types.objects.filter(name=t)[0] for t in RT]
+        empty_room_types = [models.room_types.objects.filter(name=t)[
+            0] for t in RT]
         N_room_range = [list(range(1, n+1)) for n in N_room_left]
         empty_room_info = zip(empty_room_types, N_room_left, N_room_range)
 
@@ -118,7 +119,8 @@ def booking(request):
             sd = sd.replace(t, '-')
             eud = eud.replace(t, '-')
 
-        ed = datetime.datetime.strptime(eud[:-1], '%Y-%m-%d').date()+datetime.timedelta(days=1)
+        ed = datetime.datetime.strptime(
+            eud[:-1], '%Y-%m-%d').date()+datetime.timedelta(days=1)
         ed = ed.strftime("%Y-%m-%d")
         for key in request.POST:
             if key.startswith('N'):
@@ -140,11 +142,20 @@ def booking(request):
             while d <= datetime.datetime.strptime(eud[:-1], '%Y-%m-%d').date():
                 daylist.append(d)
                 d += datetime.timedelta(days=1)
-            request.session['booking_order_info'] = str(dict(BT=types, NB=N_booking, DL=daylist))
+            request.session['booking_order_info'] = str(
+                dict(BT=types, NB=N_booking, DL=daylist))
 
             return HttpResponseRedirect('booking_check')
 
     return HttpResponse(render(request, '../templates/booking.html', locals()))
+
+def booking_validate_date(request):
+    end_date = request.GET.get('end_date', None)
+    start_date = request.GET.get('start_date', None)
+    data = {
+        'problematic': datetime.datetime.strptime(start_date, '%Y-%m-%d') >= datetime.datetime.strptime(end_date, '%Y-%m-%d')
+    }
+    return JsonResponse(data)
 
 
 def booking_check(request):
@@ -156,7 +167,8 @@ def booking_check(request):
 
     n_holiday = 0
     _, all_holidays = read_holiday_csv()
-    all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays]  # 隔天假日，前一晚就以假日計費
+    all_holidays = [d - datetime.timedelta(days=1)
+                    for d in all_holidays]  # 隔天假日，前一晚就以假日計費
     for date in book_order_info['DL']:
         if date in all_holidays:
             n_holiday += 1
@@ -175,7 +187,8 @@ def booking_check(request):
             nb_shown += [nb]
             bt_shown += [rt.room_name]
             bt_dbname.append(rt.name)
-            money_shown += [rt.room_price * nb * n_workday + rt.holiday_price * nb * n_holiday]
+            money_shown += [rt.room_price * nb *
+                            n_workday + rt.holiday_price * nb * n_holiday]
 
     order_info = zip(bt_shown, nb_shown, money_shown)
     total_sum = sum(money_shown)
@@ -186,6 +199,7 @@ def booking_check(request):
 
 
 def add_booking_data(request):
+    booking = True
     if request.method == 'POST':
         try:
             BookerName = request.POST.get('BookerName')
@@ -218,10 +232,19 @@ def add_booking_data(request):
                 new_room_use_condition.save()
                 ruc_id.append(new_room_use_condition.id)
 
+            '''
+            發送通知(slack)，提醒去查看email確認訂單。
+            '''
+            slack_message('{}向您訂房囉！快打開信箱確認訂單吧！'.format(BookerName))
+
+            '''
+            寄mail，在mail中確認此訂單
+            '''
             mail_template = get_template('book_confirm_email.html')
             content = mail_template.render(locals())
             subject = '民宿網站訂房通知'
-            msg = EmailMessage(subject, content, EMAIL_SERVER, HOST_USER_EMAILS)
+            msg = EmailMessage(
+                subject, content, EMAIL_SERVER, HOST_USER_EMAILS)
             msg.content_subtype = 'html'
             request.session.pop('booking_order_info_confirmed')
 
@@ -240,6 +263,7 @@ def add_booking_data(request):
 
 
 def booking_data_confirm(request):
+    booking = True
     if request.method == 'GET':
         for key in request.GET:
             ids = eval(request.GET[key])
@@ -270,14 +294,17 @@ def booking_data_confirm(request):
 
 
 def traffic(request):
+    traffic = True
     return HttpResponse(render(request, '../templates/traffic.html', locals()))
 
 
 def nearby(request):
+    nearby = True
     return HttpResponse(render(request, '../templates/nearby.html', locals()))
 
 
 def calendar_widget(request):
+    room_left = True
     if request.method == 'POST':
         Y = int(request.POST.get('Year'))
         M = int(request.POST.get('Month'))
@@ -316,21 +343,26 @@ def calendar_widget(request):
         for booking_data in booking_data_this_month:
             if booking_data.room_start_use_date <= date <= booking_data.room_end_use_date:
                 booking_this_day.append(booking_data.room_type)
-        nL, nM, nG = [len([i for i in booking_this_day if i.startswith(T)]) for T in 'LMG']
-        booking_this_month.append("四人大套房: {0}<br>三人套房: {1}<br>和式團體房: {2}".format(6-nL, 4-nM, 3-nG))
+        nL, nM, nG = [
+            len([i for i in booking_this_day if i.startswith(T)]) for T in 'LMG']
+        booking_this_month.append(
+            "四人大套房: {0}<br>三人套房: {1}<br>和式團體房: {2}".format(6-nL, 4-nM, 3-nG))
 
         if date in all_holidays:
             holiday_bool.append(True)
-            holiday_comment.append(all_holidays_comment[all_holidays.index(date)])
+            holiday_comment.append(
+                all_holidays_comment[all_holidays.index(date)])
         else:
             holiday_bool.append(False)
             holiday_comment.append('')
 
-    dateinfo = zip(dates, weekdays, booking_this_month, holiday_bool, holiday_comment)
+    dateinfo = zip(dates, weekdays, booking_this_month,
+                   holiday_bool, holiday_comment)
     return HttpResponse(render(request, '../templates/calendar_widget.html', locals()))
 
 
 def message_area(request):
+    message_area = True
     all_guest_messages = models.guest_message.objects.all().order_by('-ask_time')
     paginator = Paginator(all_guest_messages, 10)
     p = request.GET.get('p')
@@ -359,7 +391,8 @@ def add_message(request):
             mail_template = get_template('secret_message_email.html')
             content = mail_template.render(locals())
             subject = '民宿網站悄悄話'
-            msg = EmailMessage(subject, content, EMAIL_SERVER, HOST_USER_EMAILS)
+            msg = EmailMessage(
+                subject, content, EMAIL_SERVER, HOST_USER_EMAILS)
             msg.content_subtype = 'html'
             try:
                 msg.send()

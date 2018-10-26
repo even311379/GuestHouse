@@ -74,38 +74,26 @@
 
 {% endblock %}
 
-
-
-
 {% block scripts %}
-<!-- JS code -->
-<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
-</script> -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
-</script> -->
-<!--JS below-->
-<!--modal-->
 <script>
 $('#myForm').on('submit', function(e){
   $('#myModal').modal('show');
   e.preventDefault();
 });
 
-$(document).ready(function() { 
+$(document).ready(function() {
     $('#BookerNameInput').change(function() {
       $('#BookerNameInput_post').val($('#BookerNameInput').val());
     });
 });
 
-$(document).ready(function() { 
+$(document).ready(function() {
     $('#BookerEmailInput').change(function() {
       $('#BookerEmailInput_post').val($('#BookerEmailInput').val());
     });
 });
 
-$(document).ready(function() { 
+$(document).ready(function() {
     $('#BookerPhoneInput').change(function() {
       $('#BookerPhoneInput_post').val($('#BookerPhoneInput').val());
     });
