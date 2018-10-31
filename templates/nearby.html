@@ -1,7 +1,47 @@
 <!-- index.html -->
 {% extends "base.html" %}
 {% block content %}
-<div class='container' align=center>
-	<h1>Nearby</h1>
-</div>
-{% endblock %}
+<style>
+	.new_line{
+		background: url(static/line.png);
+		background-repeat: repeat-x;
+		padding-bottom: 50px;
+		width: 80%;
+	}
+	.container.custom-container-width {
+		max-width: 1000px;
+	}
+	
+	</style>
+	add paginator for the page?
+	<!-- <div class='container' align=center style="background:transparent
+	url('static/index_bg2.jpg') repeat-y center center "> -->
+	<h1 align=center>附近景點</h1>
+	<div class='container custom-container-width' align=center style="background:transparent
+	url('static/container_bg.png') center center">
+	<!-- <div class='container' align=center> -->
+	<!-- loop below later -->
+	{% for nearby in all_nearby %}
+	<br>
+	<div class='row'>
+	  <div class='col-sm-2'>
+	  </div>
+		<div class='col-sm-3'>
+		<img src="{{ nearby.nearby_thumbnail.url }}" class="rounded mx-auto d-block" width=150 height=150>
+		</div>
+		<div class='col-sm-6'>
+		<h4 align='left'>{{ nearby.nearby_title}}</h4>
+		  <p>{{ nearby.nearby_content }}</p>
+	
+		<p style="font-size: 8px" align='right'>{{ nearby.nearby_upload_time }}</p>
+		</div>
+	</div>
+	<br>
+	<div class='row'><div class="new_line col-md-9 offset-md-2"></div></div>
+	
+	{% endfor %}
+	
+	</div>
+	
+	{% endblock %}
+	

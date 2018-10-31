@@ -6,7 +6,7 @@ from django.template.loader import get_template
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import timezone
 from django.contrib import messages
-from mysite.utils import check_free_rooms, read_holiday_csv, slack_message
+from mysite.utils import check_free_rooms, read_holiday_csv, slack_message, remove_unconfirmed_bookings, check_send_email_failure
 
 import datetime
 import calendar
@@ -23,12 +23,8 @@ def home(request):
 
 def news(request):
     news = True
-    if request.method == 'POST':
-        try:
-            print(request.POST.get('getname'))
-        except:
-            print('fail')
     all_news = models.news_dashboard.objects.all()
+    
     # print(request.user_agent.is_mobile)
     # print(request.user_agent.browser)
     return HttpResponse(render(request, '../templates/news.html', locals()))
@@ -104,6 +100,7 @@ def booking(request):
                 RT.append(k)
                 N_room_left.append(ED[k])
 
+        remove_unconfirmed_bookings()
         empty_room_types = [models.room_types.objects.filter(name=t)[
             0] for t in RT]
         N_room_range = [list(range(1, n+1)) for n in N_room_left]
@@ -150,6 +147,9 @@ def booking(request):
     return HttpResponse(render(request, '../templates/booking.html', locals()))
 
 def booking_validate_date(request):
+    '''
+    This is a ajax response
+    '''
     end_date = request.GET.get('end_date', None)
     start_date = request.GET.get('start_date', None)
     data = {
@@ -231,6 +231,23 @@ def add_booking_data(request):
                                                                                   booker_phone=BookerPhone, booker_email=BookerEmail, confirmed_time=timezone.now(), confirmed=False)
                 new_room_use_condition.save()
                 ruc_id.append(new_room_use_condition.id)
+            '''
+            寄email給客人
+            '''
+            mail_template = get_template('book_email.html')
+            confirmed_date = datetime.date.today() + datetime.timedelta(days=3)
+            content = mail_template.render(locals())
+            subject = '感謝您預定湖頂麒麟潭農場民宿'
+            msg = EmailMessage(
+                subject, content, EMAIL_SERVER, [BookerEmail])
+            msg.content_subtype = 'html'
+
+            try:
+                msg.send()
+            except Exception as e:
+                print('Send mail fail!')
+                print(e)
+
 
             '''
             發送通知(slack)，提醒去查看email確認訂單。
@@ -238,7 +255,7 @@ def add_booking_data(request):
             slack_message('{}向您訂房囉！快打開信箱確認訂單吧！'.format(BookerName))
 
             '''
-            寄mail，在mail中確認此訂單
+            寄mail給民宿業者，在此mail中確認此訂單
             '''
             mail_template = get_template('book_confirm_email.html')
             content = mail_template.render(locals())
@@ -265,9 +282,22 @@ def add_booking_data(request):
 def booking_data_confirm(request):
     booking = True
     if request.method == 'GET':
+
         for key in request.GET:
             ids = eval(request.GET[key])
         rcs_to_confirm = models.room_use_condition.objects.filter(pk__in=ids)
+        '''
+        Add email confirm function here
+        if the bookering email is correct, do it, redirect to a success page
+        else, don't do it, and redirect to a fail page which contains the booker's phone number 
+        '''
+
+        # 時區要設一樣，所以變為gmt0，要+8 回來
+        ctime = (rcs_to_confirm[0].booking_time + datetime.timedelta(hours=8)).replace(tzinfo=None)
+
+        if check_send_email_failure(ctime):
+            return HttpResponseRedirect('/booking_fail')
+
         for rc in rcs_to_confirm:
             rc.confirmed = True
             rc.confirmed_time = timezone.now()
@@ -285,13 +315,19 @@ def booking_data_confirm(request):
             msg.send()
         except Exception as e:
             print(e)
-    else:
-        print('Fail!!')
+
     '''
 	Should I redirect to a better html in order to make the host_user know that this step is done?
-	'''
-    return HttpResponseRedirect('/')
 
+    Yes! I should!
+	'''
+    return HttpResponseRedirect('/booking_success')
+
+def booking_success(request):
+    return HttpResponse('<h1>sucess</h1>')
+
+def booking_fail(request):
+    return HttpResponse('<h1>fail</h1>')
 
 def traffic(request):
     traffic = True
@@ -300,11 +336,14 @@ def traffic(request):
 
 def nearby(request):
     nearby = True
+    all_nearby = models.nearby_dashboard.objects.all()
     return HttpResponse(render(request, '../templates/nearby.html', locals()))
 
 
 def calendar_widget(request):
+
     room_left = True
+    remove_unconfirmed_bookings()
     if request.method == 'POST':
         Y = int(request.POST.get('Year'))
         M = int(request.POST.get('Month'))

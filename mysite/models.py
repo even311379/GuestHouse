@@ -4,6 +4,10 @@ from django.db import models
 
 
 class room_types(models.Model):
+    class Meta: # set the class name shown in admin
+        verbose_name = '房型基本資料'
+        verbose_name_plural = '房型基本資料'
+
     name = models.CharField(max_length=10, verbose_name='房型')
     room_name = models.CharField(max_length=10, verbose_name='房間名稱')
     room_price = models.IntegerField(default=3000, verbose_name='平日價格')
@@ -15,27 +19,37 @@ class room_types(models.Model):
         return self.name
 
 
-class price_multifier(models.Model):
+class price_multifier(models.Model): # No function for this stuff so far
+    class Meta: 
+        verbose_name = '打折設定'
+        verbose_name_plural = '打折設定'
+
     multifier = models.DecimalField(
         max_digits=3, decimal_places=2, verbose_name='折扣')
     sday = models.DateField(auto_now=False, verbose_name='折扣開始日期')
     eday = models.DateField(auto_now=False, verbose_name='折扣結束日期')
 
 
-class holidays(models.Model):
-    holiday_name = models.CharField(
-        max_length=10, verbose_name='假日名稱', default='某國定假日')
-    holiday_date = models.DateField(auto_now=False, verbose_name='假日日期')
+# class holidays(models.Model):
+#     holiday_name = models.CharField(
+#         max_length=10, verbose_name='假日名稱', default='某國定假日')
+#     holiday_date = models.DateField(auto_now=False, verbose_name='假日日期')
 
     # def __str__(self):
     #     return self.holiday_date
 
 
 class FileUpload(models.Model):
+    class Meta: 
+        verbose_name = '上傳輔助檔案'
+        verbose_name_plural = '上傳輔助檔案'
     file = models.FileField(blank=True, verbose_name='輔助檔案名稱')
 
 
 class room_use_condition(models.Model):
+    class Meta:
+        verbose_name = '用房狀況'
+        verbose_name_plural = '用房狀況'
 
     room_type_choice = (
         ('M1', 'Medium1'),
@@ -75,6 +89,9 @@ class room_use_condition(models.Model):
 
 
 class guest_message(models.Model):
+    class Meta:
+        verbose_name = '顧客留言'
+        verbose_name_plural = '顧客留言'
 
     guest_name = models.CharField(max_length=15, verbose_name='誰')
     message = models.TextField(verbose_name='說啥')
@@ -85,8 +102,21 @@ class guest_message(models.Model):
 
 
 class news_dashboard(models.Model):
+    class Meta:
+        verbose_name = '最新消息'
+        verbose_name_plural = '最新消息'
 
     news_title = models.CharField(max_length=30, verbose_name='標題')
     news_content = models.TextField(verbose_name='內容')
     news_thumbnail = models.FileField(verbose_name='縮圖')
     news_upload_time = models.DateTimeField(auto_now=True, verbose_name='發布時間')
+
+class nearby_dashboard(models.Model):
+    class Meta:
+        verbose_name = '附近景點'
+        verbose_name_plural = '附近景點'
+
+    nearby_title = models.CharField(max_length=30, verbose_name='標題')
+    nearby_content = models.TextField(verbose_name='內容')
+    nearby_thumbnail = models.FileField(verbose_name='縮圖')
+    nearby_upload_time = models.DateTimeField(auto_now=True, verbose_name='發布時間')

@@ -3,71 +3,19 @@
 {% block content %}
 
 <div class='container' align=center>
-	<h1>about</h1>
+  <h1>關於我們</h1>
+  <div class='row'>
+<p>『湖頂民宿』位於溪頭風景線--鳳凰支線，南投八大勝景之一的『麒麟潭』畔，
+  不但是空氣清新、景緻幽美，全新的硬體設備，且提供免費無線網路，讓您住得更舒適而溫馨！
 
-
-<!-- Modal -->
-<!-- Button trigger modal -->
-<form class="form-inline" onsubmit="openModal()" id="myForm">
-	<input type = 'text' id="name" placeholder="曾英俊" required>
- 	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+『湖頂民宿』位居凍頂山下，景色幽美、生態豐富、前臨『麒麟潭』，且鄰近與鳳凰谷鳥園、內湖森
+林小學、全台灣最美麗的社區----「小半天」、以及避暑聖地-溪頭森林遊樂區(溪頭妖怪村)，
+是炎炎夏季避暑、清涼的好去處哦！</p></div>
+<div class='row'>
+  {% load static %}
+  <div class='col-sm-4'><img title="" src="{% static 'sample_image1.jpeg' %}" width=300 height=300></div>
+  <div class='col-sm-4'><img title="" src="{% static 'sample_image2.jpeg' %}" width=300 height=300></div>
+  <div class='col-sm-4'><img title="" src="{% static 'sample_image3.jpeg' %}" width=300 height=300></div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      
-	    <form name="form-inline" action="news" method="POST">{% csrf_token %}
-	    <div class="invisible"><input type="text" id="firstname" name="getname"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type='submit' class="btn btn-primary" value='訂房'>
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endblock %}
-
-{% block scripts %}
-<!-- JS code -->
-<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
-</script> -->
-<!--JS below-->
-<!--modal-->
-<script>
-$('#myForm').on('submit', function(e){
-  $('#myModal').modal('show');
-  e.preventDefault();
-});
-
-
-$(document).ready(function() { 
-    $('#name').change(function() {
-      $('#firstname').val($('#name').val());
-    });
-});
-
-</script>
-
-<!-- <script>
-  $(document).ready(function() {
-     $("#MyModal").modal();
-     $('#myModal').on('shown.bs.modal', function() {
-        $('#myInput').focus();
-     });
-  });
-</script> -->
 {% endblock %}

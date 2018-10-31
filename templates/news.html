@@ -32,13 +32,9 @@ url('static/container_bg.png') center center">
 	</div>
 	<div class='col-sm-6'>
     <h4 align='left'>{{ news.news_title}}</h4>
-    <!-- {% if news.news_content|length > 200 %} -->
-
       <p style="font-size: 14px">{{news.news_content|truncatechars:150|safe}}
         <button data-toggle="modal" class="btn btn-link" data-target="#myModal{{ forloop.counter }}">more...</button>
       </p>
-
-    <!-- {% endif %} -->
     <!-- add a bigger view for each news -->
 
     <p style="font-size: 8px" align='right'>{{ news.news_upload_time}}</p>
@@ -54,7 +50,12 @@ url('static/container_bg.png') center center">
         <h4 class="modal-title">{{news.news_title}}</h4>
       </div>
       <div class="modal-body">
-        {{news.news_content | linebreaks}}
+        <!-- another type of design: -->
+        <!-- <div class="row"> 
+          <div class="col-sm-4"><img src="{{ news.news_thumbnail.url }}" class="rounded mx-auto d-block" width=150 height=150></div>
+        <div class='col-sm-8'>{{news.news_content | linebreaks}}</div>
+        </div> -->
+        <p>{{news.news_content | linebreaks}}</p>
         <p style="font-size: 12px" align='right'>{{ news.news_upload_time}}</p>
 	  </div>
       <div class="modal-footer">

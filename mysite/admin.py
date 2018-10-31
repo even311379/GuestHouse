@@ -11,9 +11,9 @@ class RoomUseConditionAdmin(admin.ModelAdmin):
     ordering = ('-room_start_use_date',)
 
 
-class HolidayAdmin(admin.ModelAdmin):
-    list_display = ('holiday_name', 'holiday_date')
-    ordering = ('-holiday_date',)
+# class HolidayAdmin(admin.ModelAdmin):
+#     list_display = ('holiday_name', 'holiday_date')
+#     ordering = ('-holiday_date',)
 
 
 class FileUploadAdmin(admin.ModelAdmin):
@@ -29,11 +29,16 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ('news_title', 'news_upload_time', )
     ordering = ('-news_upload_time',)
 
+class NearbyAdmin(admin.ModelAdmin):
+    list_display = ('nearby_title', 'nearby_upload_time', )
+    ordering = ('-nearby_upload_time',)
+
 
 admin.site.register(models.price_multifier)
 admin.site.register(models.room_use_condition, RoomUseConditionAdmin)
 admin.site.register(models.room_types)
-admin.site.register(models.holidays, HolidayAdmin)
+# admin.site.register(models.holidays, HolidayAdmin)
 admin.site.register(models.FileUpload, FileUploadAdmin)
 admin.site.register(models.guest_message, GuestMessageAdmin)
 admin.site.register(models.news_dashboard, NewsAdmin)
+admin.site.register(models.nearby_dashboard, NearbyAdmin)

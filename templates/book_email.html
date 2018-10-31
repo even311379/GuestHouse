@@ -1,0 +1,48 @@
+<!-- This mail is used to notify the guest is actually booking a room -->
+<!-- and let the user know he types the correct email, and the backend is working properly -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+<style>
+h1, h2, h3, h4, h5, p, div{
+	font-familty: 微軟正黑體;
+}
+</style>
+</head>
+<body>
+    <h2>{{ BookerName }} 先生/女士 您好：</h2>
+    <br>
+    <h2>感謝您預定我們的房間</h2>
+
+    <h3>
+            入住日期: {{ check_in }} <br/>
+            退房日期: {{ check_out }} <br/>
+            共{{ tnd }}個晚上，包含{{ nd }}個平常日{{ nhd }}個假日。
+        </h3>
+    
+        <table width="300" border="1">
+        <tr>
+            <th>房型</th>
+            <th>間數</th>
+            <th>合計(NTD)</th>
+        </tr>
+          {% for room_name, n_room, sum_money in order_info %}
+        <tr>
+            <th>{{ room_name }}</th>
+            <td>{{ n_room }}</td>
+            <td>{{ sum_money }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    <h3>全部總計{{ total }} (NTD)</h3>
+
+	<p>我們已收到您的訂單，會盡快確認，確認後會再次通知您。</p>
+    <p>如果您在{{ confirmed_date }}前還沒收到確認信件的話，麻煩請來電詢問。</p>
+    <p>電話:0912345678</p>
+
+    <hr>
+    <h5>本email 為系統自動發送，請勿直接回覆。</h5>
+
+</body>
+</html>
