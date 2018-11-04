@@ -97,6 +97,7 @@
         dataType: 'json',
         success: function (data) {
           if (data.problematic){
+            // alertify.error('退房日期必須大於入住日期，請重新輸入！'); 
             alert("退房日期必須大於入住日期，請重新輸入！");
           }
         }
@@ -121,5 +122,10 @@ http://jsgears.com/viewthread.php?tid=2309
 alertify.error('退房日期必須大於入住日期，請重新輸入！');   
 
 alertify.alert('退房日期必須大於入住日期，請重新輸入！'); -->
+
+
+<!-- <link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css" rel="stylesheet">  
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css" rel="stylesheet">  
+<script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script> -->
 
 {% endblock %}

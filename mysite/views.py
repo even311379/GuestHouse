@@ -296,6 +296,7 @@ def booking_data_confirm(request):
         ctime = (rcs_to_confirm[0].booking_time + datetime.timedelta(hours=8)).replace(tzinfo=None)
 
         if check_send_email_failure(ctime):
+            request.session['fail_phone_numer'] = str(rcs_to_confirm[0].booker_phone)
             return HttpResponseRedirect('/booking_fail')
 
         for rc in rcs_to_confirm:
@@ -324,10 +325,15 @@ def booking_data_confirm(request):
     return HttpResponseRedirect('/booking_success')
 
 def booking_success(request):
-    return HttpResponse('<h1>sucess</h1>')
+    return HttpResponse('<h1>success</h1>')
 
 def booking_fail(request):
-    return HttpResponse('<h1>fail</h1>')
+    phone = request.session.get('fail_phone_numer')
+    request.session.pop('fail_phone_numer')
+    '''
+    然後殺掉這筆訂單嗎？
+    '''
+    return HttpResponse('<h1>fail</h1><h2>{}</h2>'.format(phone))
 
 def traffic(request):
     traffic = True
