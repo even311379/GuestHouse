@@ -110,12 +110,14 @@ def check_send_email_failure(booking_datetime):
             # fetch the email body (RFC822) for the given ID
             msg = email.message_from_bytes(email_data[0][1])
             if msg['from'] == 'Mail Delivery Subsystem <mailer-daemon@googlemail.com>':
+                print(msg['date'])
                 u_failtime = datetime.datetime.strptime(msg['date'].split(',')[1][1:21], "%d %b %Y %H:%M:%S")
                 u_failtime = u_failtime.replace(tzinfo=None)
-                Failure_datetime.append(u_failtime + datetime.timedelta(hours=15))
+                Failure_datetime.append(u_failtime + datetime.timedelta(hours=16))
                 '''
                 網域的時區為gmt+8 而mailer-daemon@googlemail.com的時間為PDT( = gmt-7)
                 所以統一時間要加15小時 
+                !! 11/7 測試 它變成PST -8 !! 所以這裡不能用常數 必須能動態校正
                 '''
         except Exception as e:
             print(e)

@@ -2,20 +2,73 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class='container'>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+<section class="banner_area">
+	<div class="banner_inner d-flex align-items-center">
+		<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+			<div class="banner_content text-center">
+			</div>
+		</div>
+	</div>
+</section>
+<!--================Booking Area =================-->
+<section class="container">
+		<div class="booking_area">
+			<form name='booking form' action='booking' method='GET'>
+				<div class="row" >
+					<div class="col-lg-4">
+						<br>
+						<div class="booking_item">
+							<p>入住 - 日期</p>
+							<span class="day" id="i_day">{{ in_day }}</span>
+							<span class="month" id="i_month">{{ in_month }}</span>
+							<input type="text"  name='room_start_date' id="start_date" value='{{ str_inday }}' style="display: none;">
+						</div>
+						<br>
+					</div>
+					<div class="col-lg-4">
+							<br>
+						<div class="booking_item">
+							<p>退房 - 日期</p>
+							<span class="day" id="o_day">{{ out_day}}</span>
+							<span class="month" id="o_month">{{ out_month }}</span>
+							<input type="text"  name='room_end_date' id="end_date" value='{{ str_outday }}' style="display: none">
+						</div>
+
+						<br>
+					</div>
+					<div class="col-lg-4">
+						<br>
+						<div class="booking_item">
+								<br>
+									<button type="submit" class="main_btn text-uppercase">查詢空房</button>
+									<span class="invisible"><input type="text" name='Form id' value='0'></span>
+						</div>
+						<br>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+	<!--================End Booking Area =================-->
+
+
+<!-- <div class='container'>
 <form name='booking form' action='booking' method='GET'>
   入住日期: <input type="date" class="form-control-lg" name='room_start_date' value='{{ str_inday }}' id='start_date'><br/>
   退房日期: <input type="date" name='room_end_date' value='{{ str_outday }}' id='end_date'><br/>
-  <!-- I should use ajax skill to automatively update 退房日期 later -->
-  <div class="invisible"><input type="text" name='Form id' value='0'></div>
+  <span class="invisible"><input type="text" name='Form id' value='0'></span>
   <input type='submit' value='查詢空房'><br/>
-</form>
+</form> -->
 
-<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
-<input class="form-control" type="text" placeholder="Default input">
-<input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
-
+<div class='container'>
 {% if sd %}
+<br>
 您選擇入住{{ sd }}到{{ ed }}，共{{ n_night }}個晚上(含{{ n_holiday }}個假日)，目前的空房有：
 {% endif %}
 
@@ -23,14 +76,16 @@
 
 <form name='rooms select' action='booking' method='POST'>
 	{% csrf_token %}
-	<div class="invisible">
+	<div class="invisible" style="display: none">
 	<input type="integer" name='room_start_date' value='{{ sd }}'>
 	<input type="text" name='room_end_date' value='{{ eud }}'>
 	<input type="text" name='Form id' value='1'>
 	<input type="text" name='empty_rooms' value='{{ ems }}'>
   </div>
+<br>
 
-<table class="table" style='width: 80%'>
+<div class="table-responsive">
+<table class="table" style='width: 80%;' align="center">
   <thead>
     <tr>
       <th scope="col" style="text-align: left">房型</th>
@@ -45,21 +100,22 @@
       <th style="text-align: left">{{ room.room_name }}</th>
       <td style="text-align: right">{{ room.room_price }}( {{ room.holiday_price }} )</td>
       <td style="text-align: right">{{ N_room_left }}</td>
-      <td style="text-align: right">
-		<select class="custom-select custom-select-sm" name = 'N_{{ room.name }}' style='width: 30%'>
-			<option selected>0</option>
-			{% for n in N_room_range %}
-				<option value="{{ n }}">{{ n }}</option>
-			{% endfor %}
-
-		</select>
-	</td>
+			<td style="text-align: right"> <div class="fa fa-home"></div>
+			<select class="custom-select custom-select-sm" name = 'N_{{ room.name }}' style='width: 40%'>
+				<option selected>0</option>
+				{% for n in N_room_range %}
+					<option value="{{ n }}">{{ n }}</option>
+				{% endfor %}
+			</select>
+			</td>
     </tr>
     {% endfor %}
 
   </tbody>
 </table>
-<input type='submit' value='訂房'><br/>
+</div>
+
+<div align="right"><button type="submit" class="main_btn">訂房</button><br/></div>
 </form>
 {% else %}
 	{% if sd %}
@@ -73,12 +129,16 @@
 	<div class="alert alert-{{ message.tags }} text-center" role="alert" >{{ message }}</div>
 {% endfor %}
 
+						
 
 </div> <!--  end of container -->
 {% endblock %}
 
 {% block scripts %}
 <script>
+const monthNames = ['一月', '二月', '三月', '四月', '五月','六月',
+'七月','八月','九月','十月','十一月','十二月'];
+
     function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
@@ -86,8 +146,11 @@
   }
 
   function ajax_date_check(){
+		console.log('ajax is triggered!!')
     var start_date = document.getElementById("start_date").value
     var end_date = document.getElementById("end_date").value
+		console.log(start_date)
+		console.log(end_date)
       $.ajax({
         url: '/ajax/booking_validate_date/',
         data: {
@@ -97,22 +160,55 @@
         dataType: 'json',
         success: function (data) {
           if (data.problematic){
-            // alertify.error('退房日期必須大於入住日期，請重新輸入！'); 
-            alert("退房日期必須大於入住日期，請重新輸入！");
+            alertify.error('退房日期必須大於入住日期，請重新輸入！'); 
+            // alert("退房日期必須大於入住日期，請重新輸入！");
           }
         }
     })
   }
 
   $("#end_date").change(function () {
+		var end_date = new Date(document.getElementById("end_date").value);
+		document.getElementById("o_day").innerHTML = end_date.getDate();
+		document.getElementById("o_month").innerHTML = monthNames[end_date.getMonth()];
+		console.log('triggered?')
     ajax_date_check();
      });
   
   $("#start_date").change(function () {
+		var start_date = new Date(document.getElementById("start_date").value);
+		document.getElementById("i_day").innerHTML = start_date.getDate();
+		document.getElementById("i_month").innerHTML = monthNames[start_date.getMonth()];
+		console.log('triggered? start_date?')
     ajax_date_check();
      });
-  
+
+$( function() {
+	$( "#end_date" ).datepicker({
+	dateFormat: "yy-mm-dd", 
+	showOn: "button",
+	buttonText: '<i class="fa fa-calendar"></i>'});
+} );
+
+$( function() {
+	$( "#start_date" ).datepicker({
+	dateFormat: "yy-mm-dd", 
+  showOn: "button",
+  buttonText: '<i class="fa fa-calendar"></i>'});
+} );
+
+//  set things after page is fullly loaded
+function happycode(){
+	var old = document.getElementsByClassName("ui-datepicker-trigger");
+	$(".ui-datepicker-trigger").addClass("btn-small btn-info");
+	}
+
+window.onload=happycode ;
 </script>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css" rel="stylesheet">  
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css" rel="stylesheet">  
+<script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script>
 
 <!-- fancy alert 
 http://jsgears.com/viewthread.php?tid=2309

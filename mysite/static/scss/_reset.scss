@@ -1,0 +1,38 @@
+.list{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+a{
+    text-decoration:none;
+    @include transition();
+    &:hover, &:focus{
+       text-decoration:none;
+       outline: none;
+    }
+}
+.row.m0{
+    margin: 0px;
+}
+
+body{
+    line-height: 26px;
+    font-size: 16px;
+    font-family: $rob;
+    font-weight: 500;
+    color: $pfont;
+    &.blog {
+        background: #f1f9ff;
+    }
+}
+h1, h2, h3, h4, h5, h6{ 
+    font-family: $play; 
+    font-weight: bold;
+    color: $dip;
+}
+
+button:focus{
+    outline: none;
+	box-shadow: none;
+}

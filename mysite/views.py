@@ -16,6 +16,9 @@ import calendar
 EMAIL_SERVER = 'even311379@gmail.com'
 HOST_USER_EMAILS = ['even311379@hotmail.com', 'cth30@outlook.com']
 
+def test(request):
+    all_news = models.news_dashboard.objects.all()
+    return HttpResponse(render(request, '../templates/test_new_template.html', locals()))
 
 def home(request):
     return HttpResponse(render(request, '../templates/home.html', locals()))
@@ -43,10 +46,17 @@ def roomtype(request):
 def booking(request):
     booking = True
 
+    cn_month = ['??','一月', '二月', '三月', '四月', '五月','六月','七月','八月','九月','十月','十一月','十二月']
     # default inday and outday are today and tomorrow
-    str_inday = datetime.date.today().strftime("%Y-%m-%d")
-    str_outday = (datetime.date.today() +
-                  datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    today = datetime.date.today()
+    tomorrow = today + datetime.timedelta(days=1)
+    str_inday = today.strftime("%Y-%m-%d")
+    in_month = cn_month[today.month]
+    in_day = today.day
+
+    str_outday = tomorrow.strftime("%Y-%m-%d")
+    out_month = cn_month[tomorrow.month]
+    out_day = tomorrow.day
 
     try:
         form_id = request.GET.get('Form id')
@@ -61,7 +71,13 @@ def booking(request):
         sd = datetime.datetime.strptime(sd, '%Y-%m-%d').date()
         ed = datetime.datetime.strptime(ed, '%Y-%m-%d').date()
         str_inday = sd.strftime("%Y-%m-%d")
+        in_month = cn_month[sd.month]
+        in_day = sd.day
+        out_month = cn_month[ed.month]
+        out_day = ed.day
+
         str_outday = ed.strftime("%Y-%m-%d")
+
         eud = ed - datetime.timedelta(days=1)  # end use date
         n_night = (ed-sd).days
 
@@ -150,8 +166,11 @@ def booking_validate_date(request):
     '''
     This is a ajax response
     '''
+    print('ajax in python to check is triggered!')
     end_date = request.GET.get('end_date', None)
     start_date = request.GET.get('start_date', None)
+    print(end_date)
+    print(start_date)
     data = {
         'problematic': datetime.datetime.strptime(start_date, '%Y-%m-%d') >= datetime.datetime.strptime(end_date, '%Y-%m-%d')
     }
@@ -348,7 +367,7 @@ def nearby(request):
 
 def calendar_widget(request):
 
-    room_left = True
+    booking = True
     remove_unconfirmed_bookings()
     if request.method == 'POST':
         Y = int(request.POST.get('Year'))

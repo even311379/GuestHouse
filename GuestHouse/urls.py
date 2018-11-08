@@ -39,7 +39,9 @@ urlpatterns = [
     path('booking_fail', views.booking_fail),
     path('calendar', views.calendar_widget, name='calendar_widget'),
     path('message_area', views.message_area, name='message_area'),
-    path('add_message', views.add_message, name='add_message'), ]
+    path('add_message', views.add_message, name='add_message'),
+    path('test',views.test, name='test')
+     ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

@@ -1,0 +1,104 @@
+
+/* Course Details Area css
+============================================================================================ */
+.course_details_area{
+	
+}
+.course_details_inner{
+	.nav.nav-tabs{
+		border: none;
+		margin-top: 30px;
+		li{
+			margin: 0px;
+			margin-right: 35px;
+			a{
+				border: none;
+				padding: 0px;
+				margin-bottom: 0px;
+				line-height: 55px;
+				font-size: 14px;
+				font-family: $rob;
+				color: $dip;
+				border-bottom: 1px solid transparent;
+				&.active{
+					border-color: $baseColor;
+				}
+			}
+			&:last-child{
+				margin-right: 0px;
+			}
+		}
+	}
+	.tab-content{
+		background: #f9f9ff;
+		.comments-area{
+			margin-top: 0px;
+			border-bottom: 0px;
+		}
+		.comment-form{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			border-top: 0px;
+			.submit_btn{
+				line-height: 40px;
+				border-radius: 5px;
+			}
+		}
+		.objctive_text{
+			padding: 25px;
+			border: 1px solid #eeeeee;
+			.list{
+				padding-top: 15px;
+				padding-bottom: 15px;
+				li{
+					margin-bottom: 28px;
+					a{
+						color: $pfont;
+						font-family: $rob;
+						font-size: 14px;
+						@include transition;
+						&:hover{
+							color: $baseColor;
+						}
+					}
+					&:last-child{
+						margin-bottom: 0px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.c_details_list{
+	.list{
+		li{
+			margin-bottom: 10px;
+			a{
+				background: #f9f9ff;
+				display: block;
+				line-height: 40px;
+				padding: 0px 18px;
+				font-size: 14px;
+				font-family: $rob;
+				color: $pfont;
+				span{
+					float: right;
+				}
+			}
+			&:first-child{
+				a{
+					span{
+						color: $baseColor;
+					}
+				}
+			}
+		}
+	}
+	.main_btn{
+		display: block;
+	}
+}
+
+/* End Course Details Area css
+============================================================================================ */

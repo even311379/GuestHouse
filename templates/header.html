@@ -1,104 +1,53 @@
-<!-- header.html-->
-<style>
-  .navbar-nav li a {
-  line-height: 50px;
- }
-</style>
 
+<!-- header.html-->
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #d7e8ec;">
-  <a class="navbar-brand"><img src="{% static 'title_text.png' %}"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse align-center" id="navbarNav">
-    <ul class="navbar-nav mr-auto ml-auto">
-      <li class="nav-item">
-        {% if news %}
-        <a class="nav-item">
-          <img title="最新消息" src="{% static 'menu_icon1.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/news">
-          <img title="最新消息" src="{% static 'menu_icon1.png' %}" onmouseover="this.src='{% static 'menu_icon1_s.png' %}'"
-            onmouseout="this.src='{% static 'menu_icon1.png' %}'" width=60 height=30></a>&nbsp;&nbsp;
-      </li>
-        {% endif %}
-      <li class="nav-item">
-        {% if about %}
-        <a class="nav-item">
-          <img title="關於我們" src="{% static 'menu_icon2.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/about">
-          <img title="關於我們" src="{% static 'menu_icon2.png' %}" onmouseover="this.src='{% static 'menu_icon2_s.png' %}'"
-            onmouseout="this.src='{% static 'menu_icon2.png' %}'" width=60 height=30></a>&nbsp;&nbsp;</li>
-        {% endif %}
-      <li class="nav-item">
-        {% if roomtype %}
-        <a class="nav-item">
-          <img title="房間介紹" src="{% static 'menu_icon3.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/roomtype">
-          <img title="房間介紹" src="{% static 'menu_icon3.png' %}" onmouseover="this.src='{% static 'menu_icon3_s.png' %}';"
-            onmouseout="this.src='{% static 'menu_icon3.png' %}'" width=60 height=30> </a>&nbsp;&nbsp;</li>
-        {% endif %}
-      <li class="nav-item">
-        {% if room_left %}
-        <a class="nav-item">
-          <img title="剩餘房間" src="{% static 'menu_icon8.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/calendar">
-          <img title="剩餘房間" src="{% static 'menu_icon8.png' %}" onmouseover="this.src='{% static 'menu_icon8_s.png' %}'"
-            onmouseout="this.src='{% static 'menu_icon8.png' %}'" width=60 height=30></a>&nbsp;&nbsp;</li>
-        {% endif %}
-      <li class="nav-item">
-        {% if booking %}
-        <a class="nav-item">
-          <img title="線上訂房" src="{% static 'menu_icon4.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/booking">
-          <img title="線上訂房" src="{% static 'menu_icon4.png' %}" onmouseover="this.src='{% static 'menu_icon4_s.png' %}'"
-            onmouseout="this.src='{% static 'menu_icon4.png' %}'" width=60 height=30></a>&nbsp;&nbsp;</li>
-      {% endif %}
-      <li class="nav-item">
-        {% if traffic %}
-        <a class="nav-item">
-          <img title="交通方式" src="{% static 'menu_icon5.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/traffic">
-          <img title="交通方式" src="{% static 'menu_icon5.png' %}" onmouseover="this.src='{% static 'menu_icon5_s.png' %}'"
-            onmouseout="this.src='{% static 'menu_icon5.png' %}'" width=60 height=30></a>&nbsp;&nbsp;</li>
-      {% endif %}
-      <li class="nav-item">
-        {% if nearby %}
-        <a class="nav-item">
-          <img title="附近景點" src="{% static 'menu_icon6.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/nearby">
-          <img title="附近景點" src="{% static 'menu_icon6.png' %}" onmouseover="this.src='{% static 'menu_icon6_s.png' %}'"
-            onmouseout="this.src='{% static 'menu_icon6.png' %}'" width=60 height=30> </a>&nbsp;&nbsp;
-        {% endif %}
-      </li>
-      <li class="nav-item">
-        {% if message_area %}
-        <a class="nav-item">
-          <img title="留言區" src="{% static 'menu_icon7.png' %}" width=75 height=40></a>&nbsp;&nbsp;</a>
-        {% else %}
-        <a class="nav-item" href="/message_area">
-          <img title="留言區" src="{% static 'menu_icon7.png' %}" onmouseover="this.src='{% static 'menu_icon7_s.png' %}'"
-            onmouseout="this.src='{% static 'menu_icon7.png' %}'" width=60 height=30></a>&nbsp;&nbsp;
-        {% endif %}
-      </li>
-    </ul>
-    <ul class="navbar-nav text-center">
-      <li class="nav-item ">
-        <a class="nav-item" href="/">
-          <img title="首頁" src="{% static 'home.png' %}" onmouseover="this.src='{% static 'home_s.png' %}'" onmouseout="this.src='{% static 'home.png' %}'"></a>
-      </li>
-    </ul>
+
+
+<header class="header_area">
+<div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand logo_h" href="/"><img src="{% static 'title_text.png' %}" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav ml-auto">
+            <li class="nav-item {% if home %}active{% endif %}"><a class="nav-link" href="/">首頁</a></li>
+            <li class="nav-item {% if news %}active{% endif %}"><a class="nav-link" href="/news">最新消息</a></li>
+            <li class="nav-item submenu dropdown {% if about %}active{% endif %}">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                 aria-expanded="true">關於我們</a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="nav-link" href="/about">關於我們</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/traffic">交通方式</a></li>
+                </ul>
+              </li>
+            <li class="nav-item submenu dropdown {% if roomtype %}active{% endif %}">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">房型介紹</a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="nav-link" href="/roomtype">房型1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/roomtype">房型2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/roomtype">房型3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item submenu dropdown {% if booking %}active{% endif %}">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">訂房</a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a class="nav-link" href="/booking">線上訂房</a></li>
+                <li class="nav-item"><a class="nav-link" href="/calendar">月曆查詢</a></li>
+              </ul>
+            </li>
+            <li class="nav-item {% if nearby %}active{% endif %}"><a class="nav-link" href="/nearby">附近景點</a></li>
+            <li class="nav-item {% if message_area %}active{% endif %}"><a class="nav-link" href="/message_area">留言區</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
-</nav>
-<br>
-<br>
-<br>
-<br>
+</header>
