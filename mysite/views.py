@@ -6,7 +6,7 @@ from django.template.loader import get_template
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import timezone
 from django.contrib import messages
-from mysite.utils import check_free_rooms, read_holiday_csv, slack_message, remove_unconfirmed_bookings, check_send_email_failure
+from mysite.utils import check_free_rooms, read_holiday_csv, slack_message, update_bookings_data, check_send_email_failure
 
 import datetime
 import calendar
@@ -116,7 +116,7 @@ def booking(request):
                 RT.append(k)
                 N_room_left.append(ED[k])
 
-        remove_unconfirmed_bookings()
+        update_bookings_data()
         empty_room_types = [models.room_types.objects.filter(name=t)[
             0] for t in RT]
         N_room_range = [list(range(1, n+1)) for n in N_room_left]
@@ -368,13 +368,30 @@ def nearby(request):
 def calendar_widget(request):
 
     booking = True
-    remove_unconfirmed_bookings()
+    update_bookings_data()
     if request.method == 'POST':
         Y = int(request.POST.get('Year'))
         M = int(request.POST.get('Month'))
     else:
         Y = datetime.date.today().year
         M = datetime.date.today().month
+
+    if M == 12:
+        last_m_m = M - 1 
+        last_m_y = Y 
+        next_m_m = 1
+        next_m_y = Y + 1
+    elif M == 1:
+        last_m_m = 12
+        last_m_y = Y - 1
+        next_m_m = M + 1
+        next_m_y = Y
+    else:
+        last_m_m = M - 1
+        last_m_y = Y
+        next_m_m = M + 1
+        next_m_y = Y
+        
 
     N_days = calendar.monthrange(Y, M)[1]
     first_date = datetime.date(Y, M, 1)
@@ -402,6 +419,8 @@ def calendar_widget(request):
     # all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays]
     holiday_bool = []
     holiday_comment = []
+    booking_status = []
+
     for date in dates:
         booking_this_day = []
         for booking_data in booking_data_this_month:
@@ -411,6 +430,15 @@ def calendar_widget(request):
             len([i for i in booking_this_day if i.startswith(T)]) for T in 'LMG']
         booking_this_month.append(
             "四人大套房: {0}<br>三人套房: {1}<br>和式團體房: {2}".format(6-nL, 4-nM, 3-nG))
+        if nL + nM + nG == 0:
+            '''
+            1: all clear, 2: all booked, 3: some booked
+            '''
+            booking_status.append(0)
+        elif nL + nM + nG ==13:
+            booking_status.append(1)
+        else:
+            booking_status.append(2)
 
         if date in all_holidays:
             holiday_bool.append(True)
@@ -421,7 +449,11 @@ def calendar_widget(request):
             holiday_comment.append('')
 
     dateinfo = zip(dates, weekdays, booking_this_month,
-                   holiday_bool, holiday_comment)
+                   holiday_bool, holiday_comment, booking_status)
+    '''
+    need to pack and design 1 more variable for seting bg image of each cell to
+     show full empty/ full booked, and etc...
+    '''
     return HttpResponse(render(request, '../templates/calendar_widget.html', locals()))
 
 

@@ -2912,7 +2912,7 @@ h6 {
   margin-bottom: 30px;
   position: relative; }
   .gallery_area .single-gallery .overlay {
-    transition: all 300ms linear 0s; }
+    transition: all 100ms linear 0s; }
   .gallery_area .single-gallery .icon {
     position: absolute;
     top: 0;
@@ -2927,7 +2927,7 @@ h6 {
     z-index: 10;
     cursor: pointer; }
   .gallery_area .single-gallery:hover .overlay {
-    background: rgba(0, 0, 0, 0.5); }
+    background: rgba(0, 0, 0, 0.5);}
   .gallery_area .single-gallery:hover .icon {
     top: 50%;
     opacity: 1; }
