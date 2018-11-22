@@ -1,5 +1,23 @@
 <!-- index.html -->
 {% extends "base.html" %}
+{% block morehead %}
+<style>
+	.rwd_table_size_f{
+		width: 60%;
+	}
+	.rwd_table_size_m{
+		width: 100%;
+	}
+	.rwd_input{width: 40%;}	
+
+	 @media only screen and (max-width:500px) and (min-width:150px) {
+		 .rwd_input{
+			 width: 100%;}
+			
+	 	}
+
+</style>
+{% endblock %}
 {% block content %}
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -8,10 +26,14 @@
 
 
 
-<section class="banner_area">
+<section class="home_banner_area">
 	<div class="banner_inner d-flex align-items-center">
 		<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
-			<div class="banner_content text-center">
+		<div class="container">
+				<div class="banner_content text-center">
+					<h1>湖頂農場民宿</h1>
+			
+				</div>
 			</div>
 		</div>
 	</div>
@@ -58,13 +80,6 @@
 	<!--================End Booking Area =================-->
 
 
-<!-- <div class='container'>
-<form name='booking form' action='booking' method='GET'>
-  入住日期: <input type="date" class="form-control-lg" name='room_start_date' value='{{ str_inday }}' id='start_date'><br/>
-  退房日期: <input type="date" name='room_end_date' value='{{ str_outday }}' id='end_date'><br/>
-  <span class="invisible"><input type="text" name='Form id' value='0'></span>
-  <input type='submit' value='查詢空房'><br/>
-</form> -->
 
 <div class='container'>
 {% if sd %}
@@ -84,8 +99,8 @@
   </div>
 <br>
 
-<div class="table-responsive">
-<table class="table" style='width: 80%;' align="center">
+
+<table id="my_available_table" class="table" style="table-layout: fixed;white-space: nowrap;" align="center">
   <thead>
     <tr>
       <th scope="col" style="text-align: left">房型</th>
@@ -101,7 +116,7 @@
       <td style="text-align: right">{{ room.room_price }}( {{ room.holiday_price }} )</td>
       <td style="text-align: right">{{ N_room_left }}</td>
 			<td style="text-align: right"> <div class="fa fa-home"></div>
-			<select class="custom-select custom-select-sm" name = 'N_{{ room.name }}' style='width: 40%'>
+			<select class="rwd_input custom-select custom-select-sm" name = 'N_{{ room.name }}'>
 				<option selected>0</option>
 				{% for n in N_room_range %}
 					<option value="{{ n }}">{{ n }}</option>
@@ -113,7 +128,7 @@
 
   </tbody>
 </table>
-</div>
+
 
 <div align="right"><button type="submit" class="main_btn">訂房</button><br/></div>
 </form>
@@ -204,6 +219,32 @@ function happycode(){
 	}
 
 window.onload=happycode ;
+
+function checkWidth(init)
+{
+    /*If browser resized, check width again */
+		var test = document.getElementsByClassName("rwd_input");;
+    if ($(window).width() < 514) {  
+			$('#my_available_table').addClass('table-responsive');
+			$('#my_available_table').addClass('rwd_table_size_m');
+			$('#my_available_table').removeClass('rwd_table_size_f');
+			// $('#rwd_input').removeClass('rwd_input_size_f');
+    }
+    else {
+			$('#my_available_table').removeClass('table-responsive');
+			$('#my_available_table').removeClass('rwd_table_size_m');
+			$('#my_available_table').addClass('rwd_table_size_f');
+			// $('#rwd_input').addClass('rwd_input_size_f');
+    }
+}
+
+$(document).ready(function() {
+    checkWidth(true);
+
+    $(window).resize(function() {
+        checkWidth(false);
+    });
+});
 </script>
 
 <link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css" rel="stylesheet">  

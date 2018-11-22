@@ -333,18 +333,27 @@ button:focus {
 ============================================================================================ */
 .home_banner_area {
   position: relative;
-  z-index: 1;
-  min-height: 780px; }
+  z-index: -10;
+  min-height: 400px; }
   .home_banner_area .banner_inner {
     position: relative;
     overflow: hidden;
     width: 100%;
-    min-height: 780px; }
+    min-height: 500px; }
     .home_banner_area .banner_inner .bg-parallax {
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url(../img/banner/myBanner1.png) no-repeat scroll center center;
+      background: url(../img/banner/myBanner1.png) no-repeat scroll center center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 100%;
+      bottom: 0;
+      z-index: -20;
+      /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url(../img/banner/myBanner1.png) no-repeat scroll center center;
       background-size: cover;
-      height: 110%;
-      z-index: -1; }
+      height: 100%;
+      z-index: -1; */
+     }
     .home_banner_area .banner_inner .banner_content {
       color: #f2f2f2; }
       .home_banner_area .banner_inner .banner_content h5 {
@@ -354,8 +363,8 @@ button:focus {
         font-weight: normal;
         margin-bottom: 15px; }
       .home_banner_area .banner_inner .banner_content h1 {
-        font-size: 120px;
-        line-height: 60px;
+        font-size: 80px;
+        line-height: 40px;
         font-family: "Noto Sans TC", serif;
         font-weight: 900;
         margin-bottom: 60px;
@@ -363,7 +372,8 @@ button:focus {
         @media (max-width: 767px) {
           .home_banner_area .banner_inner .banner_content h1 {
             font-size: 60px;
-            margin-bottom: 10px; } }
+            margin-bottom: 10px;
+            line-height: 130%; } }
       .home_banner_area .banner_inner .banner_content .top-text {
         text-align: right;
         max-width: 506px;
@@ -397,12 +407,12 @@ button:focus {
   position: relative;
   z-index: -10;
   /* z-index: 1; */
-  min-height: 300px; }
+  min-height: 400px; }
   .banner_area .banner_inner {
     position: relative;
     overflow: hidden;
     width: 100%;
-    min-height: 350px;
+    min-height: 500px;
     background: #f2f2f2;
     /* z-index: 1; */
     z-index: -10; }
@@ -2794,8 +2804,8 @@ h6 {
     width: 100%; } }
 
 .room_right {
-  padding-right: 48%;
-  padding-left: 12%;
+  padding-right: 26%;
+  padding-left: 18%;
   margin: 50px 0; }
   @media (max-width: 1366px) {
     .room_right {
@@ -2819,8 +2829,16 @@ h6 {
     font-family: "Noto Sans TC", sans-serif; }
     .room_right .price span {
       font-size: 16px; }
+  .room_right .holiday_price {
+    color: #2a66e7;
+    font-family: "Noto Sans TC", sans-serif; 
+    transform: translate(0 10px); }
+    .room_right .holiday_price span {
+      font-size: 16px; }
+
   .room_right .type {
     padding: 15px 0; }
+
   .room_right ul {
     list-style: none;
     padding: 0;
@@ -2834,7 +2852,7 @@ h6 {
   .room_right li {
     padding-left: 21px; }
   .room_right li:before {
-    content: "\e87a";
+    /* content: "\e87a"; */
     font-family: 'Noto Sans TC';
     display: inline-block;
     margin-left: -6px;
@@ -2938,8 +2956,9 @@ h6 {
 /*----------------------------------------------------*/
 .footer-area {
   min-height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(../img/footer-bg.jpg) no-repeat center;
-  background-size: cover; }
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(../img/firefly1.jpg) repeat center;
+  background-size: cover;
+  }
   .footer-area h6 {
     color: #fff;
     margin-bottom: 25px;

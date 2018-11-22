@@ -1,24 +1,13 @@
 <!-- index.html -->
 {% extends "base.html" %}
 {% block content %}
-<style>
-	.new_line{
-		background: url(static/line.png);
-		background-repeat: repeat-x;
-		padding-bottom: 50px;
-		width: 80%;
-	}
-	.container.custom-container-width {
-		max-width: 1000px;
-	}
-	
-	</style>
-	add paginator for the page?
+
+	<!-- add paginator for the page? -->
 	<!-- <div class='container' align=center style="background:transparent
 	url('static/index_bg2.jpg') repeat-y center center "> -->
+	
+	<div class='container'>
 	<h1 align=center>附近景點</h1>
-	<div class='container custom-container-width' align=center style="background:transparent
-	url('static/container_bg.png') center center">
 	<!-- <div class='container' align=center> -->
 	<!-- loop below later -->
 	{% for nearby in all_nearby %}

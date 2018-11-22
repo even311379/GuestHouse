@@ -4,25 +4,27 @@
 {% block morehead %}
 <style>
 		
-	.rwd_table_f { width:40%;}
-	.rwd_colbtn_l_f {padding-left: 26vw}
-	.rwd_colbtn_r_f {padding-right: 26vw}
+	.rwd_table_f { table-layout: fixed;}
 	.rwd_table_m { width:100%;}
-	.rwd_colbtn_l_m {padding-left: 1vw}
-	.rwd_colbtn_r_m {padding-right: 1vw}
+	.rwd_container_f {width: 50%;}
+	.rwd_container_m {width: 100%;}
+	th, td {
+		text-align: center;
+	}
 </style>
 {% endblock %}
 
 {% block content %}
 {% load static %}
 
-<div class='container' align=center>
+<div class='container' align=center id='my_container'>
 
 <h1>{{ Y }}年 {{ M }}月房間使用狀況：</h1>
 
 
 <div class='row'>
-	<div class='col rwd_colbtn_l_f' id='rwd_btn_l'>
+	<!-- <div class='col rwd_colbtn_l_f' id='rwd_btn_l'> -->
+	<div class='col justify-content-md-left' >
 		<div class='float-left '>
 			<form action='calendar' method='POST'>
 				{% csrf_token %}
@@ -36,7 +38,8 @@
 			</form>
 		</div>
 	</div>
-	<div class='col rwd_colbtn_r_f' id='rwd_btn_r'>
+	<div class='col justify-content-md-right'>
+	<!-- <div class='col rwd_colbtn_r_f' id='rwd_btn_r'> -->
 		<div class='float-right'>
 			<form action='calendar' method='POST'>
 				{% csrf_token %}
@@ -54,7 +57,8 @@
 
 
 <section>
-<table class="table table-bordered rwd_table_f" id='my_calendar_table'>
+<div class='row justify-content-md-center'>
+<table class="table table-bordered" id='my_calendar_table' style="table-layout: fixed;">
 		<!-- style="width: 40%;  table-layout: fixed" -->
   <thead>
     <tr align=center class="table-secondary">
@@ -83,12 +87,12 @@
 	  {% endif %}
 	  
   	{% if booking_status == 0 %}
-	  <td scope="col" style="background:url('/static/img/calendar/all_clear.png'); background-size: cover">
+	  <td scope="col" style="background:url('/static/img/calendar/all_clear.png'); background-size: 100% 100%;">
 	{% elif booking_status == 1 %}
-	<td scope="col" style="background:url('/static/img/calendar/all_booked.png'); background-size: cover">
+	<td scope="col" style="background:url('/static/img/calendar/all_booked.png'); background-size: 100% 100%;" >
 	{% else %}
 	<!-- <td><img style="display:block; background" width="100%" height="100%" src="{% static 'img/calendar/half.png' %}" /> -->
-	<td scope="col" style="background:url('/static/img/calendar/half.png'); background-size: cover">
+	<td scope="col" style="background:url('/static/img/calendar/half.png'); background-size: 100% 100%;">
 	{% endif %}
 	<h5>
 		<span data-toggle="popover" data-placement="right"
@@ -114,7 +118,7 @@
     </tr>
   </tbody>
 </table>
-
+</div>
 </section>
 <img width="12 vw" height="12 vh" src="{% static 'img/calendar/all_booked.png' %}" /><font size="2vx">：無空房</font>
 <img width="12 vw" height="12 vh" src="{% static 'img/calendar/half.png' %}" /><font size="2vx">：部份房間已預定</font>
@@ -170,22 +174,16 @@ function checkWidth(init)
 {
     /*If browser resized, check width again */
     if ($(window).width() < 514) {
-        $('#my_calendar_table').addClass('table-responsive');
-		$('#my_calendar_table').addClass('rwd_table_m');
-		$('#my_calendar_table').removeClass('rwd_table_f');
-		$('#rwd_btn_l').removeClass('rwd_colbtn_l_f');
-		$('#rwd_btn_l').addClass('rwd_colbtn_l_m');
-		$('#rwd_btn_r').removeClass('rwd_colbtn_r_f');
-		$('#rwd_btn_r').addClass('rwd_colbtn_r_m');
+        $('#my_container').addClass('rwd_container_m');
+		$('#my_container').removeClass('rwd_container_f');
+		$('#my_calendar_table').addClass('table-responsive');
+		
     }
     else {
-        $('#my_calendar_table').removeClass('table-responsive');
-		$('#my_calendar_table').removeClass('rwd_table_m');
-		$('#my_calendar_table').addClass('rwd_table_f');
-		$('#rwd_btn_l').addClass('rwd_colbtn_l_f');
-		$('#rwd_btn_l').removeClass('rwd_colbtn_l_m');
-		$('#rwd_btn_r').addClass('rwd_colbtn_r_f');
-		$('#rwd_btn_r').removeClass('rwd_colbtn_r_m');
+		$('#my_container').addClass('rwd_container_f');
+        $('#my_container').removeClass('rwd_container_m');
+		$('#my_calendar_table').removeClass('table-responsive');
+
     }
 }
 

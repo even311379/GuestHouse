@@ -1,27 +1,11 @@
 <!-- index.html -->
 {% extends "base.html" %}
+
 {% block content %}
 {% load static %}
-<style>
-.new_line{
-    background: url(static/line.png);
-    background-repeat: repeat-x;
-    padding-bottom: 50px;
-    width: 80%;
-}
-.container.custom-container-width {
-    max-width: 1000px;
-}
 
-</style>
-
-<!-- <div class='container' align=center style="background:transparent
-url('static/index_bg2.jpg') repeat-y center center "> -->
+<div class='container' align=center>
 <h1 align=center>最新消息</h1>
-<div class='container custom-container-width' align=center style="background:transparent
-url('static/container_bg.png') center center">
-<!-- <div class='container' align=center> -->
-<!-- loop below later -->
 {% for news in all_news %}
 <br>
 <div class='row'>
@@ -50,11 +34,6 @@ url('static/container_bg.png') center center">
         <h4 class="modal-title">{{news.news_title}}</h4>
       </div>
       <div class="modal-body">
-        <!-- another type of design: -->
-        <!-- <div class="row"> 
-          <div class="col-sm-4"><img src="{{ news.news_thumbnail.url }}" class="rounded mx-auto d-block" width=150 height=150></div>
-        <div class='col-sm-8'>{{news.news_content | linebreaks}}</div>
-        </div> -->
         <p>{{news.news_content | linebreaks}}</p>
         <p style="font-size: 12px" align='right'>{{ news.news_upload_time}}</p>
 	  </div>

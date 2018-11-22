@@ -28,6 +28,7 @@ def news(request):
     news = True
     all_news = models.news_dashboard.objects.all()
     
+    print(all_news[0].news_thumbnail.url)
     # print(request.user_agent.is_mobile)
     # print(request.user_agent.browser)
     return HttpResponse(render(request, '../templates/news.html', locals()))

@@ -3,7 +3,7 @@
 {% load static %}
 
 
-<header class="header_area">
+<header class="header_area navbar_fixed">
 <div class="main_menu">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
@@ -30,9 +30,9 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                 aria-expanded="false">房型介紹</a>
                 <ul class="dropdown-menu">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'roomtype' %}#room1">房型1</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'roomtype' %}#room2">房型2</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/roomtype">房型3</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'roomtype' %}#room1">四人大套房</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'roomtype' %}#room2">三人套房</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'roomtype' %}#room3">和式團體房</a></li>
                 </ul>
             </li>
             <li class="nav-item submenu dropdown {% if booking %}active{% endif %}">
