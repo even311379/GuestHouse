@@ -115,7 +115,7 @@
       <th style="text-align: left">{{ room.room_name }}</th>
       <td style="text-align: right">{{ room.room_price }}( {{ room.holiday_price }} )</td>
       <td style="text-align: right">{{ N_room_left }}</td>
-			<td style="text-align: right"> <div class="fa fa-home"></div>
+			<td style="text-align: right"> <div class="fas fa-home"></div>
 			<select class="rwd_input custom-select custom-select-sm" name = 'N_{{ room.name }}'>
 				<option selected>0</option>
 				{% for n in N_room_range %}
@@ -137,13 +137,13 @@
 	<h1>很抱歉完全沒房間了！</h1>
 	{% endif %}
 {% endif %}
-
+<br>
 <!-- Add some warning messages here: -->
 {% for message in messages %}
 
 	<div class="alert alert-{{ message.tags }} text-center" role="alert" >{{ message }}</div>
 {% endfor %}
-
+<br>
 						
 
 </div> <!--  end of container -->
@@ -202,14 +202,14 @@ $( function() {
 	$( "#end_date" ).datepicker({
 	dateFormat: "yy-mm-dd", 
 	showOn: "button",
-	buttonText: '<i class="fa fa-calendar"></i>'});
+	buttonText: '<i class="fas fa-calendar"></i>'});
 } );
 
 $( function() {
 	$( "#start_date" ).datepicker({
 	dateFormat: "yy-mm-dd", 
   showOn: "button",
-  buttonText: '<i class="fa fa-calendar"></i>'});
+  buttonText: '<i class="fas fa-calendar"></i>'});
 } );
 
 //  set things after page is fullly loaded

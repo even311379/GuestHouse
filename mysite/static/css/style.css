@@ -2956,8 +2956,10 @@ h6 {
 /*----------------------------------------------------*/
 .footer-area {
   min-height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(../img/firefly1.jpg) repeat center;
+  background: linear-gradient(0deg, rgba(0.1, 0.1, 0.1, 0.85), rgba(0.1, 0.1, 0.1, 0.85));
+  /* url(../img/firefly1.jpg) repeat center */
   background-size: cover;
+  box-shadow: 0px 3px 20px 0px rgba(0.1, 0.1, 0.1, 0.5); 
   }
   .footer-area h6 {
     color: #fff;
@@ -3010,11 +3012,11 @@ h6 {
     .single-footer-widget .footer-nav li {
       margin-bottom: 3px; } }
   .single-footer-widget .footer-nav li a {
-    color: #777777; }
+    color: #999999; }
     .single-footer-widget .footer-nav li a:hover {
       color: #ffffff; }
 .single-footer-widget input {
-  border: 1px solid #777777;
+  border: 1px solid #aaaaaa;
   width: 80% !important;
   font-weight: 300;
   background: transparent;
