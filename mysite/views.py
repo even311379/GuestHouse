@@ -21,15 +21,39 @@ def test(request):
     return HttpResponse(render(request, '../templates/test_new_template.html', locals()))
 
 def home(request):
+    cn_month = ['??','一月', '二月', '三月', '四月', '五月','六月','七月','八月','九月','十月','十一月','十二月']
+    # default inday and outday are today and tomorrow
+    today = datetime.date.today()
+    tomorrow = today + datetime.timedelta(days=1)
+    str_inday = today.strftime("%Y-%m-%d")
+    in_month = cn_month[today.month]
+    in_day = today.day
+
+    str_outday = tomorrow.strftime("%Y-%m-%d")
+    out_month = cn_month[tomorrow.month]
+    out_day = tomorrow.day
+    top3_news = models.news_dashboard.objects.all().order_by('-news_upload_time')[:3]
     return HttpResponse(render(request, '../templates/home.html', locals()))
 
 
 def news(request):
-    news = True
-    all_news = models.news_dashboard.objects.all()
-    
     # print(request.user_agent.is_mobile)
     # print(request.user_agent.browser)
+    news = True
+    all_news = models.news_dashboard.objects.all().order_by('-news_upload_time')
+    paginator = Paginator(all_news, 10)
+    p = request.GET.get('p')
+    if not p:
+        p = 1
+    try:
+        some_news = paginator.page(p)
+        # print(guest_messages[0].message)
+    except PageNotAnInteger:
+        some_news = paginator.page(1)
+    except EmptyPage:
+        some_news = paginator.page(paginator.num_pages)
+
+    
     return HttpResponse(render(request, '../templates/news.html', locals()))
 
 
@@ -328,7 +352,7 @@ def booking_data_confirm(request):
         bemail = rcs_to_confirm[0].booker_email
         mail_template = get_template('book_success_email.html')
         content = mail_template.render(locals())
-        subject = 'xx民宿訂房成功'
+        subject = '湖頂農場民宿訂房成功'
         msg = EmailMessage(subject, content, EMAIL_SERVER, [bemail, ])
         msg.content_subtype = 'html'
         try:
@@ -432,6 +456,7 @@ def calendar_widget(request):
             "四人大套房: {0}<br>三人套房: {1}<br>和式團體房: {2}".format(6-nL, 4-nM, 3-nG))
         if nL + nM + nG == 0:
             '''
+            booking status:
             1: all clear, 2: all booked, 3: some booked
             '''
             booking_status.append(0)
@@ -450,10 +475,7 @@ def calendar_widget(request):
 
     dateinfo = zip(dates, weekdays, booking_this_month,
                    holiday_bool, holiday_comment, booking_status)
-    '''
-    need to pack and design 1 more variable for seting bg image of each cell to
-     show full empty/ full booked, and etc...
-    '''
+
     return HttpResponse(render(request, '../templates/calendar_widget.html', locals()))
 
 
@@ -466,11 +488,10 @@ def message_area(request):
         p = 1
     try:
         guest_messages = paginator.page(p)
-        print(guest_messages[0].message)
     except PageNotAnInteger:
         guest_messages = paginator.page(1)
     except EmptyPage:
-        guest_messages = paginator.page(paginator.num_pages())
+        guest_messages = paginator.page(paginator.num_pages)
 
     return HttpResponse(render(request, '../templates/message_area.html', locals()))
 

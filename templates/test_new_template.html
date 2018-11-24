@@ -1,26 +1,50 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
-        <title>test</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdn.bootcss.com/popper.js/1.11.0/umd/popper.min.js" ></script>
-        <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>   
-        <style>
-            .popover{
-                color: #757575 !important;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <span href="#" data-toggle="popover" title="Popover Header" data-html="true" data-content="<div>text text</div>">Toggle popover</span>
-        </div>
-        <script>
-            $(function () {
-                $('[data-toggle="popover"]').popover()
-            })
-        </script>
-    </body>
+<head>
+<!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+<style>
+    html {
+    height: 100%;
+    box-sizing: border-box;
+    }
+
+    *,*:before,*:after {
+    box-sizing: inherit;
+    }
+
+    body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .demo {
+    margin: 0 auto;
+    padding-top: 64px;
+    max-width: 640px;
+    width: 94%;
+    }
+
+    .demo h1 {
+    margin-top: 0;
+    }
+</style>
+</head>
+        
+<div class="demo">
+        <h1>CSS “Always on the bottom” Footer</h1>
+      
+        <p>I often find myself designing a website where the footer must rest at the bottom of the page, even if the content above it is too short to push it to the bottom of the viewport naturally.</p>
+      
+        <p>However, if the content is taller than the user’s viewport, then the footer should disappear from view as it would normally, resting at the bottom of the page (not fixed to the viewport).</p>
+      
+        <p>If you know the height of the footer, then you should set it explicitly, and set the bottom padding of the footer’s parent element to be the same value (or larger if you want some spacing).</p>
+      
+        <p>This is to prevent the footer from overlapping the content above it, since it is being removed from the document flow with <code>position: absolute;</code>.</p>
+      </div>
+      
+      <div class="footer">This footer will always be positioned at the bottom of the page, but <strong>not fixed</strong>.</div> 
 </html>

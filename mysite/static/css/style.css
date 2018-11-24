@@ -88,16 +88,16 @@ button:focus {
   padding-top: 120px; }
 
 .section_gap {
-  padding: 150px 0; }
+  padding: 120px 0; }
   @media (max-width: 991px) {
     .section_gap {
-      padding: 70px 0; } }
+      padding: 50px 0; } }
 
 .section_gap_top {
-  padding-top: 150px; }
+  padding-top: 120px; }
   @media (max-width: 991px) {
     .section_gap_top {
-      padding-top: 70px; } }
+      padding-top: 50px; } }
 
 .mt-25 {
   margin-top: 25px; }
@@ -117,7 +117,7 @@ button:focus {
 .main_title {
   text-align: center;
   max-width: 680px;
-  margin: 0px auto 95px; }
+  margin: 0px auto 0px; }
   @media (max-width: 991px) {
     .main_title {
       margin: 0px auto 35px; } }
@@ -144,6 +144,13 @@ button:focus {
   left: 0;
   bottom: 0;
   right: 0; }
+
+.my_overlay {
+  position: relative;
+  top: 10%;
+  left: 50%;
+  bottom: 5%;
+  right: 10%; }
 
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
@@ -334,7 +341,7 @@ button:focus {
 .home_banner_area {
   position: relative;
   z-index: -10;
-  min-height: 400px; }
+  min-height: 500px; }
   .home_banner_area .banner_inner {
     position: relative;
     overflow: hidden;
@@ -342,6 +349,7 @@ button:focus {
     min-height: 500px; }
     .home_banner_area .banner_inner .bg-parallax {
       background: url(../img/banner/myBanner1.png) no-repeat scroll center center;
+      background-size:100% 100%;
       position: absolute;
       left: 0;
       right: 0;
@@ -2796,7 +2804,7 @@ h6 {
     transition: all 300ms linear 0s; }
     .our_room_area .owl-nav .lnr-arrow-up:hover,
     .our_room_area .owl-nav .lnr-arrow-down:hover {
-      background: #4d8eff;
+      background: #004fd8;
       color: #ffffff; }
 
 @media (max-width: 991px) {

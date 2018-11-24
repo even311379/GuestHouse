@@ -30,15 +30,6 @@ class price_multifier(models.Model): # No function for this stuff so far
     eday = models.DateField(auto_now=False, verbose_name='折扣結束日期')
 
 
-# class holidays(models.Model):
-#     holiday_name = models.CharField(
-#         max_length=10, verbose_name='假日名稱', default='某國定假日')
-#     holiday_date = models.DateField(auto_now=False, verbose_name='假日日期')
-
-    # def __str__(self):
-    #     return self.holiday_date
-
-
 class FileUpload(models.Model):
     class Meta: 
         verbose_name = '上傳輔助檔案'

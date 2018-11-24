@@ -1,6 +1,6 @@
 <!-- footer.html -->
 {% load static %}
-<footer class="footer-area">
+<div class="footer-area">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-4">
@@ -13,26 +13,44 @@
 
             <div class="col-lg-8">
                 <div class="single-footer-widget" style="padding-top: 2vh;">
-                    <div class="row">
-                        <div class="col-4 footer-nav" align="right">
+                    <div class="row rwd_text">
+                        <table>
+                            <tr>
+                                <td>電　話：</td>
+                                <td>049-2754309</td>
+                            </tr>
+                            <tr>
+                                <td>手　機：</td>
+                                <td>0935-772049</td>
+                            </tr>
+                            <tr>
+                                <td>地　址：</td>
+                                <td>南投縣鹿谷鄉永隆村堀邊巷2-1號</td>
+                            </tr>
+                            <tr>
+                                <td>信　箱：</td>
+                                <td>huding4309@gmail.com</td>
+                            </tr>
+                        </table>
+                        <!-- <div class="col-4 footer-nav" align="left">
                             <p>電　話：<br>
                             手　機：<br>
                             地　址：<br>
                             信　箱：</p>
                         </div>
-                        <div class="col footer-nav">
+                        <div class="col footer-nav" align="left">
                                 <p>049-2754309<br>
                                 0935-772049<br>
                                 南投縣鹿谷鄉永隆村堀邊巷2-1號<br>
                                 huding4309@gmail.com</p>
-                            </div>
+                        </div> -->
                     </div>
 
                 </div>
             </div>
           
         </div>
-        <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <div class="d-flex justify-content-between align-items-center flex-wrap" style="padding-top:2vh">
             <div>
                 <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is modified with <i class="fas fa-heart" aria-hidden="true"></i> from <a href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -45,4 +63,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </div>
     <!--
     3. my personal advertizement -->
-</footer>
+    </div>
+
+<style>
+   
+.rwd_text{
+    font-size: 100%;
+    padding-left:20vw;
+    }	
+
+@media only screen and (max-width:500px) and (min-width:150px) {
+    .rwd_text{
+        font-size: 90%;
+        padding-left:5vw;}
+       
+    }
+</style>

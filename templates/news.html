@@ -4,9 +4,10 @@
 {% block content %}
 {% load static %}
 
-<div class='container' align=center>
+<div class='container' align='center'>
 <h1 align=center>最新消息</h1>
-{% for news in all_news %}
+
+{% for news in some_news %}
 <br>
 <div class='row'>
   <div class='col-sm-2'>
@@ -31,9 +32,10 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">{{news.news_title}}</h4>
+          <h4 class="modal-title"></h4> <!-- this region is blocked by header, so I just more title below-->
       </div>
       <div class="modal-body">
+        <h4 class="modal-title">{{news.news_title}}</h4>
         <p>{{news.news_content | linebreaks}}</p>
         <p style="font-size: 12px" align='right'>{{ news.news_upload_time}}</p>
 	  </div>
@@ -44,7 +46,17 @@
   </div>
 </div>
 {% endfor %}
-
+<br>
+<nav style="right: 0px; position: absolute; transform:translate(-100%,-100%)">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" {% if some_news.has_previous %} href="news?p={{ some_news.previous_page_number }}" {% endif %}>上一頁</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" {% if some_news.has_next %} href="news?p={{ some_news.next_page_number }}" {% endif %}>下一頁</a>
+      </li>
+    </ul>
+</nav>
 </div>
 
 {% endblock %}
