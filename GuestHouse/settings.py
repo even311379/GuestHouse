@@ -11,8 +11,17 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-import MyImportantInfo as MIF
+# import MyImportantInfo as MIF
 
+
+def MyGmailAccount():
+	return 'huding4309@gmail.com'
+
+def MyGmailPassword():
+	return 'huding2754309'
+
+def slack_api_key():
+	return 'xoxp-462232931415-461179509506-468490555975-001a6258ef1e7db3c96e026eaba7fb38'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -137,5 +146,7 @@ MEDIA_URL = '/media/'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = MIF.MyGmailAccount()
-EMAIL_HOST_PASSWORD = MIF.MyGmailPassword()
+EMAIL_HOST_USER = MyGmailAccount()
+EMAIL_HOST_PASSWORD = MyGmailPassword()
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

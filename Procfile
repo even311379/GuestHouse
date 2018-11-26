@@ -1,0 +1,1 @@
+web: gunicorn GuestHouse.wsgi --log-file -

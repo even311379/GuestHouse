@@ -13,7 +13,7 @@ import calendar
 
 # Create your views here.
 
-EMAIL_SERVER = 'even311379@gmail.com'
+EMAIL_SERVER = 'huding4309@gmail.com'
 HOST_USER_EMAILS = ['even311379@hotmail.com', 'cth30@outlook.com']
 
 def test(request):

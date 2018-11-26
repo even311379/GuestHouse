@@ -4,10 +4,19 @@ import datetime
 from collections import namedtuple
 from slackclient import SlackClient
 import os
-import MyImportantInfo as MIF
+# import MyImportantInfo as MIF
 import imaplib
 import email
 import pandas as pd
+
+def MyGmailAccount():
+	return 'huding4309@gmail.com'
+
+def MyGmailPassword():
+	return 'huding2754309'
+
+def slack_api_key():
+	return 'xoxp-462232931415-461179509506-468490555975-001a6258ef1e7db3c96e026eaba7fb38'
 
 def check_free_rooms(sd, eud):
     rooms_data = models.room_use_condition.objects.filter(
@@ -76,13 +85,13 @@ SmartPhone notification through slack
 
 
 def slack_message(message, channel='訂房通知'):
-    pass # turn off this function casue it's annoying in testing!
-    # token = MIF.slack_api_key()
-    # sc = SlackClient(token)
+    # pass # turn off this function casue it's annoying in testing!
+    token = slack_api_key()
+    sc = SlackClient(token)
 
-    # sc.api_call('chat.postMessage', channel=channel,
-    #             text=message, username='機器人',
-    #             icon_emoji=':robot_face:')
+    sc.api_call('chat.postMessage', channel=channel,
+                text=message, username='機器人',
+                icon_emoji=':robot_face:')
 
 
 def update_bookings_data():
@@ -133,7 +142,7 @@ def check_send_email_failure(booking_datetime):
     '''
 
     M = imaplib.IMAP4_SSL('imap.gmail.com', 993)
-    M.login(MIF.MyGmailAccount().split('@')[0], MIF.MyGmailPassword())
+    M.login(MyGmailAccount().split('@')[0], MyGmailPassword())
 
     # M.list() # Lists all labels in GMail
     M.select('inbox') # Connected to inbox.
