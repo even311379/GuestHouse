@@ -111,3 +111,11 @@ class nearby_dashboard(models.Model):
     nearby_content = models.TextField(verbose_name='內容')
     nearby_thumbnail = models.FileField(verbose_name='縮圖')
     nearby_upload_time = models.DateTimeField(auto_now=True, verbose_name='發布時間')
+
+class CustomText(models.Model):
+    class Meta:
+        verbose_name = '客製文字段落'
+        verbose_name_plural = '客製文字段落'
+    
+    paragraph_name = models.CharField(max_length=30, verbose_name='段落名稱')
+    paragraph_text = models.TextField(verbose_name='段落內容')

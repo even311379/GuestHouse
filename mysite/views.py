@@ -33,6 +33,7 @@ def home(request):
     out_month = cn_month[tomorrow.month]
     out_day = tomorrow.day
     top3_news = models.news_dashboard.objects.all().order_by('-news_upload_time')[:3]
+    about_text = models.CustomText.objects.filter(paragraph_name="about")[0]
     return HttpResponse(render(request, '../templates/home.html', locals()))
 
 
