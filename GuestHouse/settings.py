@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_user_agents',  # used to dectect user_agents
+    # 'django_user_agents',  # used to dectect user_agents
     'mysite'
 ]
 
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
+    # 'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'GuestHouse.urls'
