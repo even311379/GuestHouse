@@ -36,6 +36,15 @@ class FileUpload(models.Model):
         verbose_name_plural = '上傳輔助檔案'
     file = models.FileField(blank=True, verbose_name='輔助檔案名稱')
 
+class TemplateImages(models.Model):
+    class Meta: 
+        verbose_name = '模板需求照片'
+        verbose_name_plural = '模板需求照片'
+    file = models.FileField(blank=True, verbose_name='輔助檔案名稱')
+    name = models.CharField(max_length=25, verbose_name='名稱')
+
+    def __str__(self):
+        return self.name
 
 class room_use_condition(models.Model):
     class Meta:

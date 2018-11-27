@@ -17,8 +17,8 @@
 	</div>
 	<div class='col-sm-6'>
     <h4 align='left'>{{ news.news_title}}</h4>
-      <p style="font-size: 14px">{{news.news_content|truncatechars:150|safe}}
-        <button data-toggle="modal" class="btn btn-link" data-target="#myModal{{ forloop.counter }}">more...</button>
+      <p style="font-size: 14px;text-align: left;">{{news.news_content|truncatechars:100|safe}}
+          <button data-toggle="modal" class="btn btn-link" data-target="#myModal{{ forloop.counter }}">more...</button>
       </p>
     <!-- add a bigger view for each news -->
 

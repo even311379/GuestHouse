@@ -34,6 +34,10 @@ def home(request):
     out_day = tomorrow.day
     top3_news = models.news_dashboard.objects.all().order_by('-news_upload_time')[:3]
     about_text = models.CustomText.objects.filter(paragraph_name="about")[0]
+    traffic_text = models.CustomText.objects.filter(paragraph_name="traffic")[0]
+    about_imgs = [i for i in models.TemplateImages.objects.all() if 'about' in i.name ]
+    map_img = models.TemplateImages.objects.filter(name ="map")[0]
+    room_a4_imgs = [i for i in models.TemplateImages.objects.all() if '四人大套房' in i.name]
     return HttpResponse(render(request, '../templates/home.html', locals()))
 
 
@@ -65,6 +69,9 @@ def about(request):
 
 def roomtype(request):
     roomtype = True
+    room_a4_imgs = [i for i in models.TemplateImages.objects.all() if '四人大套房' in i.name]
+    room_a3_imgs = [i for i in models.TemplateImages.objects.all() if '三人套房' in i.name]
+    room_b_imgs = [i for i in models.TemplateImages.objects.all() if '和式團體房' in i.name]
     return HttpResponse(render(request, '../templates/roomtype.html', locals()))
 
 
@@ -253,6 +260,7 @@ def add_booking_data(request):
             order_info = zip(boic['rt'], boic['nb'], boic['money'])
             total = sum(boic['money'])
             nd, nhd, check_in, check_out = boic['nd'], boic['nhd'], boic['check_in'], boic['check_out']
+            thd = nd + nhd
             eud = check_out - datetime.timedelta(days=1)
 
             # assign empty rooms for booking

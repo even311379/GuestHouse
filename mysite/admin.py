@@ -33,6 +33,11 @@ class NearbyAdmin(admin.ModelAdmin):
     list_display = ('nearby_title', 'nearby_upload_time', )
     ordering = ('-nearby_upload_time',)
 
+class CustomTextAdmin(admin.ModelAdmin):
+    list_display = ('paragraph_name', )
+
+class TemplateImageAdmin(admin.ModelAdmin):
+    list_display = ('name', )
 
 admin.site.register(models.price_multifier)
 admin.site.register(models.room_use_condition, RoomUseConditionAdmin)
@@ -42,4 +47,5 @@ admin.site.register(models.FileUpload, FileUploadAdmin)
 admin.site.register(models.guest_message, GuestMessageAdmin)
 admin.site.register(models.news_dashboard, NewsAdmin)
 admin.site.register(models.nearby_dashboard, NearbyAdmin)
-admin.site.register(models.CustomText)
+admin.site.register(models.CustomText, CustomTextAdmin)
+admin.site.register(models.TemplateImages, TemplateImageAdmin)

@@ -482,9 +482,7 @@ button:focus {
   .single-recent-blog .thumb img {
     width: 100%; }
 .single-recent-blog h4 {
-  font-size: 21px;
-  font-weight: 600;
-  transition: all 300ms linear 0s; }
+  font-size: 21px; }
 .single-recent-blog .name {
   font-size: 13px;
   font-weight: 100; }
@@ -518,8 +516,7 @@ button:focus {
   transition: all 300ms linear 0s; }
 .single-recent-blog:hover {
   cursor: pointer; }
-  .single-recent-blog:hover h4 {
-    color: #4d8eff; }
+ 
   .single-recent-blog:hover .f-img {
     cursor: pointer;
     -webkit-transform: scale(1.05);
