@@ -33,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&-156g%8r$qbf7055l(ay%s4x)=w_@47q015w-au$^s@=-+$u#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -88,12 +88,12 @@ WSGI_APPLICATION = 'GuestHouse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -151,7 +151,7 @@ EMAIL_HOST_PASSWORD = MyGmailPassword()
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# import dj_databae_url.config()
-# DATABASES = {
-#     'default': dj_database_url.config()
-# }
+import dj_databae_url.config()
+DATABASES = {
+    'default': dj_database_url.config()
+}
