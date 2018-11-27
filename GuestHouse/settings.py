@@ -151,7 +151,7 @@ EMAIL_HOST_PASSWORD = MyGmailPassword()
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-import dj_databae_url.config
+import dj_database_url.config
 
 DATABASES = {
     'default': dj_database_url.config()
