@@ -4,19 +4,19 @@ import datetime
 from collections import namedtuple
 from slackclient import SlackClient
 import os
-# import MyImportantInfo as MIF
+import MyImportantInfo as MIF
 import imaplib
 import email
 import pandas as pd
 
 def MyGmailAccount():
-	return 'huding4309@gmail.com'
+	return MIF.MyGmailAccount()
 
 def MyGmailPassword():
-	return 'huding2754309'
+	return MIF.MyGmailPassword()
 
 def slack_api_key():
-	return 'xoxp-462232931415-461179509506-468490555975-001a6258ef1e7db3c96e026eaba7fb38'
+	return MIF.slack_api_key()
 
 def check_free_rooms(sd, eud):
     rooms_data = models.room_use_condition.objects.filter(

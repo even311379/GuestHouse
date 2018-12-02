@@ -11,17 +11,17 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-# import MyImportantInfo as MIF
+import MyImportantInfo as MIF
 
 
 def MyGmailAccount():
-	return 'huding4309@gmail.com'
+	return MIF.MyGmailAccount()
 
 def MyGmailPassword():
-	return 'huding2754309'
+	return MIF.MyGmailPassword()
 
 def slack_api_key():
-	return 'xoxp-462232931415-461179509506-468490555975-001a6258ef1e7db3c96e026eaba7fb38'
+	return MIF.slack_api_key()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -88,24 +88,24 @@ WSGI_APPLICATION = 'GuestHouse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # # elephant sql
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'elmer.db.elephantsql.com',
-        'USER': 'peyfbuzr',
-        'PASSWORD': 'Mb5gSvSNVRKfD2s-t4E_LT5tX_7wU_jK',
-        'NAME': 'peyfbuzr',
-        'PORT': '5432'
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'HOST': 'elmer.db.elephantsql.com',
+#         'USER': 'peyfbuzr',
+#         'PASSWORD': MIF.elephantSQL_password(),
+#         'NAME': 'peyfbuzr',
+#         'PORT': '5432'
+#     }
 }
 
 # Password validation
@@ -163,6 +163,3 @@ EMAIL_HOST_PASSWORD = MyGmailPassword()
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# import dj_database_url
-
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)

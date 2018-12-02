@@ -1,7 +1,7 @@
 Images requirements
 
 1. Banner image * 1
- size:1920 * 350
+ size:1920 * 500
 
 2. favicon
  size: 36*36
