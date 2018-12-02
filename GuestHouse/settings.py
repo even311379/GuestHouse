@@ -13,6 +13,15 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import MyImportantInfo as MIF
 
+
+def MyGmailAccount():
+	return MIF.MyGmailAccount()
+
+def MyGmailPassword():
+	return MIF.MyGmailPassword()
+
+def slack_api_key():
+	return MIF.slack_api_key()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_user_agents',  # used to dectect user_agents
+    # 'django_user_agents',  # used to dectect user_agents
     'mysite'
 ]
 
@@ -52,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
+    # 'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'GuestHouse.urls'
@@ -86,6 +95,18 @@ DATABASES = {
     }
 }
 
+
+# # elephant sql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'HOST': 'elmer.db.elephantsql.com',
+#         'USER': 'peyfbuzr',
+#         'PASSWORD': MIF.elephantSQL_password(),
+#         'NAME': 'peyfbuzr',
+#         'PORT': '5432'
+#     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -137,5 +158,8 @@ MEDIA_URL = '/media/'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = MIF.MyGmailAccount()
-EMAIL_HOST_PASSWORD = MIF.MyGmailPassword()
+EMAIL_HOST_USER = MyGmailAccount()
+EMAIL_HOST_PASSWORD = MyGmailPassword()
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+

@@ -1,92 +1,116 @@
 <!-- calendar_widget.html -->
 {% extends "base.html" %}
+
+{% block morehead %}
+<style>
+		
+	.rwd_table_f { table-layout: fixed;}
+	.rwd_table_m { width:100%;}
+	.rwd_container_f {width: 50%;}
+	.rwd_container_m {width: 100%;}
+	th, td {
+		text-align: center;
+	}
+</style>
+{% endblock %}
+
 {% block content %}
-<div class='container' align=center>
+{% load static %}
 
-<div class="container">
-<h1 align=center>Booking Records in Calendar View</h1>
-<form name='Year_Month_selector' action='calendar' method='POST'>
-	{% csrf_token %}
-	
-	<div class="form-row">
-	<div class="form-group col-md-2">
-	<label>年份:</label>
-	<select  name = 'Year' >
-			<option selected>2018</option>
-			<option value="2019">2019</option>
-			<option value="2020">2020</option>
-			<option value="2021">2021</option>
-			<option value="2022">2022</option>
-		</select>
+<div class='container' align=center id='my_container'>
+
+<h1>{{ Y }}年 {{ M }}月房間使用狀況：</h1>
+<br><br>
+
+<div class='row'>
+	<!-- <div class='col rwd_colbtn_l_f' id='rwd_btn_l'> -->
+	<div class='col justify-content-md-left' >
+		<div class='float-left '>
+			<form action='calendar' method='POST'>
+				{% csrf_token %}
+				<div class="invisible" style="display: none">
+					<input type="integer" name='Year' value='{{ last_m_y }}'>
+					<input type="integer" name='Month' value='{{ last_m_m }}'>
+				</div>
+				<button type='submit' class='btn btn-secondary' style='width:80px;text-align: center;line-height: 1vh'>
+					<font size="2vx">上個月</font>
+				</button>
+			</form>
+		</div>
 	</div>
-	<div class="form-group col-md-2">
-	<label>月份:</label>
-	<select name = 'Month' >
-			<option selected>1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-		</select>
+	<div class='col justify-content-md-right'>
+	<!-- <div class='col rwd_colbtn_r_f' id='rwd_btn_r'> -->
+		<div class='float-right'>
+			<form action='calendar' method='POST'>
+				{% csrf_token %}
+				<div class="invisible" style="display: none">
+					<input type="integer" name='Year' value='{{ next_m_y }}'>
+					<input type="integer" name='Month' value='{{ next_m_m }}'>
+				</div>
+				<button class='btn btn-secondary' style='width:80px;text-align: center;line-height: 1vh'>
+					<font size="2vx">下個月</font>
+				</button>
+			</form>
+		</div>
 	</div>
-	<div class="form-group col-md-2">
-		<label>  </label>
-		<input type='submit' class="btn btn-primary" value='確定'>
-	</div>
-	</div>
-</form>
+</div>
 
 
-<h2> {{ Y }}年 {{ M }}月空房數： </h2>
 <section>
-	<table class="table table-bordered table-dark">
+<div class='row justify-content-md-center'>
+<table class="table table-bordered" id='my_calendar_table' style="table-layout: fixed;">
+		<!-- style="width: 40%;  table-layout: fixed" -->
   <thead>
-    <tr align=center>
-      <th scope="col">Sunday</th>
-      <th scope="col">Monday</th>
-      <th scope="col">Tuesday</th>
-      <th scope="col">Wednesday</th>
-      <th scope="col">Thursday</th>
-      <th scope="col">Friday</th>
-      <th scope="col">Saturday</th>
+    <tr align=center class="table-secondary">
+      <th scope="col">Sun.</th>
+      <th scope="col">Mon.</th>
+      <th scope="col">Tue.</th>
+      <th scope="col">Wed.</th>
+      <th scope="col">Thu.</th>
+      <th scope="col">Fri.</th>
+      <th scope="col">Sat.</th>
     </tr>
   </thead>
   <tbody>
     <tr>
     	{% for nhs in head_append %}
-    <td class="table-dark">
+    <td>
 		<h5> </h5>
 		<p> </p>
   	</td>
   		{% endfor %}
   		
-{% for date, weekday, booking_data, holiday, holiday_comment in dateinfo %}
+{% for date, weekday, booking_data, holiday, holiday_comment, booking_status in dateinfo %}
 	{% if weekday == 6%}
   	</tr>
   	<tr>
-  	{% endif %}
-  	{% if holiday %}
-  	<td scope="col" bgcolor="be3737">
+	  {% endif %}
+	  
+  	{% if booking_status == 0 %}
+	  <td scope="col" style="background:url('/static/img/calendar/all_clear.png'); background-size: 100% 100%;">
+	{% elif booking_status == 1 %}
+	<td scope="col" style="background:url('/static/img/calendar/all_booked.png'); background-size: 100% 100%;" >
 	{% else %}
-  	<td class="table-dark">
+	<!-- <td><img style="display:block; background" width="100%" height="100%" src="{% static 'img/calendar/half.png' %}" /> -->
+	<td scope="col" style="background:url('/static/img/calendar/half.png'); background-size: 100% 100%;">
 	{% endif %}
-	<h5>{{ date.day }} {% if holiday_comment %}({{ holiday_comment }}){% endif %}</h5>
+	<h5>
+		<span data-toggle="popover" data-placement="right"
+			data-trigger="focus" tabindex="0"
+		 title="{{ Y }}/{{ M }}/{{ date.day }} {% if holiday %} <i class='fa fa-star'></i> {{ holiday_comment }} {% endif %}" data-html="true"
+		 data-content="{{ booking_data |safe }}">{% if holiday %} <font style="color: #f5f10b";> {% else %}<font style="color: #cfcccc";> {% endif %}{{ date.day }}</font>
+		</span>
+		<!-- {{ date.day }}  -->
+	</h5>
 	{% if booking_data %}
-	<font size="2"> <p>{{ booking_data |safe }} </p> </font>
+		<!-- <font size="1" color="#00000"> <p>{{ booking_data |safe }} </p> </font> -->
 	{% else %}
 	<p> </p>
 	{% endif %}
   	</td>
 {% endfor %}
   		{% for nts in tail_append %}
-  	<td class="table-dark">
+  	<td>
 		<h5> </h5>
 		<p> </p>
   	</td>
@@ -94,8 +118,86 @@
     </tr>
   </tbody>
 </table>
-
+</div>
 </section>
+<img width="12 vw" height="12 vh" src="{% static 'img/calendar/all_booked.png' %}" /><font size="2vx">：無空房</font>
+<img width="12 vw" height="12 vh" src="{% static 'img/calendar/half.png' %}" /><font size="2vx">：部份房間已預定</font>
+<img width="12 vw" height="12 vh" src="{% static 'img/calendar/all_clear.png' %}" /><font size="2vx">：房間全空</font>
+<br><br>
+<h6 style="padding-right: 25vw">查詢其他月份？</h6>
+<div align="center">
+	<form name='Year_Month_selector' action='calendar' method='POST' style="font-size: smaller">
+		{% csrf_token %}
+		
+		<label>年份:</label>
+		<select  name = 'Year' class="btn btn-secondary btn-sm">
+				<option selected>2018</option>
+				<option value="2019">2019</option>
+				<option value="2020">2020</option>
+				<option value="2021">2021</option>
+				<option value="2022">2022</option>
+			</select>
+		&nbsp;
+		<label>月份:</label>
+		<select name = 'Month' class="btn btn-secondary btn-sm">
+				<option selected>1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type='submit' class="btn btn-secondary btn-sm" value='查詢'>
+	</form>
+</div>
+	
+<!-- <br><br><br> -->
 
-</div> <!-- end of container!
+</div>
+<!-- end of container! -->
+
+<script>
+$(function () {
+	$('[data-toggle="popover"]').popover()
+})
+
+$('.popover-dismiss').popover({
+	trigger: 'focus'
+})
+
+function checkWidth(init)
+{
+    /*If browser resized, check width again */
+    if ($(window).width() < 514) {
+        $('#my_container').addClass('rwd_container_m');
+		$('#my_container').removeClass('rwd_container_f');
+		$('#my_calendar_table').addClass('table-responsive');
+		
+    }
+    else {
+		$('#my_container').addClass('rwd_container_f');
+        $('#my_container').removeClass('rwd_container_m');
+		$('#my_calendar_table').removeClass('table-responsive');
+
+    }
+}
+
+$(document).ready(function() {
+    checkWidth(true);
+
+    $(window).resize(function() {
+        checkWidth(false);
+    });
+});
+</script>
+
+
 {% endblock %}
+

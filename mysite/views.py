@@ -6,27 +6,59 @@ from django.template.loader import get_template
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import timezone
 from django.contrib import messages
-from mysite.utils import check_free_rooms, read_holiday_csv, slack_message, remove_unconfirmed_bookings, check_send_email_failure
+from mysite.utils import check_free_rooms, read_holiday_csv, slack_message, update_bookings_data, check_send_email_failure
 
 import datetime
 import calendar
 
 # Create your views here.
 
-EMAIL_SERVER = 'even311379@gmail.com'
+EMAIL_SERVER = 'huding4309@gmail.com'
 HOST_USER_EMAILS = ['even311379@hotmail.com', 'cth30@outlook.com']
 
+def test(request):
+    all_news = models.news_dashboard.objects.all()
+    return HttpResponse(render(request, '../templates/test_new_template.html', locals()))
 
 def home(request):
+    cn_month = ['??','一月', '二月', '三月', '四月', '五月','六月','七月','八月','九月','十月','十一月','十二月']
+    # default inday and outday are today and tomorrow
+    today = datetime.date.today()
+    tomorrow = today + datetime.timedelta(days=1)
+    str_inday = today.strftime("%Y-%m-%d")
+    in_month = cn_month[today.month]
+    in_day = today.day
+
+    str_outday = tomorrow.strftime("%Y-%m-%d")
+    out_month = cn_month[tomorrow.month]
+    out_day = tomorrow.day
+    top3_news = models.news_dashboard.objects.all().order_by('-news_upload_time')[:3]
+    about_text = models.CustomText.objects.filter(paragraph_name="about")[0]
+    traffic_text = models.CustomText.objects.filter(paragraph_name="traffic")[0]
+    about_imgs = [i for i in models.TemplateImages.objects.all() if 'about' in i.name ]
+    map_img = models.TemplateImages.objects.filter(name ="map")[0]
+    room_a4_imgs = [i for i in models.TemplateImages.objects.all() if '四人大套房' in i.name]
     return HttpResponse(render(request, '../templates/home.html', locals()))
 
 
 def news(request):
-    news = True
-    all_news = models.news_dashboard.objects.all()
-    
     # print(request.user_agent.is_mobile)
     # print(request.user_agent.browser)
+    news = True
+    all_news = models.news_dashboard.objects.all().order_by('-news_upload_time')
+    paginator = Paginator(all_news, 10)
+    p = request.GET.get('p')
+    if not p:
+        p = 1
+    try:
+        some_news = paginator.page(p)
+        # print(guest_messages[0].message)
+    except PageNotAnInteger:
+        some_news = paginator.page(1)
+    except EmptyPage:
+        some_news = paginator.page(paginator.num_pages)
+
+    
     return HttpResponse(render(request, '../templates/news.html', locals()))
 
 
@@ -37,16 +69,26 @@ def about(request):
 
 def roomtype(request):
     roomtype = True
+    room_a4_imgs = [i for i in models.TemplateImages.objects.all() if '四人大套房' in i.name]
+    room_a3_imgs = [i for i in models.TemplateImages.objects.all() if '三人套房' in i.name]
+    room_b_imgs = [i for i in models.TemplateImages.objects.all() if '和式團體房' in i.name]
     return HttpResponse(render(request, '../templates/roomtype.html', locals()))
 
 
 def booking(request):
     booking = True
 
+    cn_month = ['??','一月', '二月', '三月', '四月', '五月','六月','七月','八月','九月','十月','十一月','十二月']
     # default inday and outday are today and tomorrow
-    str_inday = datetime.date.today().strftime("%Y-%m-%d")
-    str_outday = (datetime.date.today() +
-                  datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    today = datetime.date.today()
+    tomorrow = today + datetime.timedelta(days=1)
+    str_inday = today.strftime("%Y-%m-%d")
+    in_month = cn_month[today.month]
+    in_day = today.day
+
+    str_outday = tomorrow.strftime("%Y-%m-%d")
+    out_month = cn_month[tomorrow.month]
+    out_day = tomorrow.day
 
     try:
         form_id = request.GET.get('Form id')
@@ -61,7 +103,13 @@ def booking(request):
         sd = datetime.datetime.strptime(sd, '%Y-%m-%d').date()
         ed = datetime.datetime.strptime(ed, '%Y-%m-%d').date()
         str_inday = sd.strftime("%Y-%m-%d")
+        in_month = cn_month[sd.month]
+        in_day = sd.day
+        out_month = cn_month[ed.month]
+        out_day = ed.day
+
         str_outday = ed.strftime("%Y-%m-%d")
+
         eud = ed - datetime.timedelta(days=1)  # end use date
         n_night = (ed-sd).days
 
@@ -100,7 +148,7 @@ def booking(request):
                 RT.append(k)
                 N_room_left.append(ED[k])
 
-        remove_unconfirmed_bookings()
+        update_bookings_data()
         empty_room_types = [models.room_types.objects.filter(name=t)[
             0] for t in RT]
         N_room_range = [list(range(1, n+1)) for n in N_room_left]
@@ -150,8 +198,11 @@ def booking_validate_date(request):
     '''
     This is a ajax response
     '''
+    print('ajax in python to check is triggered!')
     end_date = request.GET.get('end_date', None)
     start_date = request.GET.get('start_date', None)
+    print(end_date)
+    print(start_date)
     data = {
         'problematic': datetime.datetime.strptime(start_date, '%Y-%m-%d') >= datetime.datetime.strptime(end_date, '%Y-%m-%d')
     }
@@ -209,6 +260,7 @@ def add_booking_data(request):
             order_info = zip(boic['rt'], boic['nb'], boic['money'])
             total = sum(boic['money'])
             nd, nhd, check_in, check_out = boic['nd'], boic['nhd'], boic['check_in'], boic['check_out']
+            thd = nd + nhd
             eud = check_out - datetime.timedelta(days=1)
 
             # assign empty rooms for booking
@@ -309,7 +361,7 @@ def booking_data_confirm(request):
         bemail = rcs_to_confirm[0].booker_email
         mail_template = get_template('book_success_email.html')
         content = mail_template.render(locals())
-        subject = 'xx民宿訂房成功'
+        subject = '湖頂農場民宿訂房成功'
         msg = EmailMessage(subject, content, EMAIL_SERVER, [bemail, ])
         msg.content_subtype = 'html'
         try:
@@ -348,14 +400,31 @@ def nearby(request):
 
 def calendar_widget(request):
 
-    room_left = True
-    remove_unconfirmed_bookings()
+    booking = True
+    update_bookings_data()
     if request.method == 'POST':
         Y = int(request.POST.get('Year'))
         M = int(request.POST.get('Month'))
     else:
         Y = datetime.date.today().year
         M = datetime.date.today().month
+
+    if M == 12:
+        last_m_m = M - 1 
+        last_m_y = Y 
+        next_m_m = 1
+        next_m_y = Y + 1
+    elif M == 1:
+        last_m_m = 12
+        last_m_y = Y - 1
+        next_m_m = M + 1
+        next_m_y = Y
+    else:
+        last_m_m = M - 1
+        last_m_y = Y
+        next_m_m = M + 1
+        next_m_y = Y
+        
 
     N_days = calendar.monthrange(Y, M)[1]
     first_date = datetime.date(Y, M, 1)
@@ -383,6 +452,8 @@ def calendar_widget(request):
     # all_holidays = [d - datetime.timedelta(days=1) for d in all_holidays]
     holiday_bool = []
     holiday_comment = []
+    booking_status = []
+
     for date in dates:
         booking_this_day = []
         for booking_data in booking_data_this_month:
@@ -392,6 +463,16 @@ def calendar_widget(request):
             len([i for i in booking_this_day if i.startswith(T)]) for T in 'LMG']
         booking_this_month.append(
             "四人大套房: {0}<br>三人套房: {1}<br>和式團體房: {2}".format(6-nL, 4-nM, 3-nG))
+        if nL + nM + nG == 0:
+            '''
+            booking status:
+            1: all clear, 2: all booked, 3: some booked
+            '''
+            booking_status.append(0)
+        elif nL + nM + nG ==13:
+            booking_status.append(1)
+        else:
+            booking_status.append(2)
 
         if date in all_holidays:
             holiday_bool.append(True)
@@ -402,7 +483,8 @@ def calendar_widget(request):
             holiday_comment.append('')
 
     dateinfo = zip(dates, weekdays, booking_this_month,
-                   holiday_bool, holiday_comment)
+                   holiday_bool, holiday_comment, booking_status)
+
     return HttpResponse(render(request, '../templates/calendar_widget.html', locals()))
 
 
@@ -415,11 +497,10 @@ def message_area(request):
         p = 1
     try:
         guest_messages = paginator.page(p)
-        print(guest_messages[0].message)
     except PageNotAnInteger:
         guest_messages = paginator.page(1)
     except EmptyPage:
-        guest_messages = paginator.page(paginator.num_pages())
+        guest_messages = paginator.page(paginator.num_pages)
 
     return HttpResponse(render(request, '../templates/message_area.html', locals()))
 

@@ -30,21 +30,21 @@ class price_multifier(models.Model): # No function for this stuff so far
     eday = models.DateField(auto_now=False, verbose_name='折扣結束日期')
 
 
-# class holidays(models.Model):
-#     holiday_name = models.CharField(
-#         max_length=10, verbose_name='假日名稱', default='某國定假日')
-#     holiday_date = models.DateField(auto_now=False, verbose_name='假日日期')
-
-    # def __str__(self):
-    #     return self.holiday_date
-
-
 class FileUpload(models.Model):
     class Meta: 
         verbose_name = '上傳輔助檔案'
         verbose_name_plural = '上傳輔助檔案'
     file = models.FileField(blank=True, verbose_name='輔助檔案名稱')
 
+class TemplateImages(models.Model):
+    class Meta: 
+        verbose_name = '模板需求照片'
+        verbose_name_plural = '模板需求照片'
+    file = models.FileField(blank=True, verbose_name='輔助檔案名稱')
+    name = models.CharField(max_length=25, verbose_name='名稱')
+
+    def __str__(self):
+        return self.name
 
 class room_use_condition(models.Model):
     class Meta:
@@ -120,3 +120,11 @@ class nearby_dashboard(models.Model):
     nearby_content = models.TextField(verbose_name='內容')
     nearby_thumbnail = models.FileField(verbose_name='縮圖')
     nearby_upload_time = models.DateTimeField(auto_now=True, verbose_name='發布時間')
+
+class CustomText(models.Model):
+    class Meta:
+        verbose_name = '客製文字段落'
+        verbose_name_plural = '客製文字段落'
+    
+    paragraph_name = models.CharField(max_length=30, verbose_name='段落名稱')
+    paragraph_text = models.TextField(verbose_name='段落內容')

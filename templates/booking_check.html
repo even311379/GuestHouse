@@ -5,7 +5,7 @@
 	<h1>訂房確認</h1>
 
 	您的住宿期間包含{{ n_workday }}日正常日及{{ n_holiday }}日假日：
-	<table class="table">
+	<table class="table" style="table-layout: fixed;white-space: nowrap;width:60%" align="center">
   	<thead>
     <tr>
 		<th scope="col">房型</th>
@@ -25,17 +25,48 @@
 	</table>
 <h3>全部總計{{ total_sum }} (NTD)</h3>
 
-<h3>請輸入訂房資料:</h3>
-<p>請勿必填寫正確的聯絡資訊，以避免訂房失敗
 
-<form class="form-inline" onsubmit="openModal()" id="myForm">
-	<label for="BookerNameInput">姓名</label>
-	<input type = 'text' id="BookerNameInput" placeholder="曾英俊" required>
-	<label for="BookerEmailInput">Email address</label>
-	<input type = 'email' id="BookerEmailInput" placeholder="example@example.com" required>
-	<label for="BookerPhoneInput">電話號碼</label>
-	<input type = 'text' id="BookerPhoneInput" placeholder="0912345678" required>
-	<button type="submit" class="btn btn-primary">Submit</button>
+<form  onsubmit="openModal()" id="myForm" style="width:60%">
+    <div class="card">
+        <div class="card-header" align="left">
+        <h4>請輸入訂房資料:</h4>
+        <p>請勿必填寫正確的聯絡資訊，以避免訂房失敗</p>
+        </div>
+    <div class="card-body">
+        <div class="row justify-content-start">
+            <div class="col-1"></div>
+            <div class="col-3" align='left'>
+                姓名
+            </div>
+            <div class="col-3" align='left'>
+                <input class="form-control" type = 'text' id="BookerNameInput" placeholder="曾英俊" required>
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-start">
+            <div class="col-1"></div>
+            <div class="col-3" align='left'>
+                電子信箱
+            </div>
+            <div class="col-6" align='left'>
+                <input class="form-control" type = 'email' id="BookerEmailInput" placeholder="example@example.com" required>
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-start">
+            <div class="col-1"></div>
+            <div class="col-3" align='left'>
+            電話號碼
+            </div>
+            <div class="col-6" align='left'>
+            <input class="form-control" type = 'text' id="BookerPhoneInput" placeholder="0912345678" required>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer" align="center">
+        <button type="submit" class="btn btn-danger">提交</button>
+        <button type="reset" class="btn btn-dark">重填</button>
+    </div>
 </form>
 
 <!-- Modal -->

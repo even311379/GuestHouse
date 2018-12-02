@@ -1,0 +1,367 @@
+/* Booking Area css
+============================================================================================ */
+
+.booking_area {
+    background: #ffffff;
+    position: relative;
+    z-index: 2;
+    margin-top: -100px;
+    box-shadow: 0 20px 50px rgba(158, 158, 158, 0.2);
+    @media(max-width: 991px) {
+        margin-top: 65px;
+    }
+    .row {
+        margin: 0;
+    }
+    .col-lg-3 {
+        padding: 30px 0;
+        &:nth-child(3),
+        &:nth-child(4) {
+            .booking_item {
+                border-right: 0;
+            }
+        }
+    }
+    .coupon-code {
+        background: #f1f9ff;
+    }
+}
+
+.booking_item {
+    padding: 7px 40px;
+    border-right: 1px solid #ddd;
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="date"]::-webkit-inner-spin-button {
+        display: none;
+    }
+    @media(max-width: 460px) {
+        padding: 7px 12px;
+    }
+    .main_btn {
+        @media (max-width: 1199px) {
+            font-size: 12px;
+            padding: 0 15px;
+        }
+        @media(max-width: 460px) {
+            line-height: 34px;
+            padding: 0 10px;
+            font-size: 11px;
+        }
+    }
+    p {
+        text-transform: uppercase;
+        font-size: 14px;
+        @media(max-width: 460px) {
+            font-size: 13px;
+        }
+    }
+    .day {
+        font-size: 60px;
+        font-family: $play;
+        color: #000;
+        font-weight: 600;
+        margin-right: 10px;
+        letter-spacing: 1px;
+        @media (max-width: 1199px) {
+            font-size: 48px;
+        }
+        @media(max-width: 460px) {
+            font-size: 32px;
+        }
+    }
+    .month {
+        font-family: $play;
+        color: #000000;
+        text-transform: uppercase;
+        font-weight: 500;
+        @media(max-width: 460px) {
+            font-size: 13px;
+        }
+    }
+    label {
+        color: #000000;
+        margin-left: 10px;
+        cursor: pointer;
+        @media(max-width: 460px) {
+            margin-left: 6px;
+        }
+    }
+    input {
+        border: 0;
+        width: 0;
+        height: 0;
+        padding: 0;
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
+    }
+    a {
+        color: $pfont;
+    }
+}
+
+/* End Booking Area css
+============================================================================================ */
+
+/* About Area css
+============================================================================================ */
+
+.about_area {
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        top: 70%;
+        left: 0;
+        right: 0;
+        bottom: -23.4%;
+        width: 100%;
+        background: #f1f9ff;
+        z-index: -1;
+        @media(max-width: 767px) {
+            bottom: -36.4%;
+        }
+    }
+    &.rooms {
+        &:after {
+            bottom: -48.4%;
+        }
+    }
+}
+
+.video_area {
+    position: relative;
+    .overlay-bg {
+        background: rgba(0, 0, 0, 0.2);
+    }
+    .popup-youtube {
+        position: absolute;
+        left: 0px;
+        text-align: center;
+        width: 100%;
+        top: 50%;
+        @include transform(translateY(-50%));
+    }
+}
+
+/* End About Area css
+============================================================================================ */
+
+/* Our Room Area css
+============================================================================================ */
+
+.our_room_area {
+    .col-lg-6 {
+        padding: 0;
+    }
+    .owl-nav {
+        right: 13%;
+        position: absolute;
+        top: 50%;
+        @include transform(translateY(-50%));
+        @media(max-width: 1024px) {
+            display: none;
+        }
+        .owl-prev {
+            margin-bottom: 10px;
+        }
+        .lnr-arrow-up,
+        .lnr-arrow-down {
+            padding: 6px;
+            @include transition();
+            &:hover {
+                background: $baseColor;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+.room_left {
+    img {
+        @media(max-width: 991px) {
+            width: 100%;
+        }
+    }
+}
+
+.room_right {
+    padding-right: 48%;
+    padding-left: 12%;
+    margin: 50px 0;
+    @media(max-width: 1366px) {
+        padding-left:60px;
+        padding-right: 25%;
+    }
+    @media(max-width: 1024px) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    @media(max-width: 991px) {
+        padding-left: 16%;
+        padding-right: 16%;
+        margin: 70px 0;
+    }
+    @media(max-width: 575px) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .price {
+        color: $baseColor;
+        font-family: $rob;
+        span {
+            font-size: 16px;
+        }
+    }
+    .type {
+        padding: 15px 0;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 35px;
+        @media(max-width: 767px) {
+            margin-bottom: 0;
+        }
+    }
+    .main_btn {
+        @media(max-width: 767px) {
+            margin-top: 30px;
+        }
+    }
+    li {
+        padding-left: 21px;
+    }
+    li:before {
+        content: "\e87a";
+        font-family: 'Linearicons-Free';
+        display: inline-block;
+        margin-left: -6px;
+        width: 28px;
+        font-weight: 600;
+        color: $baseColor;
+    }
+}
+
+/* End Our Room Area css
+============================================================================================ */
+
+/* Testimonials Area css
+============================================================================================ */
+
+.testimonials-area {
+    position: relative;
+    .quote-img {
+        margin-bottom: -60px;
+        position: relative;
+        z-index: 2;
+    }
+    .owl-thumbs {
+        margin-top: -50px;
+        position: relative;
+        z-index: 2;
+    }
+    .owl-thumb-item {
+        margin-right: 20px;
+        position: relative;
+        &:last-child {
+            margin-right: 0;
+        }
+        &.active {
+            .overlay-grad {
+                background: $baseColor;
+                opacity: .8;
+            }
+        }
+        .overlay-grad {
+            @include transition();
+            cursor: pointer;
+            border-radius: 50%;
+            &:hover {
+                background: $baseColor;
+                opacity: .8;
+            }
+        }
+    }
+    &.color-bg {
+        background: #f1f9ff;
+    }
+    .owl-carousel .owl-item {
+        img {
+            width: auto;
+            margin: auto;
+        }
+    }
+}
+
+.testi-slider {
+    margin: auto;
+    background: #ffffff;
+    .testi-item {
+        text-align: center;
+    }
+}
+
+.testi-item {
+    margin-bottom: 40px;
+    h4 {
+        font-size: 21px;
+        font-weight: 700;
+        margin-top: 65px;
+        margin-bottom: 10px;
+    }
+    .list {
+        margin-bottom: 20px;
+        li {
+            display: inline-block;
+            a {
+                color: #ffc000;
+                font-size: 14px;
+            }
+        }
+    }
+    p {
+        max-width: 605px;
+        margin: auto;
+        font-style: italic;
+    }
+}
+
+/* End Testimonials Area css
+============================================================================================ */
+/* Gallery Area css
+============================================================================================ */
+.gallery_area {
+    .gallery-filter {
+        display: none;
+    }
+    .single-gallery {
+        margin-bottom: 30px;
+        position: relative;
+        .overlay {
+            @include transition();
+        }
+        .icon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            @include transform(translate(-50%, -50%));
+            opacity: 0;
+            @include transition();
+            z-index: 10;
+            cursor: pointer;
+        }
+        &:hover {
+            .overlay {
+                background: rgba(0, 0, 0, 0.5);
+            }
+            .icon {
+                top: 50%;
+                opacity: 1;
+            }
+        }
+    }
+}
+/* End Gallery Area css
+============================================================================================ */

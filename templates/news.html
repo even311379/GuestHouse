@@ -1,28 +1,13 @@
 <!-- index.html -->
 {% extends "base.html" %}
+
 {% block content %}
 {% load static %}
-<style>
-.new_line{
-    background: url(static/line.png);
-    background-repeat: repeat-x;
-    padding-bottom: 50px;
-    width: 80%;
-}
-.container.custom-container-width {
-    max-width: 1000px;
-}
 
-</style>
-
-<!-- <div class='container' align=center style="background:transparent
-url('static/index_bg2.jpg') repeat-y center center "> -->
+<div class='container' align='center'>
 <h1 align=center>最新消息</h1>
-<div class='container custom-container-width' align=center style="background:transparent
-url('static/container_bg.png') center center">
-<!-- <div class='container' align=center> -->
-<!-- loop below later -->
-{% for news in all_news %}
+
+{% for news in some_news %}
 <br>
 <div class='row'>
   <div class='col-sm-2'>
@@ -32,8 +17,8 @@ url('static/container_bg.png') center center">
 	</div>
 	<div class='col-sm-6'>
     <h4 align='left'>{{ news.news_title}}</h4>
-      <p style="font-size: 14px">{{news.news_content|truncatechars:150|safe}}
-        <button data-toggle="modal" class="btn btn-link" data-target="#myModal{{ forloop.counter }}">more...</button>
+      <p style="font-size: 14px;text-align: left;">{{news.news_content|truncatechars:100|safe}}
+          <button data-toggle="modal" class="btn btn-link" data-target="#myModal{{ forloop.counter }}">more...</button>
       </p>
     <!-- add a bigger view for each news -->
 
@@ -47,14 +32,10 @@ url('static/container_bg.png') center center">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">{{news.news_title}}</h4>
+          <h4 class="modal-title"></h4> <!-- this region is blocked by header, so I just more title below-->
       </div>
       <div class="modal-body">
-        <!-- another type of design: -->
-        <!-- <div class="row"> 
-          <div class="col-sm-4"><img src="{{ news.news_thumbnail.url }}" class="rounded mx-auto d-block" width=150 height=150></div>
-        <div class='col-sm-8'>{{news.news_content | linebreaks}}</div>
-        </div> -->
+        <h4 class="modal-title">{{news.news_title}}</h4>
         <p>{{news.news_content | linebreaks}}</p>
         <p style="font-size: 12px" align='right'>{{ news.news_upload_time}}</p>
 	  </div>
@@ -65,7 +46,17 @@ url('static/container_bg.png') center center">
   </div>
 </div>
 {% endfor %}
-
+<br>
+<nav style="right: 0px; position: absolute; transform:translate(-100%,-100%)">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" {% if some_news.has_previous %} href="news?p={{ some_news.previous_page_number }}" {% endif %}>上一頁</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" {% if some_news.has_next %} href="news?p={{ some_news.next_page_number }}" {% endif %}>下一頁</a>
+      </li>
+    </ul>
+</nav>
 </div>
 
 {% endblock %}

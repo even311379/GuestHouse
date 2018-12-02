@@ -1,7 +1,18 @@
 <!-- index.html -->
 {% extends "base.html" %}
+{% block morehead %}
+<style>
+		
+	.rwd_container_f {width: 50%;}
+	.rwd_container_m {width: 100%;}
+</style>
+
+{% endblock %}
+
 {% block content %}
-<div class='container' align=center>
+
+
+<div class='container' align='center' id='my_container'>
 	<h1>留言區</h1>
 	{% if guest_messages %}
 		<nav aria-label="...">
@@ -16,19 +27,22 @@
 		</nav>
 		{% for message in guest_messages %}
 		<hr>
-			<div align='left'>
-			<strong>{{ message.guest_name }}&emsp;</strong><small class="text-muted">({{ message.ask_time }})</small><br>
-			<br>{{ message.message | safe }}
-			</div>
-			<div class="col-8 alert alert-dark" align="left">
-			{% if message.has_replied %}
-			<h6>回覆：</h6><br>
-			{{ message.replied_message}}
-			<div align="right"><small class="text-muted"> ({{ message.replied_time }})</small></div>
-			{% else %}
-				尚未回覆
-			{% endif %}
-			</div>
+		<div align='left'>
+		<strong>{{ message.guest_name }}&emsp;</strong><small class="text-muted">({{ message.ask_time }})</small><br>
+		<br>{{ message.message | safe }}
+		</div>
+		<div class="col-6 alert alert-dark" align="left">
+		{% if message.has_replied %}
+		<h6>回覆：</h6>
+		<p style="font-size: 12px">
+		{{ message.replied_message}}
+		</p>
+		<div align="right"><small class="text-muted"> ({{ message.replied_time }})</small></div>
+		{% else %}
+		<h6>尚未回覆</h6>
+		{% endif %}
+		</div>
+
 		{% endfor %}
 	{% else %}
 		<h3>目前沒有任何留言</h3>
@@ -68,25 +82,51 @@
 		</div>
 	</form>
 
+</div>
 
-<script>
-function ToggleEmailInput() {
-    var x = document.getElementById("SecretEmail");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        document.getElementById("SecretEmailInput").setAttribute("required", "");
-    } else {
-        x.style.display = "none";
-        document.getElementById("SecretEmailInput").removeAttribute("required", "");
-    }
-}
-
-function HideEmailInput() {
-    var x = document.getElementById("SecretEmail");
-        x.style.display = "none";
-        document.getElementById("SecretEmailInput").removeAttribute("required", "");
-}
-</script>
+<br>
 
 </div>
+<script>
+		function ToggleEmailInput() {
+			var x = document.getElementById("SecretEmail");
+			if (x.style.display === "none") {
+				x.style.display = "block";
+				document.getElementById("SecretEmailInput").setAttribute("required", "");
+			} else {
+				x.style.display = "none";
+				document.getElementById("SecretEmailInput").removeAttribute("required", "");
+			}
+		}
+		
+		function HideEmailInput() {
+			var x = document.getElementById("SecretEmail");
+				x.style.display = "none";
+				document.getElementById("SecretEmailInput").removeAttribute("required", "");
+		}
+		
+		function checkWidth(init)
+		{
+			/*If browser resized, check width again */
+			if ($(window).width() < 514) {
+				$('#my_container').addClass('rwd_container_m');
+				$('#my_container').removeClass('rwd_container_f');
+				
+			}
+			else {
+				$('#my_container').addClass('rwd_container_f');
+				$('#my_container').removeClass('rwd_container_m');
+		
+			}
+		}
+		
+		$(document).ready(function() {
+			checkWidth(true);
+		
+			$(window).resize(function() {
+				checkWidth(false);
+			});
+		});
+</script>
 {% endblock %}
+

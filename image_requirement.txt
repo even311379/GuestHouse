@@ -1,0 +1,10 @@
+Images requirements
+
+1. Banner image * 1
+ size:1920 * 500
+
+2. favicon
+ size: 36*36
+
+3. Footer GB
+    size: 1920* 350

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+        <head>
+                <meta charset='utf-8'>
+                <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+                <title> 麒麟潭湖頂農場民宿 </title>
+                
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+                <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+            
+                <!-- Use font awesome 4.7 icons  https://fontawesome.com/v4.7.0/icons/ -->
+                <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+                {% load static %}
+                <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+            
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+                <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+                <link rel="stylesheet" href="{% static 'vendors/lightbox/simpleLightbox.css' %}">
+                <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %}">
+                <link rel="stylesheet" href="{% static 'vendors/animate-css/animate.css' %}">
+                <link rel="stylesheet" href="{% static 'vendors/popup/magnific-popup.css' %}">
+            
+                <!-- main css -->
+                <link rel="stylesheet" href="{% static 'css/style.css' %}">
+                <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+            
+            
+            <style>
+            @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+            * {
+                font-family: 'Noto Sans TC';
+            }
+            
+            
+            h4 {
+                color: #881c59;
+            }
+            
+            .new_line{
+                background: url(static/line.png);
+                background-repeat: repeat-x;
+                padding-bottom: 50px;
+                width: 80vw;
+            }
+            .container.custom-container-width {
+                max-width: 1000px;
+            }
+            
+            </style>
+            
+            <style>
+                    .rwd_table_size_f{
+                        width: 60%;
+                    }
+                    .rwd_table_size_m{
+                        width: 100%;
+                    }
+                    .rwd_input{width: 40%;}	
+                
+                     @media only screen and (max-width:500px) and (min-width:150px) {
+                         .rwd_input{
+                             width: 100%;}
+                            
+                         }
+                
+                </style>
+            </head>
+<body>
+    <div class="container">
+        <form  onsubmit="openModal()" id="myForm" style="width:60%">
+            <div class="card">
+                <div class="card-header" align="left">
+                <h4>請輸入訂房資料:</h4>
+                <p>請勿必填寫正確的聯絡資訊，以避免訂房失敗</p>
+                </div>
+            <div class="card-body">
+                <div class="row justify-content-start">
+                    <div class="col-1"></div>
+                    <div class="col-3" align='left'>
+                        姓名
+                    </div>
+                    <div class="col-3" align='left'>
+                        <input class="form-control" type = 'text' id="BookerNameInput" placeholder="曾英俊" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-start">
+                    <div class="col-1"></div>
+                    <div class="col-3" align='left'>
+                        電子信箱
+                    </div>
+                    <div class="col-6" align='left'>
+                        <input class="form-control" type = 'email' id="BookerEmailInput" placeholder="example@example.com" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-start">
+                    <div class="col-1"></div>
+                    <div class="col-3" align='left'>
+                    電話號碼
+                    </div>
+                    <div class="col-6" align='left'>
+                    <input class="form-control" type = 'text' id="BookerPhoneInput" placeholder="0912345678" required>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer" align="center">
+                <button type="submit" class="btn btn-danger">提交</button>
+                <button type="reset" class="btn btn-dark">重填</button>
+            </div>
+        </form>
+
+    </div>
+</body>
+
+<script>
+    function checkWidth(init)
+{
+    /*If browser resized, check width again */
+		var test = document.getElementsByClassName("rwd_input");;
+    if ($(window).width() < 514) {  
+			$('#myForm').addClass('rwd_table_size_m');
+			$('#myForm').removeClass('rwd_table_size_f');
+			// $('#rwd_input').removeClass('rwd_input_size_f');
+    }
+    else {
+			$('#myForm').removeClass('rwd_table_size_m');
+			$('#myForm').addClass('rwd_table_size_f');
+			// $('#rwd_input').addClass('rwd_input_size_f');
+    }
+}
+
+$(document).ready(function() {
+    checkWidth(true);
+
+    $(window).resize(function() {
+        checkWidth(false);
+    });
+});
+</script>
+
+</html>
