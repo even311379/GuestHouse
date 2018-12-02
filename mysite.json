@@ -1,0 +1,1047 @@
+[
+{
+  "model": "mysite.room_types",
+  "pk": 1,
+  "fields": {
+    "name": "M",
+    "room_name": "\u4e09\u4eba\u5957\u623f",
+    "room_price": 2000,
+    "holiday_price": 2800,
+    "N_room": 4,
+    "N_people": 3
+  }
+},
+{
+  "model": "mysite.room_types",
+  "pk": 2,
+  "fields": {
+    "name": "L",
+    "room_name": "\u56db\u4eba\u5927\u5957\u623f",
+    "room_price": 2500,
+    "holiday_price": 3200,
+    "N_room": 6,
+    "N_people": 4
+  }
+},
+{
+  "model": "mysite.room_types",
+  "pk": 3,
+  "fields": {
+    "name": "G",
+    "room_name": "\u548c\u5f0f\u5718\u9ad4\u623f",
+    "room_price": 2000,
+    "holiday_price": 2800,
+    "N_room": 3,
+    "N_people": 4
+  }
+},
+{
+  "model": "mysite.fileupload",
+  "pk": 3,
+  "fields": {
+    "file": "2018_holidays.csv"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 1,
+  "fields": {
+    "file": "the_lake_obx1yGI.jpg",
+    "name": "about01"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 2,
+  "fields": {
+    "file": "IMG_4739_mlpAAW1.JPG",
+    "name": "about02"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 3,
+  "fields": {
+    "file": "about02.jpg",
+    "name": "about03"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 4,
+  "fields": {
+    "file": "map_sample.jpg",
+    "name": "map"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 5,
+  "fields": {
+    "file": "a_room4_1.jpg",
+    "name": "\u56db\u4eba\u5927\u5957\u623f1"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 7,
+  "fields": {
+    "file": "a_room4_2.jpg",
+    "name": "\u56db\u4eba\u5927\u5957\u623f3"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 8,
+  "fields": {
+    "file": "a_room4_3.jpg",
+    "name": "\u56db\u4eba\u5927\u5957\u623f4"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 10,
+  "fields": {
+    "file": "a_room3_0.jpg",
+    "name": "\u4e09\u4eba\u5957\u623f1"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 11,
+  "fields": {
+    "file": "a_room3_1.jpg",
+    "name": "\u4e09\u4eba\u5957\u623f2"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 12,
+  "fields": {
+    "file": "a_room3_2.jpg",
+    "name": "\u4e09\u4eba\u5957\u623f3"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 13,
+  "fields": {
+    "file": "b_room_0.jpg",
+    "name": "\u548c\u5f0f\u5718\u9ad4\u623f1"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 14,
+  "fields": {
+    "file": "b_room_1.jpg",
+    "name": "\u548c\u5f0f\u5718\u9ad4\u623f2"
+  }
+},
+{
+  "model": "mysite.templateimages",
+  "pk": 15,
+  "fields": {
+    "file": "B.jpg",
+    "name": "\u548c\u5f0f\u5718\u9ad4\u623f3"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 22,
+  "fields": {
+    "room_type": "M1",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-14T07:17:19.955Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-09-14T07:26:35.600Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 23,
+  "fields": {
+    "room_type": "M2",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-14T07:17:19.968Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-09-14T07:26:35.633Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 24,
+  "fields": {
+    "room_type": "M3",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-14T07:17:19.974Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-09-14T07:26:35.638Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 25,
+  "fields": {
+    "room_type": "M4",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-14T07:17:19.981Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-09-14T07:26:35.641Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 26,
+  "fields": {
+    "room_type": "L1",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u66fe\u5927\u5e25",
+    "booking_time": "2018-09-14T07:43:41.606Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T07:47:09.325Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 27,
+  "fields": {
+    "room_type": "L2",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u66fe\u5927\u5e25",
+    "booking_time": "2018-09-14T07:43:41.632Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T07:47:09.352Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 28,
+  "fields": {
+    "room_type": "L3",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u66fe\u5927\u5e25",
+    "booking_time": "2018-09-14T07:43:41.639Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T07:47:09.355Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 29,
+  "fields": {
+    "room_type": "G1",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u66fe\u5927\u5e25",
+    "booking_time": "2018-09-14T07:43:41.645Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T07:47:09.360Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 30,
+  "fields": {
+    "room_type": "G2",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u66fe\u5927\u5e25",
+    "booking_time": "2018-09-14T07:43:41.651Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T07:47:09.363Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 31,
+  "fields": {
+    "room_type": "G3",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-14",
+    "confirmed": true,
+    "booker_name": "\u66fe\u5927\u5e25",
+    "booking_time": "2018-09-14T07:43:41.658Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T07:47:09.366Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 32,
+  "fields": {
+    "room_type": "L4",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-16",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-14T08:04:06.001Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T08:04:25.617Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 33,
+  "fields": {
+    "room_type": "L5",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-16",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-14T08:04:06.021Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T08:04:25.642Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 34,
+  "fields": {
+    "room_type": "L6",
+    "room_start_use_date": "2018-09-14",
+    "room_end_use_date": "2018-09-16",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-14T08:04:06.027Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-14T08:04:25.647Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 38,
+  "fields": {
+    "room_type": "L4",
+    "room_start_use_date": "2018-09-20",
+    "room_end_use_date": "2018-09-21",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-20T07:15:42.707Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-20T07:16:31.044Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 39,
+  "fields": {
+    "room_type": "L5",
+    "room_start_use_date": "2018-09-20",
+    "room_end_use_date": "2018-09-21",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-20T07:15:42.741Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-20T07:16:31.146Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 40,
+  "fields": {
+    "room_type": "L6",
+    "room_start_use_date": "2018-09-20",
+    "room_end_use_date": "2018-09-21",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-09-20T07:15:42.760Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-09-20T07:16:31.167Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 41,
+  "fields": {
+    "room_type": "L1",
+    "room_start_use_date": "2018-10-22",
+    "room_end_use_date": "2018-10-23",
+    "confirmed": true,
+    "booker_name": "\u738b\u516b\u86cb",
+    "booking_time": "2018-10-22T08:33:25.818Z",
+    "booker_phone": "0912345678",
+    "booker_email": "sadsa@das.asdas",
+    "confirmed_time": "2018-10-22T08:36:28.863Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 42,
+  "fields": {
+    "room_type": "L2",
+    "room_start_use_date": "2018-10-22",
+    "room_end_use_date": "2018-10-23",
+    "confirmed": true,
+    "booker_name": "\u738b\u516b\u86cb",
+    "booking_time": "2018-10-22T08:33:25.857Z",
+    "booker_phone": "0912345678",
+    "booker_email": "sadsa@das.asdas",
+    "confirmed_time": "2018-10-22T08:36:28.888Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 46,
+  "fields": {
+    "room_type": "L1",
+    "room_start_use_date": "2018-10-30",
+    "room_end_use_date": "2018-10-30",
+    "confirmed": true,
+    "booker_name": "\u738b\u5c0f\u660e",
+    "booking_time": "2018-10-30T09:01:29.290Z",
+    "booker_phone": "0912345678",
+    "booker_email": "333@fff.ddd",
+    "confirmed_time": "2018-10-31T02:03:06.169Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 49,
+  "fields": {
+    "room_type": "L1",
+    "room_start_use_date": "2018-10-31",
+    "room_end_use_date": "2018-10-31",
+    "confirmed": true,
+    "booker_name": "\u9bc9\u9023\u7d50",
+    "booking_time": "2018-10-31T08:54:09.742Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-10-31T09:16:33.308Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 50,
+  "fields": {
+    "room_type": "L2",
+    "room_start_use_date": "2018-10-31",
+    "room_end_use_date": "2018-10-31",
+    "confirmed": true,
+    "booker_name": "\u9bc9\u9023\u7d50",
+    "booking_time": "2018-10-31T08:54:09.775Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-10-31T09:16:33.331Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 51,
+  "fields": {
+    "room_type": "L3",
+    "room_start_use_date": "2018-10-31",
+    "room_end_use_date": "2018-10-31",
+    "confirmed": true,
+    "booker_name": "\u9bc9\u9023\u7d50",
+    "booking_time": "2018-10-31T08:54:09.782Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-10-31T09:16:33.337Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 52,
+  "fields": {
+    "room_type": "M2",
+    "room_start_use_date": "2018-10-31",
+    "room_end_use_date": "2018-10-31",
+    "confirmed": true,
+    "booker_name": "\u9bc9\u9023\u7d50",
+    "booking_time": "2018-10-31T08:54:00Z",
+    "booker_phone": "0912345678",
+    "booker_email": "asd@asd.asd",
+    "confirmed_time": "2018-10-31T09:16:33.348Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 56,
+  "fields": {
+    "room_type": "M1",
+    "room_start_use_date": "2018-11-02",
+    "room_end_use_date": "2018-11-04",
+    "confirmed": true,
+    "booker_name": "\u5403\u5403",
+    "booking_time": "2018-11-02T11:11:05.219Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-11-02T11:12:27.125Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 57,
+  "fields": {
+    "room_type": "M2",
+    "room_start_use_date": "2018-11-02",
+    "room_end_use_date": "2018-11-04",
+    "confirmed": true,
+    "booker_name": "\u5403\u5403",
+    "booking_time": "2018-11-02T11:11:05.254Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-11-02T11:12:27.136Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 60,
+  "fields": {
+    "room_type": "M3",
+    "room_start_use_date": "2018-11-02",
+    "room_end_use_date": "2018-11-04",
+    "confirmed": true,
+    "booker_name": "\u738b\u5927\u540d",
+    "booking_time": "2018-11-02T12:07:24.484Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-11-02T12:08:38.444Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 61,
+  "fields": {
+    "room_type": "M4",
+    "room_start_use_date": "2018-11-02",
+    "room_end_use_date": "2018-11-04",
+    "confirmed": true,
+    "booker_name": "\u738b\u5927\u540d",
+    "booking_time": "2018-11-02T12:07:24.528Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@hotmail.com",
+    "confirmed_time": "2018-11-02T12:08:38.462Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 63,
+  "fields": {
+    "room_type": "M1",
+    "room_start_use_date": "2018-11-07",
+    "room_end_use_date": "2018-11-07",
+    "confirmed": true,
+    "booker_name": "\u5927\u5927",
+    "booking_time": "2018-11-07T09:45:45.865Z",
+    "booker_phone": "0912345678",
+    "booker_email": "31232@sadas0sda",
+    "confirmed_time": "2018-11-07T09:56:21.643Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 64,
+  "fields": {
+    "room_type": "M2",
+    "room_start_use_date": "2018-11-07",
+    "room_end_use_date": "2018-11-07",
+    "confirmed": true,
+    "booker_name": "\u5927\u5927",
+    "booking_time": "2018-11-07T09:45:45.886Z",
+    "booker_phone": "0912345678",
+    "booker_email": "31232@sadas0sda",
+    "confirmed_time": "2018-11-07T09:56:21.674Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 72,
+  "fields": {
+    "room_type": "L1",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.357Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:55.924Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 73,
+  "fields": {
+    "room_type": "L2",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.388Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.021Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 74,
+  "fields": {
+    "room_type": "L3",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.397Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.028Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 75,
+  "fields": {
+    "room_type": "L4",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.407Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.046Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 76,
+  "fields": {
+    "room_type": "L5",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.424Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.072Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 77,
+  "fields": {
+    "room_type": "L6",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.453Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.084Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 78,
+  "fields": {
+    "room_type": "M1",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.472Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.097Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 79,
+  "fields": {
+    "room_type": "M2",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.497Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.110Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 80,
+  "fields": {
+    "room_type": "M3",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.547Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.125Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 81,
+  "fields": {
+    "room_type": "M4",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.556Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.138Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 82,
+  "fields": {
+    "room_type": "G1",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.573Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.149Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 83,
+  "fields": {
+    "room_type": "G2",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.593Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.163Z"
+  }
+},
+{
+  "model": "mysite.room_use_condition",
+  "pk": 84,
+  "fields": {
+    "room_type": "G3",
+    "room_start_use_date": "2018-11-23",
+    "room_end_use_date": "2018-11-24",
+    "confirmed": true,
+    "booker_name": "\u597d\u91ce\u4eba",
+    "booking_time": "2018-11-23T08:13:05.608Z",
+    "booker_phone": "0912345678",
+    "booker_email": "even311379@gmail.com",
+    "confirmed_time": "2018-11-23T08:16:56.187Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 4,
+  "fields": {
+    "guest_name": " \u767d \u5c45 \u6613 ",
+    "message": "\u6f22 \u7687 \u91cd \u8272 \u601d \u50be \u570b \uff0c \t\u3000\u5fa1 \u5b87 \u591a \u5e74 \u6c42 \u4e0d \u5f97 \u3002\r<br>\u694a \u5bb6 \u6709 \u5973 \u521d \u9577 \u6210 \uff0c \t\u3000\u990a \u5728 \u6df1 \u95a8 \u4eba \u672a \u8b58 \u3002\r<br>\u5929 \u751f \u9e97 \u8cea \u96e3 \u81ea \u68c4 \uff0c \t\u3000\u4e00 \u671d \u9078 \u5728 \u541b \u738b \u5074 \u3002\r<br>\u56de \u7738 \u4e00 \u7b11 \u767e \u5a9a \u751f \uff0c \t\u3000\u516d \u5bae \u7c89 \u9edb \u7121 \u984f \u8272 \u3002\r<br>\u6625 \u5bd2 \u8cdc \u6d74 \u83ef \u6e05 \u6c60 \uff0c \t\u3000\u6eab \u6cc9 \u6c34 \u6ed1 \u6d17 \u51dd \u8102 \u3002\r<br>\u4f8d \u5152 \u6276 \u8d77 \u5b0c \u7121 \u529b \uff0c \t\u3000\u6b63 \u662f \u65b0 \u627f \u6069 \u6fa4 \u6642 \u3002\r<br>\u96f2 \u9b22 \u82b1 \u984f \u91d1 \u6b65 \u6416 \uff0c \t\u3000\u8299 \u84c9 \u5e33 \u6696 \u5ea6 \u6625 \u5bb5 \u3002\r<br>\u6625 \u5bb5 \u82e6 \u77ed \u65e5 \u9ad8 \u8d77 \uff0c \t\u3000\u5f9e \u6b64 \u541b \u738b \u4e0d \u65e9 \u671d \u3002\r<br>\u627f \u6b61 \u4f8d \u5bb4 \u7121 \u9592 \u6687 \uff0c \t\u3000\u6625 \u5f9e \u6625 \u6e38 \u591c \u5c08 \u591c \u3002\r<br>\u5f8c \u5bae \u4f73 \u9e97 \u4e09 \u5343 \u4eba \uff0c \t\u3000\u4e09 \u5343 \u5bf5 \u611b \u5728 \u4e00 \u8eab \u3002\r<br>\u91d1 \u5c4b \u599d \u6210 \u5b0c \u4f8d \u591c \uff0c \t\u3000\u7389 \u6a13 \u5bb4 \u7f77 \u9189 \u548c \u6625 \u3002",
+    "ask_time": "2018-09-28T09:34:13.672Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:34:13.672Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 5,
+  "fields": {
+    "guest_name": "\u767d \u5c45 \u6613",
+    "message": "<h3>\u9577 \u6068 \u6b4c</h3>\r\n<br>\r\n<br>\u6f22 \u7687 \u91cd \u8272 \u601d \u50be \u570b \uff0c \t\u3000\u5fa1 \u5b87 \u591a \u5e74 \u6c42 \u4e0d \u5f97 \u3002\r\n<br>\u694a \u5bb6 \u6709 \u5973 \u521d \u9577 \u6210 \uff0c \t\u3000\u990a \u5728 \u6df1 \u95a8 \u4eba \u672a \u8b58 \u3002\r\n<br>\u5929 \u751f \u9e97 \u8cea \u96e3 \u81ea \u68c4 \uff0c \t\u3000\u4e00 \u671d \u9078 \u5728 \u541b \u738b \u5074 \u3002\r\n<br>\u56de \u7738 \u4e00 \u7b11 \u767e \u5a9a \u751f \uff0c \t\u3000\u516d \u5bae \u7c89 \u9edb \u7121 \u984f \u8272 \u3002",
+    "ask_time": "2018-09-28T09:43:17.500Z",
+    "has_replied": true,
+    "replied_message": "\u597d\u8a69\u597d\u8a69",
+    "replied_time": "2018-09-28T09:43:17.500Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 6,
+  "fields": {
+    "guest_name": "\u674e \u5546 \u96b1 ",
+    "message": "<b>\u97d3 \u7891</b>\r<br>\r<br>\u5143 \u548c \u5929 \u5b50 \u795e \u6b66 \u59ff \uff0c \t\u3000\u5f7c \u4f55 \u4eba \u54c9 \u8ed2 \u8207 \u7fb2 \u3002\r<br>\u8a93 \u5c07 \u4e0a \u96ea \u5217 \u8056 \u6065 \uff0c \t\u3000\u5750 \u6cd5 \u5bae \u4e2d \u671d \u56db \u5937 \u3002\r<br>\u6dee \u897f \u6709 \u8cca \u4e94 \u5341 \u8f09 \uff0c \t\u3000\u5c01 \u72fc \u751f \u8c99 \u8c99 \u751f \u7f86 \u3002\r<br>\u4e0d \u64da \u5c71 \u6cb3 \u64da \u5e73 \u5730 \uff0c \t\u3000\u9577 \u6208 \u5229 \u77db \u65e5 \u53ef \u9ebe \u3002\r<br>\u5e1d \u5f97 \u8056 \u76f8 \u76f8 \u66f0 \u5ea6 \uff0c \t\u3000\u8cca \u65ab \u4e0d \u6b7b \u795e \u6276 \u6301 \u3002\r<br>\u8170 \u61f8 \u76f8 \u5370 \u4f5c \u90fd \u7d71 \uff0c \t\u3000\u9670 \u98a8 \u6158 \u6fb9 \u5929 \u738b \u65d7 \u3002\r<br>\u612c \u6b66 \u53e4 \u901a \u4f5c \u7259 \u722a \uff0c \t\u3000\u5100 \u66f9 \u5916 \u90ce \u8f09 \u7b46 \u96a8 \u3002\r<br>\u884c \u8ecd \u53f8 \u99ac \u667a \u4e14 \u52c7 \uff0c \t\u3000\u5341 \u56db \u842c \u773e \u7336 \u864e \u8c94 \u3002\r<br>\u5165 \u8521 \u7e1b \u8cca \u737b \u592a \u5edf \uff0c \t\u3000\u529f \u7121 \u8207 \u8b93 \u6069 \u4e0d \u8a3e \u3002\r<br>\u5e1d \u66f0 \u6c5d \u5ea6 \u529f \u7b2c \u4e00 \uff0c \t\u3000\u6c5d \u5f9e \u4e8b \u6108 \u5b9c \u70ba \u8fad \u3002\r<br>\u6108 \u62dc \u7a3d \u9996 \u8e48 \u4e14 \u821e \uff1a \t\u3000\u91d1 \u77f3 \u523b \u756b \u81e3 \u80fd \u70ba \u3002\r<br>\u53e4 \u8005 \u4e16 \u7a31 \u5927 \u624b \u7b46 \uff0c \t\u3000\u6b64 \u4e8b \u4e0d \u4fc2 \u65bc \u8077 \u53f8 \uff0c\r<br>\u7576 \u4ec1 \u81ea \u53e4 \u6709 \u4e0d \u8b93 \u3002 \t\u3000\u8a00 \u8a16 \u5c62 \u9837 \u5929 \u5b50 \u9824 \u3002\r<br>\u516c \u9000 \u9f4b \u6212 \u5750 \u5c0f \u95a3 \uff0c \t\u3000\u6fe1 \u67d3 \u5927 \u7b46 \u4f55 \u6dcb \u6f13 \u3002\r<br>\u9ede \u7ac4 \u582f \u5178 \u821c \u5178 \u5b57 \uff0c \t\u3000\u5857 \u6539 \u6e05 \u5edf \u751f \u6c11 \u8a69 \u3002\r<br>\u6587 \u6210 \u7834 \u9ad4 \u66f8 \u5728 \u7d19 \uff0c \t\u3000\u6e05 \u6668 \u518d \u62dc \u92ea \u4e39 \u5880 \u3002\r<br>\u8868 \u66f0 \u81e3 \u6108 \u6627 \u6b7b \u4e0a \uff0c \t\u3000\u8a60 \u795e \u8056 \u529f \u66f8 \u4e4b \u7891 \u3002\r<br>\u7891 \u9ad8 \u4e09 \u4e08 \u5b57 \u5982 \u6597 \uff0c \t\u3000\u8ca0 \u4ee5 \u9748 \u9f07 \u87e0 \u4ee5 \u87ad \u3002\r<br>\u53e5 \u5947 \u8a9e \u91cd \u55bb \u8005 \u5c11 \uff0c \t\u3000\u8b92 \u4e4b \u5929 \u5b50 \u8a00 \u5176 \u79c1 \u3002\r<br>\u9577 \u7e69 \u767e \u5c3a \u62fd \u7891 \u5012 \uff0c \t\u3000\u9ea4 \u6c99 \u5927 \u77f3 \u76f8 \u78e8 \u6cbb \u3002\r<br>\u516c \u4e4b \u65af \u6587 \u82e5 \u5143 \u6c23 \uff0c \t\u3000\u5148 \u6642 \u5df2 \u5165 \u4eba \u809d \u813e \u3002\r<br>\u6e6f \u76e4 \u5b54 \u9f0e \u6709 \u8ff0 \u4f5c \uff0c \t\u3000\u4eca \u7121 \u5176 \u5668 \u5b58 \u5176 \u8fad \u3002\r<br>\u55da \u547c \u8056 \u738b \u53ca \u8056 \u76f8 \uff0c \t\u3000\u76f8 \u8207 \u70dc \u8d6b \u6d41 \u6df3 \u7199 \u3002\r<br>\u516c \u4e4b \u65af \u6587 \u4e0d \u793a \u5f8c \uff0c \t\u3000\u66f7 \u8207 \u4e09 \u4e94 \u76f8 \u6500 \u8ffd \uff1f\r<br>\u9858 \u66f8 \u842c \u672c \u8aa6 \u842c \u904d \uff0c \t\u3000\u53e3 \u89d2 \u6d41 \u6cab \u53f3 \u624b \u80dd \u3002\r<br>\u50b3 \u4e4b \u4e03 \u5341 \u6709 \u4e8c \u4ee3 \uff0c \t\u3000\u4ee5 \u70ba \u5c01 \u79aa \u7389 \u6aa2 \u660e \u5802 \u57fa \u3002",
+    "ask_time": "2018-09-28T09:36:01.099Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:36:01.099Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 7,
+  "fields": {
+    "guest_name": "\u675c \u752b ",
+    "message": "<strong>\u4f73 \u4eba</strong>\r<br>\r<br>\u7d55 \u4ee3 \u6709 \u4f73 \u4eba \uff0c \t\u3000\u5e7d \u5c45 \u5728 \u7a7a \u8c37 \u3002\r<br>\u81ea \u4e91 \u826f \u5bb6 \u5b50 \uff0c \t\u3000\u96f6 \u843d \u4f9d \u8349 \u6728 \u3002\r<br>\u95dc \u4e2d \u6614 \u55aa \u4e82 \uff0c \t\u3000\u5144 \u5f1f \u906d \u6bba \u622e \u3002\r<br>\u5b98 \u9ad8 \u4f55 \u8db3 \u8ad6 \uff0c \t\u3000\u4e0d \u5f97 \u6536 \u9aa8 \u8089 \u3002\r<br>\u4e16 \u60c5 \u60e1 \u8870 \u6b47 \uff0c \t\u3000\u842c \u4e8b \u96a8 \u8f49 \u71ed \u3002\r<br>\u592b \u5a7f \u8f15 \u8584 \u5152 \uff0c \t\u3000\u65b0 \u4eba \u7f8e \u5982 \u7389 \u3002\r<br>\u5408 \u660f \u5c1a \u77e5 \u6642 \uff0c \t\u3000\u9d1b \u9d26 \u4e0d \u7368 \u5bbf \u3002\r<br>\u4f46 \u898b \u65b0 \u4eba \u7b11 \uff0c \t\u3000\u90a3 \u805e \u820a \u4eba \u54ed \u3002\r<br>\u5728 \u5c71 \u6cc9 \u6c34 \u6e05 \uff0c \t\u3000\u51fa \u5c71 \u6cc9 \u6c34 \u6fc1 \u3002\r<br>\u4f8d \u5a62 \u8ce3 \u73e0 \u8ff4 \uff0c \t\u3000\u727d \u863f \u88dc \u8305 \u5c4b \u3002\r<br>\u6458 \u82b1 \u4e0d \u63d2 \u9aee \uff0c \t\u3000\u91c7 \u67cf \u52d5 \u76c8 \u63ac \u3002\r<br>\u5929 \u5bd2 \u7fe0 \u8896 \u8584 \uff0c \t\u3000\u65e5 \u66ae \u501a \u4fee \u7af9 \u3002",
+    "ask_time": "2018-09-28T09:36:52.909Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:36:52.909Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 8,
+  "fields": {
+    "guest_name": "asda",
+    "message": "asdasd",
+    "ask_time": "2018-09-28T09:37:11.370Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:37:11.370Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 9,
+  "fields": {
+    "guest_name": "asda",
+    "message": "asdas",
+    "ask_time": "2018-09-28T09:37:20.057Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:37:20.057Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 10,
+  "fields": {
+    "guest_name": "\u675c \u752b",
+    "message": "<strong>\u6625 \u671b</strong>\r<br>\r<br>\u570b \u7834 \u5c71 \u6cb3 \u5728 \uff0c \t\u3000\u57ce \u6625 \u8349 \u6728 \u6df1 \u3002\r<br>\u611f \u6642 \u82b1 \u6ffa \u6dda \uff0c \t\u3000\u6068 \u5225 \u9ce5 \u9a5a \u5fc3 \u3002\r<br>\u70fd \u706b \u9023 \u4e09 \u6708 \uff0c \t\u3000\u5bb6 \u66f8 \u62b5 \u842c \u91d1 \u3002\r<br>\u767d \u982d \u6414 \u66f4 \u77ed \uff0c \t\u3000\u6e3e \u6b32 \u4e0d \u52dd \u7c2a \u3002",
+    "ask_time": "2018-09-28T09:38:23.953Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:38:23.953Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 11,
+  "fields": {
+    "guest_name": "asdasdas",
+    "message": "sadas",
+    "ask_time": "2018-09-28T09:38:32.817Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:38:32.817Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 12,
+  "fields": {
+    "guest_name": "aa",
+    "message": "asdasd",
+    "ask_time": "2018-09-28T09:38:40.566Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:38:40.566Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 13,
+  "fields": {
+    "guest_name": "\u738b \u4e4b \u6e19 ",
+    "message": "<h1>\u767b \u9e1b \u9d72 \u6a13</h1>\r<br>\r<br>\r<br>\u767d \u65e5 \u4f9d \u5c71 \u76e1 \uff0c \t\u3000\u9ec3 \u6cb3 \u5165 \u6d77 \u6d41 \u3002\r<br>\u6b32 \u7aae \u5343 \u91cc \u76ee \uff0c \t\u3000\u66f4 \u4e0a \u4e00 \u5c64 \u6a13 \u3002",
+    "ask_time": "2018-09-28T09:40:39.522Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:40:39.522Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 14,
+  "fields": {
+    "guest_name": "\u675c \u752b",
+    "message": "dbdv \r<br>fg h\r<br>ghhj \r<br>",
+    "ask_time": "2018-09-28T09:41:02.805Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-09-28T09:41:02.805Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 15,
+  "fields": {
+    "guest_name": "\u675c \u752b",
+    "message": "dfsfds",
+    "ask_time": "2018-09-28T09:54:00Z",
+    "has_replied": true,
+    "replied_message": "ssssssss",
+    "replied_time": "2018-09-28T09:56:14.598Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 16,
+  "fields": {
+    "guest_name": "asd",
+    "message": "asdasaa",
+    "ask_time": "2018-10-02T09:51:12.566Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-10-02T09:51:12.613Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 17,
+  "fields": {
+    "guest_name": "as",
+    "message": "asd",
+    "ask_time": "2018-10-02T09:51:28.321Z",
+    "has_replied": false,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-10-02T09:51:28.413Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 18,
+  "fields": {
+    "guest_name": "aaaa",
+    "message": "asdasdasdasdas",
+    "ask_time": "2018-10-04T05:15:00Z",
+    "has_replied": true,
+    "replied_message": "\u611f\u8b1d\u60a8\uff01",
+    "replied_time": "2018-10-04T05:16:03.824Z"
+  }
+},
+{
+  "model": "mysite.guest_message",
+  "pk": 19,
+  "fields": {
+    "guest_name": "\u4f60\u597d",
+    "message": "\u6211\u5f88\u5927\u5594",
+    "ask_time": "2018-11-02T12:02:00Z",
+    "has_replied": true,
+    "replied_message": "\u4f60\u4e5f\u597d",
+    "replied_time": "2018-11-02T12:03:05.100Z"
+  }
+},
+{
+  "model": "mysite.news_dashboard",
+  "pk": 1,
+  "fields": {
+    "news_title": "\u6211\u5011\u7684\u7db2\u7ad9\u958b\u5f35\u56c9\uff01",
+    "news_content": "\u541b\u4e0d\u898b\r\n\u9ec3\u6cb3\u4e4b\u6c34\u5929\u4e0a\u4f86\uff0c\u5954\u6d41\u5230\u6d77\u4e0d\u5fa9\u56de\uff1f\r\n\u541b\u4e0d\u898b\r\n\u9ad8\u5802\u660e\u93e1\u60b2\u767d\u9aee\uff0c\u671d\u5982\u9752\u7d72\u66ae\u6210\u96ea\uff1f\r\n\u4eba\u751f\u5f97\u610f\u9808\u76e1\u6b61\uff0c\u83ab\u4f7f\u91d1\u6a3d\u7a7a\u5c0d\u6708\u3002\r\n\u5929\u751f\u6211\u6750\u5fc5\u6709\u7528\uff0c\u5343\u91d1\u6563\u76e1\u9084\u5fa9\u4f86\u3002\r\n\u70f9\u7f8a\u5bb0\u725b\u4e14\u70ba\u6a02\uff0c\u6703\u9808\u4e00\u98f2\u4e09\u767e\u676f\u3002\r\n\u5c91\u592b\u5b50\uff0c\u4e39\u4e18\u751f\uff0c\r\n\u5c07\u9032\u9152\uff0c\u541b\u83ab\u505c\u3002\r\n\u8207\u541b\u6b4c\u4e00\u66f2\uff0c\u8acb\u541b\u70ba\u6211\u5074\u8033\u807d\u3002\r\n\u9418\u9f13\u994c\u7389\u4e0d\u8db3\u8cb4\uff0c\u4f46\u9858\u9577\u9189\u4e0d\u9858\u9192\u3002\r\n\u53e4\u4f86\u8056\u8ce2\u7686\u5bc2\u5bde\uff0c\u60df\u6709\u98f2\u8005\u7559\u5176\u540d\u3002\r\n\u9673\u738b\u6614\u6642\u5bb4\u5e73\u6a02\uff0c\u6597\u9152\u5341\u5343\u6063\u6b61\u8b14\u3002\r\n\u4e3b\u4eba\u4f55\u70ba\u8a00\u5c11\u9322\uff0c\u5f91\u9808\u6cbd\u53d6\u5c0d\u541b\u914c\u3002\r\n\u4e94\u82b1\u99ac\uff0c\u5343\u91d1\u88d8\uff0c\r\n\u547c\u5152\u5c07\u51fa\u63db\u7f8e\u9152\uff0c\u8207\u723e\u540c\u92b7\u842c\u53e4\u6101\uff01",
+    "news_thumbnail": "IMG_4746.JPG",
+    "news_upload_time": "2018-10-24T08:41:19.518Z"
+  }
+},
+{
+  "model": "mysite.news_dashboard",
+  "pk": 2,
+  "fields": {
+    "news_title": "\u9019\u500b\u7db2\u7ad9\u6f02\u4eae\u561b\uff1f",
+    "news_content": "All the World's a Stage by William Shakespeare\r\n\r\nAll the world's a stage,\r\nAnd all the men and women merely players;\r\nThey have their exits and their entrances,\r\nAnd one man in his time plays many parts,\r\nHis acts being seven ages. At first, the infant,\r\nMewling and puking in the nurse's arms.\r\nThen the whining schoolboy, with his satchel\r\nAnd shining morning face, creeping like snail\r\nUnwillingly to school. And then the lover,\r\nSighing like furnace, with a woeful ballad\r\nMade to his mistress' eyebrow. Then a soldier,\r\nFull of strange oaths and bearded like the pard,\r\nJealous in honor, sudden and quick in quarrel,\r\nSeeking the bubble reputation\r\nEven in the cannon's mouth. And then the justice,\r\nIn fair round belly with good capon lined,\r\nWith eyes severe and beard of formal cut,\r\nFull of wise saws and modern instances;\r\nAnd so he plays his part. The sixth age shifts\r\nInto the lean and slippered pantaloon,\r\nWith spectacles on nose and pouch on side;\r\nHis youthful hose, well saved, a world too wide\r\nFor his shrunk shank, and his big manly voice,\r\nTurning again toward childish treble, pipes\r\nAnd whistles in his sound. Last scene of all,\r\nThat ends this strange eventful history,\r\nIs second childishness and mere oblivion,\r\nSans teeth, sans eyes, sans taste, sans everything.",
+    "news_thumbnail": "IMG_7787.JPG",
+    "news_upload_time": "2018-10-24T09:41:50.685Z"
+  }
+},
+{
+  "model": "mysite.news_dashboard",
+  "pk": 3,
+  "fields": {
+    "news_title": "\u4eca\u5929\u662f\u661f\u671f\u4e94",
+    "news_content": "\u9019\u4e9b\u65e5\u5b50\u4ee5\u4f86\u5728\uff0b\u6a02\u6c34\u7684\u767d\u8272\u623f\u5b50\u88e1\uff0c\u6211\u5011\u898b\u8b49\u4e86\u8a31\u591a\u500b\u611b\u7684\u6545\u4e8b\u3002\r\n\u5728\uff0b\u6a02\u6c34\u8209\u8fa6\u5a5a\u79ae\u7684\u65b0\u4eba\u5011\uff0c\u6bcf\u4e00\u6b21\u90fd\u985b\u8986\u4e86\u6211\u5011\u5c0d\u5a5a\u79ae\u7684\u60f3\u50cf\u3002\r\n\r\n\u3000\r\n\u6709\u7a7f\u8457\u593e\u8173\u62d6\u4f86\u53c3\u52a0\u5a5a\u79ae\u7684\u8cd3\u5ba2\uff0c\u4e5f\u6709\u9b3c\u9748\u7cbe\u602a\u7684\u4f34\u90ce\u4f34\u5a18\u3002\r\n\u6709\u5728\u89d2\u843d\u5077\u5077\u62ed\u6dda\u7684\u7236\u89aa\uff0c\r\n\u6709\u7684\u6642\u5019\u4e5f\u6703\u6709\u7a7f\u8d77\u79ae\u670d\u7684\u6bdb\u5c0f\u5b69\u5728\u8349\u5730\u4e0a\u6dd8\u6c23\u5730\u5954\u8dd1\uff0c\u966a\u8457\u4e3b\u4eba\u4e00\u8d77\u8d70\u5411\u7d05\u6bef\u3002\r\n\u3000\r\n\u65b0\u4eba\u5011\u5728\u851a\u85cd\u7684\u5927\u6d77\u524d\u4ea4\u63db\u6212\u6307\uff0c\u5171\u540c\u5b8c\u6210\u4e86\u5f7c\u6b64\u4eba\u751f\u4e2d\u7684\u5927\u4e8b\u22ef\u22ef\r\n\u3000\r\n\u5728\u6ff1\u6d77\u516c\u8def\u65c1\u71b1\u60c5\u6f14\u5531\u8457\u8ff7\u4eba\u60c5\u6b4c\u7684\u5a5a\u79ae\u6b4c\u624b\uff0c\r\n\u5076\u723e\u4e5f\u6703\u6709DJ\u64ad\u653e\u8457\u52c1\u6b4c\u91d1\u66f2\uff0c",
+    "news_thumbnail": "IMG_4739.JPG",
+    "news_upload_time": "2018-10-24T09:53:59.888Z"
+  }
+},
+{
+  "model": "mysite.news_dashboard",
+  "pk": 4,
+  "fields": {
+    "news_title": "123",
+    "news_content": "123456789",
+    "news_thumbnail": "b1.jpg",
+    "news_upload_time": "2018-11-27T13:56:17.543Z"
+  }
+},
+{
+  "model": "mysite.nearby_dashboard",
+  "pk": 1,
+  "fields": {
+    "nearby_title": "\u9e92\u9e9f\u6f6d",
+    "nearby_content": "\u5c31\u5728\u6211\u5011\u6c11\u5bbf\u7684\u9580\u53e3\uff0coooxxx\uff0c\u5f88\u7121\u804a\u7684\u5730\u65b9\u3002",
+    "nearby_thumbnail": "the_lake.jpg",
+    "nearby_upload_time": "2018-10-29T03:07:28.148Z"
+  }
+},
+{
+  "model": "mysite.nearby_dashboard",
+  "pk": 2,
+  "fields": {
+    "nearby_title": "\u7279\u751f\u4e2d\u5fc3",
+    "nearby_content": "\u6211\u611b\u5927\u81ea\u7136\uff0c\u5927\u5f97\u5f88\u81ea\u7136",
+    "nearby_thumbnail": "A.jpg",
+    "nearby_upload_time": "2018-11-26T08:51:00.823Z"
+  }
+},
+{
+  "model": "mysite.customtext",
+  "pk": 1,
+  "fields": {
+    "paragraph_name": "about",
+    "paragraph_text": "<p align='left' ><font style=\"font-size: 150%;font-weight:bold;padding-left:5vw\">\u6e56\u9802\u8fb2\u5834\u6c11\u5bbf</font>\r\n\t\t\u4f4d\u65bc\u6eaa\u982d\u98a8\u666f\u7dda--\u9cf3\u51f0\u652f\u7dda\uff0c\u5357\u6295\u516b\u5927\u52dd\u666f\u4e4b\u4e00\u7684\u300e\u9e92\u9e9f\u6f6d\u300f\u7554\uff0c\r\n\t\t\u4e0d\u4f46\u662f\u7a7a\u6c23\u6e05\u65b0\u3001\u666f\u7dfb\u5e7d\u7f8e\uff0c\u5168\u65b0\u7684\u786c\u9ad4\u8a2d\u5099\uff0c\u4e14\u63d0\u4f9b\u514d\u8cbb\u7121\u7dda\u7db2\u8def\uff0c\u8b93\u60a8\u4f4f\u5f97\u66f4\u8212\u9069\u800c\u6eab\u99a8\uff01\r\n\t  <br>\r\n\t  \u300e\u6e56\u9802\u6c11\u5bbf\u300f\u4f4d\u5c45\u51cd\u9802\u5c71\u4e0b\uff0c\u666f\u8272\u5e7d\u7f8e\u3001\u751f\u614b\u8c50\u5bcc\u3001\u524d\u81e8\u300e\u9e92\u9e9f\u6f6d\u300f\uff0c\u4e14\u9130\u8fd1\u8207\u9cf3\u51f0\u8c37\u9ce5\u5712\u3001\u5167\u6e56\u68ee\r\n\t  \u6797\u5c0f\u5b78\u3001\u5168\u53f0\u7063\u6700\u7f8e\u9e97\u7684\u793e\u5340----\u300c\u5c0f\u534a\u5929\u300d\u3001\u4ee5\u53ca\u907f\u6691\u8056\u5730-\u6eaa\u982d\u68ee\u6797\u904a\u6a02\u5340(\u6eaa\u982d\u5996\u602a\u6751)\uff0c\r\n\t  \u662f\u708e\u708e\u590f\u5b63\u907f\u6691\u3001\u6e05\u6dbc\u7684\u597d\u53bb\u8655\u54e6\uff01</p>"
+  }
+},
+{
+  "model": "mysite.customtext",
+  "pk": 2,
+  "fields": {
+    "paragraph_name": "traffic",
+    "paragraph_text": "\u81ea\u884c\u958b\u8eca\uff1a\r\n\t<p align=\"left\" style=\"padding-left:10vw;padding-right:10vw\">\r\n\t\t\u4e2d\u4e8c\u9ad8(\u570b\u90533\u865f)\uff1e\u7af9\u5c71/\u9e7f\u8c37\u4ea4\u6d41\u9053\u4e0b\uff1e\u53f3\u8f49\u53f0\u4e09\u7dda(\u5f80\u6eaa\u982d\u65b9\u5411)\uff1e\u63a5\u53f0151\u865f\u7e23\u9053\u5f80\u6eaa\u982d\uff1e\u9e7f\u8c37\uff1e\u5f80\u9e92\u9e9f\u6f6d\u65b9\u5411\uff1e\u9e92\u9e9f\u6f6d\uff1e\u6e56\u9802\u6c11\u5bbf\r\n\t</p>\r\n\t\u642d\u4e58\u5927\u773e\u904b\u8f38\u5de5\u5177\uff1a\r\n\t<p align=\"left\" style=\"padding-left:10vw;padding-right:10vw\">\r\n\t\t1.\u53ef\u5148\u642d\u4e58\u3010\u53f0\u7063\u9ad8\u9435\u3011\u5230\u53f0\u4e2d(\u70cf\u65e5\u7ad9)\u3001\u6216\u662f\u642d\u706b\u8eca\u5230\u53f0\u4e2d\u7ad9=>\u518d\u65bc\u53f0\u4e2d\u7ad9\u8f49\u642d\u3010\u53f0\u7063\u597d\u884c\u2014\u6eaa\u982d\u5c08\u8eca\u3011=>\u65bc\u300e\u9e7f\u8c37\u300f\u7ad9\u4e0b\u8eca\uff0c\u96fb\u8a71\u9023\u7d61\u6c11\u5bbf\u4e3b\u4eba\u5230\u9e7f\u8c37\u63a5\u60a8\u5230\u6c11\u5bbfCHECK-IN\uff1b (\u9700\u6b64\u63a5\u99c1\u670d\u52d9\u8005~\u8acb\u52d9\u5fc5\u65bc\u96fb\u8a71\u8a02\u623f\u6642\u544a\u77e5\u6c11\u5bbf\u4e3b\u4eba\uff0c\u597d\u70ba\u60a8\u9810\u5148\u5b89\u6392\u8eca\u8ad2\u5594\uff01)\r\n\t</p>"
+  }
+}
+]

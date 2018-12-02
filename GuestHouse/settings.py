@@ -88,13 +88,25 @@ WSGI_APPLICATION = 'GuestHouse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
+# # elephant sql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'elmer.db.elephantsql.com',
+        'USER': 'peyfbuzr',
+        'PASSWORD': 'Mb5gSvSNVRKfD2s-t4E_LT5tX_7wU_jK',
+        'NAME': 'peyfbuzr',
+        'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
