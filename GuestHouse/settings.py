@@ -30,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&-156g%8r$qbf7055l(ay%s4x)=w_@47q015w-au$^s@=-+$u#'
+SECRET_KEY = MIF.DJANGO_SECRET_KEY()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -97,7 +97,7 @@ DATABASES = {
 
 
 # # elephant sql
-# DATABASES = {
+#DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'HOST': 'elmer.db.elephantsql.com',
@@ -106,7 +106,7 @@ DATABASES = {
 #         'NAME': 'peyfbuzr',
 #         'PORT': '5432'
 #     }
-}
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -150,6 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -161,5 +162,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = MyGmailAccount()
 EMAIL_HOST_PASSWORD = MyGmailPassword()
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
