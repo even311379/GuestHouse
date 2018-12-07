@@ -47,9 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     # 'django_user_agents',  # used to dectect user_agents
     'mysite'
 ]
+
+SITE_ID = 1
 
 # https://github.com/selwin/django-user_agents
 

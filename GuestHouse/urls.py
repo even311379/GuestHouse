@@ -17,7 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from mysite import views
+from django.contrib.sitemaps import views as sv
+from mysite import views , sitemap
+
+
+sitemaps_ = {
+    'static': sitemap.StaticViewSitemap,
+}
+
 
 app_name = 'mysite'
 
@@ -40,7 +47,8 @@ urlpatterns = [
     path('calendar', views.calendar_widget, name='calendar_widget'),
     path('message_area', views.message_area, name='message_area'),
     path('add_message', views.add_message, name='add_message'),
-    path('test',views.test, name='test')
+    path('test',views.test, name='test'),
+    path('sitemap.xml', sv.sitemap, {'sitemaps': sitemaps_}),
      ]
 
 # if settings.DEBUG:
