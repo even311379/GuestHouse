@@ -46,6 +46,13 @@ class TemplateImages(models.Model):
     def __str__(self):
         return self.name
 
+    def delete(self,*args,**kwargs):
+        if os.path.isfile(self.file.path):
+            os.remove(self.file.path)
+
+        super(TemplateImages, self).delete(*args,**kwargs)
+
+
 class room_use_condition(models.Model):
     class Meta:
         verbose_name = '用房狀況'

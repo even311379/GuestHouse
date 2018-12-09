@@ -4,13 +4,6 @@
 <style>
 	.carousel-inner > .carousel-item > img { width:550px; height:350px; }
 
-	.fa-arrow-right{
-		padding-left: 5px;
-		padding-right: 5px;
-		color: #575c64;
-		font-size: 0.75em;
-	}
-
 	.rwd_table_size_f{
 		width: 60%;
 	}
@@ -97,9 +90,14 @@
 	  
 	  </div>
 	  
-	  <div class='row'>
+	  <div class="row gallery-item">
 		{% for img in about_imgs %}
-		<div class='col-sm-4'><img title="" src="{{ img.file.url }}" width=300 height=250>&nbsp;</div>
+		<!-- <div class='col-md-4'><img title="" src="{{ img.file.url }}" width=300 height=250>&nbsp;</div> -->
+		<div class="col-md-4">
+			<a href="{{ img.file.url }}" class="img-gal">
+				<div class="single-gallery-image" style="background: url({{ img.file.url }});"></div>
+			</a>
+		</div>
 		{% endfor %}
 	  </div>
 </section>

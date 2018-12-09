@@ -338,7 +338,7 @@ button:focus {
 /*----------------------------------------------------*/
 /* Home Banner Area css
 ============================================================================================ */
-.home_banner_area {
+/* .home_banner_area {
   position: relative;
   z-index: -10;
   min-height: 500px; }
@@ -348,14 +348,10 @@ button:focus {
     width: 100%;
     min-height: 500px; }
     .home_banner_area .banner_inner .bg-parallax {
-      background: url(../img/banner/myBanner1.png) no-repeat scroll center center;
-      background-size:100% 100%;
+      background: url(../../media/banner.png) no-repeat scroll center center;
+      background-size: cover;
       position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 100%;
-      bottom: 0;
+      height: 110%;
       z-index: -20;
       /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url(../img/banner/myBanner1.png) no-repeat scroll center center;
       background-size: cover;
@@ -405,7 +401,7 @@ button:focus {
           .home_banner_area .banner_inner .banner_content .text {
             display: none; } }
       .home_banner_area .banner_inner .banner_content .vdo-btn {
-        margin-top: 50px; }
+        margin-top: 50px; } */
 
 .banner_box {
   max-width: 1620px;

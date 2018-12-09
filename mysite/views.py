@@ -15,6 +15,7 @@ import calendar
 
 EMAIL_SERVER = 'huding4309@gmail.com'
 HOST_USER_EMAILS = ['even311379@hotmail.com', 'cth30@outlook.com']
+# HOST_USER_EMAILS = ['even311379@hotmail.com']
 
 def test(request):
     all_news = models.news_dashboard.objects.all()
@@ -196,7 +197,7 @@ def booking(request):
 
 def booking_validate_date(request):
     '''
-    This is a ajax response
+    This is an ajax response
     '''
     print('ajax in python to check is triggered!')
     end_date = request.GET.get('end_date', None)
@@ -258,6 +259,7 @@ def add_booking_data(request):
             BookerPhone = request.POST.get('BookerPhone')
             boic = eval(request.session.get('booking_order_info_confirmed'))
             order_info = zip(boic['rt'], boic['nb'], boic['money'])
+            order_info_t = zip(boic['rt'], boic['nb'], boic['money'])
             total = sum(boic['money'])
             nd, nhd, check_in, check_out = boic['nd'], boic['nhd'], boic['check_in'], boic['check_out']
             thd = nd + nhd
@@ -308,13 +310,17 @@ def add_booking_data(request):
 
             '''
             寄mail給民宿業者，在此mail中確認此訂單
+            so wierd... I use same variable 'order_info' for second mail, but fail to render,
+            and I create another variable with same name and it works? what's wrong?
             '''
-            mail_template = get_template('book_confirm_email.html')
-            content = mail_template.render(locals())
+
+            mail_template_h = get_template('book_confirm_email.html')
+            content = mail_template_h.render(locals())
             subject = '民宿網站訂房通知'
             msg = EmailMessage(
                 subject, content, EMAIL_SERVER, HOST_USER_EMAILS)
             msg.content_subtype = 'html'
+            
             request.session.pop('booking_order_info_confirmed')
 
             try:

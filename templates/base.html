@@ -16,7 +16,7 @@
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	{% load static %}
-	<link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+	<link rel="icon" href="media/favicon.png" type="image/png">
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
@@ -54,6 +54,74 @@ h4 {
 	max-width: 1000px;
 }
 
+.fa-arrow-right{
+		padding-left: 5px;
+		padding-right: 5px;
+		color: #575c64;
+		font-size: 0.75em;
+	}
+
+
+.home_banner_area {
+position: relative;
+z-index: -10;
+min-height: 500px; }
+.home_banner_area .banner_inner {
+position: relative;
+overflow: hidden;
+width: 100%;
+min-height: 500px; }
+.home_banner_area .banner_inner .bg-parallax {
+	background: url(../media/banner.png) no-repeat scroll center center;
+	background-size:cover;
+	position: absolute;
+	height: 100%;
+	z-index: -20;
+	}
+.home_banner_area .banner_inner .banner_content {
+	color: #f2f2f2; }
+	.home_banner_area .banner_inner .banner_content h5 {
+	text-transform: uppercase;
+	font-family: "Noto Sans TC", sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	margin-bottom: 15px; }
+	.home_banner_area .banner_inner .banner_content h1 {
+	font-size: 80px;
+	line-height: 40px;
+	font-family: "Noto Sans TC", serif;
+	font-weight: 900;
+	margin-bottom: 60px;
+	color: #f2f2f2; }
+	@media (max-width: 767px) {
+		.home_banner_area .banner_inner .banner_content h1 {
+		font-size: 60px;
+		margin-bottom: 10px;
+		line-height: 130%; } }
+	.home_banner_area .banner_inner .banner_content .top-text {
+	text-align: right;
+	max-width: 506px;
+	margin: auto;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 3px;
+	margin-bottom: -10px; }
+	@media (max-width: 767px) {
+		.home_banner_area .banner_inner .banner_content .top-text {
+		max-width: 50%; } }
+	@media (max-width: 320px) {
+		.home_banner_area .banner_inner .banner_content .top-text {
+		max-width: 53%;
+		margin-bottom: 10px; } }
+	.home_banner_area .banner_inner .banner_content .text {
+	max-width: 620px;
+	margin: auto; }
+	@media (max-width: 320px) {
+		.home_banner_area .banner_inner .banner_content .text {
+		display: none; } }
+	.home_banner_area .banner_inner .banner_content .vdo-btn {
+	margin-top: 50px; }
 </style>
 
 {% block morehead %} {% endblock %}
