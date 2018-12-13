@@ -17,8 +17,10 @@
 			 width: 100%;}
 			
 	 	}
-
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.4/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.4/dist/jquery.fancybox.min.js"></script>
+<!-- I use fancybox3 as my lightbox to show images -->
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -92,9 +94,8 @@
 	  
 	  <div class="row gallery-item">
 		{% for img in about_imgs %}
-		<!-- <div class='col-md-4'><img title="" src="{{ img.file.url }}" width=300 height=250>&nbsp;</div> -->
 		<div class="col-md-4">
-			<a href="{{ img.file.url }}" class="img-gal">
+			<a data-fancybox="gallery" href="{{ img.file.url }}">
 				<div class="single-gallery-image" style="background: url({{ img.file.url }});"></div>
 			</a>
 		</div>
@@ -259,22 +260,12 @@
 	<h1>交通方式</h1>
 	<br>
 	{{ traffic_text.paragraph_text | safe }}
-	
 	<section class="gallery_area" id="gallery">
-
-		<div class="single-gallery w-50">
-			<div class="overlay"></div>
-			<img class="img-fluid" src="{{ map_img.file.url }}" alt=""> 
-			<div class="icon">
-				<a target="_blank"  href="{{ map_img.file.url }}" class="img-pop-home">
-					<img src="/static/img/zoom-icon.png" alt="">
-				</a>
-			</div>
+		<div class="single-gallery w-100">
+			<a data-fancybox="gallery" href="{{ map_img.file.url }}"><img class="img-fluid" src="{{ map_img.file.url }}"></a>
 		</div>
-		<!-- style="left:50%;transform:translate(-50%, 0%);" -->
-</section>
-	  <!-- <a target="_blank" rel="我們的地圖放大顯示" href="/static/map_sample.jpg"><img title="" src="/static/map_sample.jpg"></a> -->
-	  <p>經度：120.769572    緯度：23.75253</p>
+	</section>
+	<p>經度：120.769572    緯度：23.75253</p>
 </div>
 {% endblock %}
 

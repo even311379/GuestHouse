@@ -159,7 +159,7 @@ button:focus {
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 9999999;
+  z-index: 3;
   transition: background 0.4s, all 0.3s linear; }
   .header_area .navbar {
     background: #ffffff;

@@ -37,6 +37,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
 
 # Application definition
 
@@ -68,6 +70,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'GuestHouse.urls'
+
+X_FRAME_OPTIONS = 'DENY'
 
 TEMPLATES = [
     {

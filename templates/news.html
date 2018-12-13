@@ -1,6 +1,24 @@
 <!-- index.html -->
 {% extends "base.html" %}
 
+{% block morehead %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.4/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.4/dist/jquery.fancybox.min.js"></script>
+<style>
+.rwd_img{
+  max-width:18vw;
+  max-height:auto;
+  padding-bottom:10%;
+}
+@media only screen and (max-width:600px) and (min-width:150px) {
+    .rwd_img{
+    max-width:48vw;
+    max-height:48vh;
+  }
+}
+</style>
+{% endblock %}
+
 {% block content %}
 {% load static %}
 
@@ -10,15 +28,20 @@
 {% for news in some_news %}
 <br>
 <div class='row'>
-  <div class='col-sm-2'>
-  </div>
-	<div class='col-sm-3'>
-    <img src="{{ news.news_thumbnail.url }}" class="rounded mx-auto d-block" width=150 height=150>
+  <!-- <div class='col-sm-2'>
+  </div> -->
+	<div class='col-sm-4'>
+      <a data-fancybox="gallery" href="{{ news.news_thumbnail.url }}">
+          <!-- <div class="single-gallery-image" style="background: url({{ img.file.url }});"></div> -->
+          <img src="{{ news.news_thumbnail.url }}" class="rounded rwd_img" >
+        </a>
+    <br>
 	</div>
-	<div class='col-sm-6'>
+	<div class='col-sm-8'>
     <h4 align='left'>{{ news.news_title}}</h4>
-      <p style="font-size: 14px;text-align: left;">{{news.news_content|truncatechars:100|safe}}
-          <button data-toggle="modal" class="btn btn-link" data-target="#myModal{{ forloop.counter }}">more...</button>
+      <p style="font-size: 14px;text-align: left;">
+          <a data-toggle="modal" data-target="#myModal{{ forloop.counter }}" style="cursor: pointer;">
+            {{news.news_content|truncatechars:100|safe}}</a>
       </p>
     <!-- add a bigger view for each news -->
 
@@ -26,7 +49,7 @@
 	</div>
 </div>
 <br>
-<div class='row'><div class="new_line col-md-9 offset-md-2"></div></div>
+<div class='row'><div class="new_line  offset-md-1"></div></div>
 
 <div class="modal fade" tabindex="1" role="dialog" id="myModal{{ forloop.counter }}">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -36,9 +59,12 @@
       </div>
       <div class="modal-body">
         <h4 class="modal-title">{{news.news_title}}</h4>
+        <div style="text-align: justify; margin-left: 40px;">
         <p>{{news.news_content | linebreaks}}</p>
+        </div>
+        <img src="{{ news.news_thumbnail.url }}" class="rounded mx-auto d-block" style="max-width:180px;max-height:180px">
         <p style="font-size: 12px" align='right'>{{ news.news_upload_time}}</p>
-	  </div>
+    </div>
       <div class="modal-footer">
         <button class="btn btn-link" data-dismiss="modal">Close</button>
       </div>
