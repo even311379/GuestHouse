@@ -48,10 +48,9 @@ urlpatterns = [
     path('message_area', views.message_area, name='message_area'),
     path('add_message', views.add_message, name='add_message'),
     path('test',views.test, name='test'),
-    path('sitemap.xml', sv.sitemap, {'sitemaps': sitemaps_}),
+    path('sitemap.xml', sv.sitemap, {'sitemaps': sitemaps_},name='django.contrib.sitemaps.views.sitemap'),
      ]
 
-# if settings.DEBUG:
 urlpatterns += static(settings.STATIC_URL,
                         document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL,
