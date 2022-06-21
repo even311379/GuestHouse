@@ -7,7 +7,7 @@ django-heroku==0.3.1
 django-user-agents==0.3.2
 gunicorn==19.9.0
 idna==2.7
-numpy==1.15.4
+numpy==1.22.0
 pandas==0.23.4
 psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
